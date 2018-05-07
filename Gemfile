@@ -36,6 +36,12 @@ gem 'rails-erd'
 gem 'bootstrap_sb_admin_base_v2'
 gem 'rails-assets-bootstrap', '3.3.7', source: 'https://rails-assets.org'
 
+# A simple, versatile notification library
+gem 'rails-assets-notifyjs', source: 'https://rails-assets.org'
+
+# Bootbox gem
+gem 'rails-assets-bootbox', source: 'https://rails-assets.org'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
