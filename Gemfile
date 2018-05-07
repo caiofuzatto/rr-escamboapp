@@ -56,6 +56,8 @@ group :development, :test do
   gem 'byebug'
   # Better error page for Rack apps
   gem "better_errors"
+  # A library for generating fake data such as names, addresses, and phone numbers.
+  gem "faker"
 end
 
 group :development do
