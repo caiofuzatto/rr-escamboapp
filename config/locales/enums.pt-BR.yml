@@ -1,0 +1,6 @@
+'pt-BR':
+  enums:
+    admin:
+      role:
+        administrator: Administrador
+        moderator: Moderador

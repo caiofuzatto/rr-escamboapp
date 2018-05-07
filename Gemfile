@@ -32,6 +32,9 @@ gem 'devise-i18n'
 # Generate Entity-Relationship Diagrams for Rails applications 
 gem 'rails-erd'
 
+# Help ActiveRecord::Enum feature to work fine with I18n and simple_form.
+gem 'enum_help'
+
 # Rails gem of the Bootstrap based admin theme SB Admin 2.
 gem 'bootstrap_sb_admin_base_v2'
 gem 'rails-assets-bootstrap', '3.3.7', source: 'https://rails-assets.org'

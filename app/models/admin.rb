@@ -1,6 +1,14 @@
 class Admin < ActiveRecord::Base
-  enum role: [:administrator, :moderator]
+  # Constants
+  ROLES = {:administrator => 0, :moderator => 1}
   
+  # Enums
+  enum role: ROLES
+
+  # Scopes
+  scope :with_administrator, -> { where(role: ROLES[:administrator]) }
+  scope :with_moderator, -> { where(role: ROLES[:moderator]) }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
