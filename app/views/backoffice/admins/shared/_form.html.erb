@@ -20,10 +20,28 @@
                     <div class="form-group">
                         <%= f.label :name %>
                         <%= f.text_field :name, class: "form-control", placeholder:"Nome Sobrenome" %>
+                    </div>
+                    <div class="form-group">
                         <%= f.label :email %>
                         <%= f.text_field :email, class: "form-control", placeholder:"admin@escamboapp.com" %>
+                    </div>
+                    <% if current_admin.administrator? %> 
+                        <div class="form-group">
+                            <%= f.label :role %>
+                            <%= f.collection_radio_buttons(:role, options_for_roles, :id, :description) do |b| %>
+                                <div class="radio">
+                                    <label>
+                                        <%= b.label {b.radio_button + b.text} %>
+                                    </label>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                    <div class="form-group">
                         <%= f.label :password %>
                         <%= f.password_field :password, class: "form-control", placeholder:"******" %>
+                    </div>
+                    <div class="form-group">
                         <%= f.label :password_confirmation %>
                         <%= f.password_field :password_confirmation, class: "form-control", placeholder:"******" %>
                     </div>
