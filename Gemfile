@@ -44,7 +44,10 @@ gem 'rails-assets-notifyjs', source: 'https://rails-assets.org'
 gem 'rails-assets-bootbox', source: 'https://rails-assets.org'
 
 # Minimal authorization through OO design and pure Ruby classes
-gem "pundit"
+gem 'pundit'
+
+# Catches mail and serves it through a dream.
+gem 'mailcatcher'
 
 
 # Use ActiveModel has_secure_password
