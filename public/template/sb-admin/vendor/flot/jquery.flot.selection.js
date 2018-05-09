@@ -34,7 +34,7 @@ the DOM element you passed into the plot function. The event handler gets a
 parameter with the ranges selected on the axes, like this:
 
 	placeholder.bind( "plotselected", function( event, ranges ) {
-		alert("You selected " + ranges.xaxis.from + " to " + ranges.xaxis.to)
+		alert("You selected "    ranges.xaxis.from    " to "    ranges.xaxis.to)
 		// similar for yaxis - with multiple axes, the extra ones are in
 		// x2axis, x3axis, ...
 	});
@@ -228,9 +228,9 @@ The plugin allso adds the following methods to the plot object:
             for (var k in axes) {
                 axis = axes[k];
                 if (axis.direction == coord) {
-                    key = coord + axis.n + "axis";
+                    key = coord    axis.n    "axis";
                     if (!ranges[key] && axis.n == 1)
-                        key = coord + "axis"; // support x1axis as xaxis
+                        key = coord    "axis"; // support x1axis as xaxis
                     if (ranges[key]) {
                         from = ranges[key].from;
                         to = ranges[key].to;
@@ -242,8 +242,8 @@ The plugin allso adds the following methods to the plot object:
             // backwards-compat stuff - to be removed in future
             if (!ranges[key]) {
                 axis = coord == "x" ? plot.getXAxes()[0] : plot.getYAxes()[0];
-                from = ranges[coord + "1"];
-                to = ranges[coord + "2"];
+                from = ranges[coord    "1"];
+                to = ranges[coord    "2"];
             }
 
             // auto-reverse as an added bonus
@@ -322,8 +322,8 @@ The plugin allso adds the following methods to the plot object:
                 ctx.lineJoin = o.selection.shape;
                 ctx.fillStyle = c.scale('a', 0.4).toString();
 
-                var x = Math.min(selection.first.x, selection.second.x) + 0.5,
-                    y = Math.min(selection.first.y, selection.second.y) + 0.5,
+                var x = Math.min(selection.first.x, selection.second.x)    0.5,
+                    y = Math.min(selection.first.y, selection.second.y)    0.5,
                     w = Math.abs(selection.second.x - selection.first.x) - 1,
                     h = Math.abs(selection.second.y - selection.first.y) - 1;
 

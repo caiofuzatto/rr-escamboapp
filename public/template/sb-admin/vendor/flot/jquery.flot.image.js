@@ -124,10 +124,10 @@ Google Maps).
         var points = series.datapoints.points,
             ps = series.datapoints.pointsize;
         
-        for (var i = 0; i < points.length; i += ps) {
+        for (var i = 0; i < points.length; i   = ps) {
             var img = points[i],
-                x1 = points[i + 1], y1 = points[i + 2],
-                x2 = points[i + 3], y2 = points[i + 4],
+                x1 = points[i    1], y1 = points[i    2],
+                x2 = points[i    3], y2 = points[i    4],
                 xaxis = series.xaxis, yaxis = series.yaxis,
                 tmp;
 
@@ -153,10 +153,10 @@ Google Maps).
             if (series.images.anchor == "center") {
                 tmp = 0.5 * (x2-x1) / (img.width - 1);
                 x1 -= tmp;
-                x2 += tmp;
+                x2   = tmp;
                 tmp = 0.5 * (y2-y1) / (img.height - 1);
                 y1 -= tmp;
-                y2 += tmp;
+                y2   = tmp;
             }
             
             // clip
@@ -167,22 +167,22 @@ Google Maps).
 
             var sx1 = 0, sy1 = 0, sx2 = img.width, sy2 = img.height;
             if (x1 < xaxis.min) {
-                sx1 += (sx2 - sx1) * (xaxis.min - x1) / (x2 - x1);
+                sx1   = (sx2 - sx1) * (xaxis.min - x1) / (x2 - x1);
                 x1 = xaxis.min;
             }
 
             if (x2 > xaxis.max) {
-                sx2 += (sx2 - sx1) * (xaxis.max - x2) / (x2 - x1);
+                sx2   = (sx2 - sx1) * (xaxis.max - x2) / (x2 - x1);
                 x2 = xaxis.max;
             }
 
             if (y1 < yaxis.min) {
-                sy2 += (sy1 - sy2) * (yaxis.min - y1) / (y2 - y1);
+                sy2   = (sy1 - sy2) * (yaxis.min - y1) / (y2 - y1);
                 y1 = yaxis.min;
             }
 
             if (y2 > yaxis.max) {
-                sy1 += (sy1 - sy2) * (yaxis.max - y2) / (y2 - y1);
+                sy1   = (sy1 - sy2) * (yaxis.max - y2) / (y2 - y1);
                 y2 = yaxis.max;
             }
             
@@ -207,7 +207,7 @@ Google Maps).
             ctx.globalAlpha *= series.images.alpha;
             ctx.drawImage(img,
                           sx1, sy1, sx2 - sx1, sy2 - sy1,
-                          x1 + plotOffset.left, y1 + plotOffset.top,
+                          x1    plotOffset.left, y1    plotOffset.top,
                           x2 - x1, y2 - y1);
             ctx.globalAlpha = tmp;
         }

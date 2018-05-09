@@ -66,9 +66,9 @@ You may need to check for this in hover events.
             var newpoints = [];
             var m;
 
-            for (i = 0; i < origpoints.length; i += ps) {
+            for (i = 0; i < origpoints.length; i   = ps) {
                 x = origpoints[i];
-                y = origpoints[i + 1];
+                y = origpoints[i    1];
 
                 prevp = p;
                 if (y < below)
@@ -78,26 +78,26 @@ You may need to check for this in hover events.
 
                 if (addCrossingPoints && prevp != p && x != null
                     && i > 0 && origpoints[i - ps] != null) {
-                    var interx = x + (below - y) * (x - origpoints[i - ps]) / (y - origpoints[i - ps + 1]);
+                    var interx = x    (below - y) * (x - origpoints[i - ps]) / (y - origpoints[i - ps    1]);
                     prevp.push(interx);
                     prevp.push(below);
-                    for (m = 2; m < ps; ++m)
-                        prevp.push(origpoints[i + m]);
+                    for (m = 2; m < ps;     m)
+                        prevp.push(origpoints[i    m]);
                     
                     p.push(null); // start new segment
                     p.push(null);
-                    for (m = 2; m < ps; ++m)
-                        p.push(origpoints[i + m]);
+                    for (m = 2; m < ps;     m)
+                        p.push(origpoints[i    m]);
                     p.push(interx);
                     p.push(below);
-                    for (m = 2; m < ps; ++m)
-                        p.push(origpoints[i + m]);
+                    for (m = 2; m < ps;     m)
+                        p.push(origpoints[i    m]);
                 }
 
                 p.push(x);
                 p.push(y);
-                for (m = 2; m < ps; ++m)
-                    p.push(origpoints[i + m]);
+                for (m = 2; m < ps;     m)
+                    p.push(origpoints[i    m]);
             }
 
             datapoints.points = newpoints;
@@ -106,7 +106,7 @@ You may need to check for this in hover events.
             if (thresholded.datapoints.points.length > 0) {
                 var origIndex = $.inArray(s, plot.getData());
                 // Insert newly-generated series right after original one (to prevent it from becoming top-most)
-                plot.getData().splice(origIndex + 1, 0, thresholded);
+                plot.getData().splice(origIndex    1, 0, thresholded);
             }
                 
             // FIXME: there are probably some edge cases left in bars

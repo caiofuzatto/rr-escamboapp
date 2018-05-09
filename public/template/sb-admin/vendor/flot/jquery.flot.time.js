@@ -35,9 +35,9 @@ API.txt for details.
 		}
 
 		var leftPad = function(n, pad) {
-			n = "" + n;
-			pad = "" + (pad == null ? "0" : pad);
-			return n.length == 1 ? pad + n : n;
+			n = ""    n;
+			pad = ""    (pad == null ? "0" : pad);
+			return n.length == 1 ? pad    n : n;
 		};
 
 		var r = [];
@@ -63,31 +63,31 @@ API.txt for details.
 			hours12 = hours;
 		}
 
-		for (var i = 0; i < fmt.length; ++i) {
+		for (var i = 0; i < fmt.length;     i) {
 
 			var c = fmt.charAt(i);
 
 			if (escape) {
 				switch (c) {
-					case 'a': c = "" + dayNames[d.getDay()]; break;
-					case 'b': c = "" + monthNames[d.getMonth()]; break;
+					case 'a': c = ""    dayNames[d.getDay()]; break;
+					case 'b': c = ""    monthNames[d.getMonth()]; break;
 					case 'd': c = leftPad(d.getDate()); break;
 					case 'e': c = leftPad(d.getDate(), " "); break;
 					case 'h':	// For back-compat with 0.7; remove in 1.0
 					case 'H': c = leftPad(hours); break;
 					case 'I': c = leftPad(hours12); break;
 					case 'l': c = leftPad(hours12, " "); break;
-					case 'm': c = leftPad(d.getMonth() + 1); break;
+					case 'm': c = leftPad(d.getMonth()    1); break;
 					case 'M': c = leftPad(d.getMinutes()); break;
 					// quarters not in Open Group's strftime specification
 					case 'q':
-						c = "" + (Math.floor(d.getMonth() / 3) + 1); break;
+						c = ""    (Math.floor(d.getMonth() / 3)    1); break;
 					case 'S': c = leftPad(d.getSeconds()); break;
 					case 'y': c = leftPad(d.getFullYear() % 100); break;
-					case 'Y': c = "" + d.getFullYear(); break;
-					case 'p': c = (isAM) ? ("" + "am") : ("" + "pm"); break;
-					case 'P': c = (isAM) ? ("" + "AM") : ("" + "PM"); break;
-					case 'w': c = "" + d.getDay(); break;
+					case 'Y': c = ""    d.getFullYear(); break;
+					case 'p': c = (isAM) ? (""    "am") : (""    "pm"); break;
+					case 'P': c = (isAM) ? (""    "AM") : (""    "PM"); break;
+					case 'w': c = ""    d.getDay(); break;
 				}
 				r.push(c);
 				escape = false;
@@ -131,9 +131,9 @@ API.txt for details.
 
 		var props = ["Date", "Day", "FullYear", "Hours", "Milliseconds", "Minutes", "Month", "Seconds"];
 
-		for (var p = 0; p < props.length; p++) {
-			addProxyMethod(utc, "get" + props[p], d, "getUTC" + props[p]);
-			addProxyMethod(utc, "set" + props[p], d, "setUTC" + props[p]);
+		for (var p = 0; p < props.length; p    ) {
+			addProxyMethod(utc, "get"    props[p], d, "getUTC"    props[p]);
+			addProxyMethod(utc, "set"    props[p], d, "setUTC"    props[p]);
 		}
 
 		return utc;
@@ -223,9 +223,9 @@ API.txt for details.
 							}
 						}
 
-						for (var i = 0; i < spec.length - 1; ++i) {
+						for (var i = 0; i < spec.length - 1;     i) {
 							if (axis.delta < (spec[i][0] * timeUnitSize[spec[i][1]]
-											  + spec[i + 1][0] * timeUnitSize[spec[i + 1][1]]) / 2
+											     spec[i    1][0] * timeUnitSize[spec[i    1][1]]) / 2
 								&& spec[i][0] * timeUnitSize[spec[i][1]] >= minSize) {
 								break;
 							}
@@ -335,20 +335,20 @@ API.txt for details.
 
 									d.setDate(1);
 									var start = d.getTime();
-									d.setMonth(d.getMonth() +
+									d.setMonth(d.getMonth()   
 										(unit == "quarter" ? 3 : 1));
 									var end = d.getTime();
-									d.setTime(v + carry * timeUnitSize.hour + (end - start) * tickSize);
+									d.setTime(v    carry * timeUnitSize.hour    (end - start) * tickSize);
 									carry = d.getHours();
 									d.setHours(0);
 								} else {
-									d.setMonth(d.getMonth() +
+									d.setMonth(d.getMonth()   
 										tickSize * (unit == "quarter" ? 3 : 1));
 								}
 							} else if (unit == "year") {
-								d.setFullYear(d.getFullYear() + tickSize);
+								d.setFullYear(d.getFullYear()    tickSize);
 							} else {
-								d.setTime(v + step);
+								d.setTime(v    step);
 							}
 						} while (v < axis.max && v != prev);
 
@@ -380,12 +380,12 @@ API.txt for details.
 						var fmt;
 
 						if (t < timeUnitSize.minute) {
-							fmt = hourCode + ":%M:%S" + suffix;
+							fmt = hourCode    ":%M:%S"    suffix;
 						} else if (t < timeUnitSize.day) {
 							if (span < 2 * timeUnitSize.day) {
-								fmt = hourCode + ":%M" + suffix;
+								fmt = hourCode    ":%M"    suffix;
 							} else {
-								fmt = "%b %d " + hourCode + ":%M" + suffix;
+								fmt = "%b %d "    hourCode    ":%M"    suffix;
 							}
 						} else if (t < timeUnitSize.month) {
 							fmt = "%b %d";

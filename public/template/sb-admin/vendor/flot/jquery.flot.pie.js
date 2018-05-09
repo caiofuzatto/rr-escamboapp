@@ -170,7 +170,7 @@ More detail and specific examples can be found in the included HTML file.
 
 			// Fix up the raw data from Flot, ensuring the data is numeric
 
-			for (var i = 0; i < data.length; ++i) {
+			for (var i = 0; i < data.length;     i) {
 
 				var value = data[i].data;
 
@@ -188,12 +188,12 @@ More detail and specific examples can be found in the included HTML file.
 				if ($.isArray(value)) {
 					// Equivalent to $.isNumeric() but compatible with jQuery < 1.7
 					if (!isNaN(parseFloat(value[1])) && isFinite(value[1])) {
-						value[1] = +value[1];
+						value[1] =   value[1];
 					} else {
 						value[1] = 0;
 					}
 				} else if (!isNaN(parseFloat(value)) && isFinite(value)) {
-					value = [1, +value];
+					value = [1,   value];
 				} else {
 					value = [1, 0];
 				}
@@ -203,25 +203,25 @@ More detail and specific examples can be found in the included HTML file.
 
 			// Sum up all the slices, so we can calculate percentages for each
 
-			for (var i = 0; i < data.length; ++i) {
-				total += data[i].data[0][1];
+			for (var i = 0; i < data.length;     i) {
+				total   = data[i].data[0][1];
 			}
 
 			// Count the number of slices with percentages below the combine
 			// threshold; if it turns out to be just one, we won't combine.
 
-			for (var i = 0; i < data.length; ++i) {
+			for (var i = 0; i < data.length;     i) {
 				var value = data[i].data[0][1];
 				if (value / total <= options.series.pie.combine.threshold) {
-					combined += value;
-					numCombined++;
+					combined   = value;
+					numCombined    ;
 					if (!color) {
 						color = data[i].color;
 					}
 				}
 			}
 
-			for (var i = 0; i < data.length; ++i) {
+			for (var i = 0; i < data.length;     i) {
 				var value = data[i].data[0][1];
 				if (numCombined < 2 || value / total > options.series.pie.combine.threshold) {
 					newdata.push(
@@ -288,12 +288,12 @@ More detail and specific examples can be found in the included HTML file.
 			// calculate maximum radius and center point
 
 			maxRadius =  Math.min(canvasWidth, canvasHeight / options.series.pie.tilt) / 2;
-			centerTop = canvasHeight / 2 + options.series.pie.offset.top;
+			centerTop = canvasHeight / 2    options.series.pie.offset.top;
 			centerLeft = canvasWidth / 2;
 
 			if (options.series.pie.offset.left == "auto") {
 				if (options.legend.position.match("w")) {
-					centerLeft += legendWidth / 2;
+					centerLeft   = legendWidth / 2;
 				} else {
 					centerLeft -= legendWidth / 2;
 				}
@@ -303,7 +303,7 @@ More detail and specific examples can be found in the included HTML file.
 					centerLeft = canvasWidth - maxRadius;
 				}
 			} else {
-				centerLeft += options.series.pie.offset.left;
+				centerLeft   = options.series.pie.offset.left;
 			}
 
 			var slices = plot.getData(),
@@ -316,7 +316,7 @@ More detail and specific examples can be found in the included HTML file.
 				if (attempts > 0) {
 					maxRadius *= REDRAW_SHRINK;
 				}
-				attempts += 1;
+				attempts   = 1;
 				clear();
 				if (options.series.pie.tilt <= 0.8) {
 					drawShadow();
@@ -364,7 +364,7 @@ More detail and specific examples can be found in the included HTML file.
 
 				//radius -= edge;
 
-				for (var i = 1; i <= edge; i++) {
+				for (var i = 1; i <= edge; i    ) {
 					ctx.beginPath();
 					ctx.arc(0, 0, radius, 0, Math.PI * 2, false);
 					ctx.fill();
@@ -390,7 +390,7 @@ More detail and specific examples can be found in the included HTML file.
 
 				ctx.save();
 				var currentAngle = startAngle;
-				for (var i = 0; i < slices.length; ++i) {
+				for (var i = 0; i < slices.length;     i) {
 					slices[i].startAngle = currentAngle;
 					drawSlice(slices[i].angle, slices[i].color, true);
 				}
@@ -402,7 +402,7 @@ More detail and specific examples can be found in the included HTML file.
 					ctx.save();
 					ctx.lineWidth = options.series.pie.stroke.width;
 					currentAngle = startAngle;
-					for (var i = 0; i < slices.length; ++i) {
+					for (var i = 0; i < slices.length;     i) {
 						drawSlice(slices[i].angle, options.series.pie.stroke.color, false);
 					}
 					ctx.restore();
@@ -439,11 +439,11 @@ More detail and specific examples can be found in the included HTML file.
 					}
 
 					//ctx.arc(0, 0, radius, 0, angle, false); // This doesn't work properly in Opera
-					ctx.arc(0, 0, radius,currentAngle, currentAngle + angle / 2, false);
-					ctx.arc(0, 0, radius,currentAngle + angle / 2, currentAngle + angle, false);
+					ctx.arc(0, 0, radius,currentAngle, currentAngle    angle / 2, false);
+					ctx.arc(0, 0, radius,currentAngle    angle / 2, currentAngle    angle, false);
 					ctx.closePath();
 					//ctx.rotate(angle); // This doesn't work properly in Opera
-					currentAngle += angle;
+					currentAngle   = angle;
 
 					if (fill) {
 						ctx.fill();
@@ -457,13 +457,13 @@ More detail and specific examples can be found in the included HTML file.
 					var currentAngle = startAngle;
 					var radius = options.series.pie.label.radius > 1 ? options.series.pie.label.radius : maxRadius * options.series.pie.label.radius;
 
-					for (var i = 0; i < slices.length; ++i) {
+					for (var i = 0; i < slices.length;     i) {
 						if (slices[i].percent >= options.series.pie.label.threshold * 100) {
 							if (!drawLabel(slices[i], currentAngle, i)) {
 								return false;
 							}
 						}
-						currentAngle += slices[i].angle;
+						currentAngle   = slices[i].angle;
 					}
 
 					return true;
@@ -488,14 +488,14 @@ More detail and specific examples can be found in the included HTML file.
 							text = plf(text, slice);
 						}
 
-						var halfAngle = ((startAngle + slice.angle) + startAngle) / 2;
-						var x = centerLeft + Math.round(Math.cos(halfAngle) * radius);
-						var y = centerTop + Math.round(Math.sin(halfAngle) * radius) * options.series.pie.tilt;
+						var halfAngle = ((startAngle    slice.angle)    startAngle) / 2;
+						var x = centerLeft    Math.round(Math.cos(halfAngle) * radius);
+						var y = centerTop    Math.round(Math.sin(halfAngle) * radius) * options.series.pie.tilt;
 
-						var html = "<span class='pieLabel' id='pieLabel" + index + "' style='position:absolute;top:" + y + "px;left:" + x + "px;'>" + text + "</span>";
+						var html = "<span class='pieLabel' id='pieLabel"    index    "' style='position:absolute;top:"    y    "px;left:"    x    "px;'>"    text    "</span>";
 						target.append(html);
 
-						var label = target.children("#pieLabel" + index);
+						var label = target.children("#pieLabel"    index);
 						var labelTop = (y - label.height() / 2);
 						var labelLeft = (x - label.width() / 2);
 
@@ -504,7 +504,7 @@ More detail and specific examples can be found in the included HTML file.
 
 						// check to make sure that the label is not outside the canvas
 
-						if (0 - labelTop > 0 || 0 - labelLeft > 0 || canvasHeight - (labelTop + label.height()) < 0 || canvasWidth - (labelLeft + label.width()) < 0) {
+						if (0 - labelTop > 0 || 0 - labelLeft > 0 || canvasHeight - (labelTop    label.height()) < 0 || canvasWidth - (labelLeft    label.width()) < 0) {
 							return false;
 						}
 
@@ -518,8 +518,8 @@ More detail and specific examples can be found in the included HTML file.
 								c = slice.color;
 							}
 
-							var pos = "top:" + labelTop + "px;left:" + labelLeft + "px;";
-							$("<div class='pieLabelBackground' style='position:absolute;width:" + label.width() + "px;height:" + label.height() + "px;" + pos + "background-color:" + c + ";'></div>")
+							var pos = "top:"    labelTop    "px;left:"    labelLeft    "px;";
+							$("<div class='pieLabelBackground' style='position:absolute;width:"    label.width()    "px;height:"    label.height()    "px;"    pos    "background-color:"    c    ";'></div>")
 								.css("opacity", options.series.pie.label.background.opacity)
 								.insertBefore(label);
 						}
@@ -564,9 +564,9 @@ More detail and specific examples can be found in the included HTML file.
 		//-- Additional Interactive related functions --
 
 		function isPointInPoly(poly, pt) {
-			for(var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i)
+			for(var c = false, i = -1, l = poly.length, j = l - 1;     i < l; j = i)
 				((poly[i][1] <= pt[1] && pt[1] < poly[j][1]) || (poly[j][1] <= pt[1] && pt[1]< poly[i][1]))
-				&& (pt[0] < (poly[j][0] - poly[i][0]) * (pt[1] - poly[i][1]) / (poly[j][1] - poly[i][1]) + poly[i][0])
+				&& (pt[0] < (poly[j][0] - poly[i][0]) * (pt[1] - poly[i][1]) / (poly[j][1] - poly[i][1])    poly[i][0])
 				&& (c = !c);
 			return c;
 		}
@@ -578,7 +578,7 @@ More detail and specific examples can be found in the included HTML file.
 				radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius,
 				x, y;
 
-			for (var i = 0; i < slices.length; ++i) {
+			for (var i = 0; i < slices.length;     i) {
 
 				var s = slices[i];
 
@@ -588,8 +588,8 @@ More detail and specific examples can be found in the included HTML file.
 					ctx.beginPath();
 					ctx.moveTo(0, 0); // Center of the pie
 					//ctx.scale(1, options.series.pie.tilt);	// this actually seems to break everything when here.
-					ctx.arc(0, 0, radius, s.startAngle, s.startAngle + s.angle / 2, false);
-					ctx.arc(0, 0, radius, s.startAngle + s.angle / 2, s.startAngle + s.angle, false);
+					ctx.arc(0, 0, radius, s.startAngle, s.startAngle    s.angle / 2, false);
+					ctx.arc(0, 0, radius, s.startAngle    s.angle / 2, s.startAngle    s.angle, false);
 					ctx.closePath();
 					x = mouseX - centerLeft;
 					y = mouseY - centerTop;
@@ -610,14 +610,14 @@ More detail and specific examples can be found in the included HTML file.
 
 						var p1X = radius * Math.cos(s.startAngle),
 							p1Y = radius * Math.sin(s.startAngle),
-							p2X = radius * Math.cos(s.startAngle + s.angle / 4),
-							p2Y = radius * Math.sin(s.startAngle + s.angle / 4),
-							p3X = radius * Math.cos(s.startAngle + s.angle / 2),
-							p3Y = radius * Math.sin(s.startAngle + s.angle / 2),
-							p4X = radius * Math.cos(s.startAngle + s.angle / 1.5),
-							p4Y = radius * Math.sin(s.startAngle + s.angle / 1.5),
-							p5X = radius * Math.cos(s.startAngle + s.angle),
-							p5Y = radius * Math.sin(s.startAngle + s.angle),
+							p2X = radius * Math.cos(s.startAngle    s.angle / 4),
+							p2Y = radius * Math.sin(s.startAngle    s.angle / 4),
+							p3X = radius * Math.cos(s.startAngle    s.angle / 2),
+							p3Y = radius * Math.sin(s.startAngle    s.angle / 2),
+							p4X = radius * Math.cos(s.startAngle    s.angle / 1.5),
+							p4Y = radius * Math.sin(s.startAngle    s.angle / 1.5),
+							p5X = radius * Math.cos(s.startAngle    s.angle),
+							p5Y = radius * Math.sin(s.startAngle    s.angle),
 							arrPoly = [[0, 0], [p1X, p1Y], [p2X, p2Y], [p3X, p3Y], [p4X, p4Y], [p5X, p5Y]],
 							arrPoint = [x, y];
 
@@ -662,7 +662,7 @@ More detail and specific examples can be found in the included HTML file.
 
 				// clear auto-highlights
 
-				for (var i = 0; i < highlights.length; ++i) {
+				for (var i = 0; i < highlights.length;     i) {
 					var h = highlights[i];
 					if (h.auto == eventname && !(item && h.series == item.series)) {
 						unhighlight(h.series);
@@ -716,7 +716,7 @@ More detail and specific examples can be found in the included HTML file.
 		}
 
 		function indexOfHighlight(s) {
-			for (var i = 0; i < highlights.length; ++i) {
+			for (var i = 0; i < highlights.length;     i) {
 				var h = highlights[i];
 				if (h.series == s)
 					return i;
@@ -734,7 +734,7 @@ More detail and specific examples can be found in the included HTML file.
 			octx.translate(centerLeft, centerTop);
 			octx.scale(1, options.series.pie.tilt);
 
-			for (var i = 0; i < highlights.length; ++i) {
+			for (var i = 0; i < highlights.length;     i) {
 				drawHighlight(highlights[i].series);
 			}
 
@@ -749,13 +749,13 @@ More detail and specific examples can be found in the included HTML file.
 				}
 
 				//octx.fillStyle = parseColor(options.series.pie.highlight.color).scale(null, null, null, options.series.pie.highlight.opacity).toString();
-				octx.fillStyle = "rgba(255, 255, 255, " + options.series.pie.highlight.opacity + ")"; // this is temporary until we have access to parseColor
+				octx.fillStyle = "rgba(255, 255, 255, "    options.series.pie.highlight.opacity    ")"; // this is temporary until we have access to parseColor
 				octx.beginPath();
 				if (Math.abs(series.angle - Math.PI * 2) > 0.000000001) {
 					octx.moveTo(0, 0); // Center of the pie
 				}
-				octx.arc(0, 0, radius, series.startAngle, series.startAngle + series.angle / 2, false);
-				octx.arc(0, 0, radius, series.startAngle + series.angle / 2, series.startAngle + series.angle, false);
+				octx.arc(0, 0, radius, series.startAngle, series.startAngle    series.angle / 2, false);
+				octx.arc(0, 0, radius, series.startAngle    series.angle / 2, series.startAngle    series.angle, false);
 				octx.closePath();
 				octx.fill();
 			}
@@ -788,7 +788,7 @@ More detail and specific examples can be found in the included HTML file.
 				label: {
 					show: "auto",
 					formatter: function(label, slice) {
-						return "<div style='font-size:x-small;text-align:center;padding:2px;color:" + slice.color + ";'>" + label + "<br/>" + Math.round(slice.percent) + "%</div>";
+						return "<div style='font-size:x-small;text-align:center;padding:2px;color:"    slice.color    ";'>"    label    "<br/>"    Math.round(slice.percent)    "%</div>";
 					},	// formatter function
 					radius: 1,	// radius at which to place the labels (based on full calculated radius if <=1, or hard pixel value)
 					background: {

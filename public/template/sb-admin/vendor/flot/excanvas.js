@@ -49,7 +49,7 @@ if (!document.createElement('canvas').getContext) {
   var Z = 10;
   var Z2 = Z / 2;
 
-  var IE_VERSION = +navigator.userAgent.match(/MSIE ([\d.]+)?/)[1];
+  var IE_VERSION =   navigator.userAgent.match(/MSIE ([\d.]  )?/)[1];
 
   /**
    * This funtion is assigned to the <canvas> elements as element.getContext().
@@ -104,7 +104,7 @@ if (!document.createElement('canvas').getContext) {
     if (!doc.styleSheets['ex_canvas_']) {
       var ss = doc.createStyleSheet();
       ss.owningElement.id = 'ex_canvas_';
-      ss.cssText = 'canvas{display:inline-block;overflow:hidden;' +
+      ss.cssText = 'canvas{display:inline-block;overflow:hidden;'   
           // default size is 300x150 in Gecko and Opera
           'text-align:left;width:300px;height:150px}';
     }
@@ -125,7 +125,7 @@ if (!document.createElement('canvas').getContext) {
     init_: function(doc) {
       // find all canvas elements
       var els = doc.getElementsByTagName('canvas');
-      for (var i = 0; i < els.length; i++) {
+      for (var i = 0; i < els.length; i    ) {
         this.initElement(els[i]);
       }
     },
@@ -158,14 +158,14 @@ if (!document.createElement('canvas').getContext) {
         if (attrs.width && attrs.width.specified) {
           // TODO: use runtimeStyle and coordsize
           // el.getContext().setWidth_(attrs.width.nodeValue);
-          el.style.width = attrs.width.nodeValue + 'px';
+          el.style.width = attrs.width.nodeValue    'px';
         } else {
           el.width = el.clientWidth;
         }
         if (attrs.height && attrs.height.specified) {
           // TODO: use runtimeStyle and coordsize
           // el.getContext().setHeight_(attrs.height.nodeValue);
-          el.style.height = attrs.height.nodeValue + 'px';
+          el.style.height = attrs.height.nodeValue    'px';
         } else {
           el.height = el.clientHeight;
         }
@@ -181,14 +181,14 @@ if (!document.createElement('canvas').getContext) {
     switch (e.propertyName) {
       case 'width':
         el.getContext().clearRect();
-        el.style.width = el.attributes.width.nodeValue + 'px';
+        el.style.width = el.attributes.width.nodeValue    'px';
         // In IE8 this does not trigger onresize.
-        el.firstChild.style.width =  el.clientWidth + 'px';
+        el.firstChild.style.width =  el.clientWidth    'px';
         break;
       case 'height':
         el.getContext().clearRect();
-        el.style.height = el.attributes.height.nodeValue + 'px';
-        el.firstChild.style.height = el.clientHeight + 'px';
+        el.style.height = el.attributes.height.nodeValue    'px';
+        el.firstChild.style.height = el.clientHeight    'px';
         break;
     }
   }
@@ -196,8 +196,8 @@ if (!document.createElement('canvas').getContext) {
   function onResize(e) {
     var el = e.srcElement;
     if (el.firstChild) {
-      el.firstChild.style.width =  el.clientWidth + 'px';
-      el.firstChild.style.height = el.clientHeight + 'px';
+      el.firstChild.style.width =  el.clientWidth    'px';
+      el.firstChild.style.height = el.clientHeight    'px';
     }
   }
 
@@ -205,9 +205,9 @@ if (!document.createElement('canvas').getContext) {
 
   // precompute "00" to "FF"
   var decToHex = [];
-  for (var i = 0; i < 16; i++) {
-    for (var j = 0; j < 16; j++) {
-      decToHex[i * 16 + j] = i.toString(16) + j.toString(16);
+  for (var i = 0; i < 16; i    ) {
+    for (var j = 0; j < 16; j    ) {
+      decToHex[i * 16    j] = i.toString(16)    j.toString(16);
     }
   }
 
@@ -222,12 +222,12 @@ if (!document.createElement('canvas').getContext) {
   function matrixMultiply(m1, m2) {
     var result = createMatrixIdentity();
 
-    for (var x = 0; x < 3; x++) {
-      for (var y = 0; y < 3; y++) {
+    for (var x = 0; x < 3; x    ) {
+      for (var y = 0; y < 3; y    ) {
         var sum = 0;
 
-        for (var z = 0; z < 3; z++) {
-          sum += m1[x][z] * m2[z][y];
+        for (var z = 0; z < 3; z    ) {
+          sum   = m1[x][z] * m2[z][y];
         }
 
         result[x][y] = sum;
@@ -393,8 +393,8 @@ if (!document.createElement('canvas').getContext) {
 
   function getRgbHslContent(styleString) {
     var start = styleString.indexOf('(', 3);
-    var end = styleString.indexOf(')', start + 1);
-    var parts = styleString.substring(start + 1, end).split(',');
+    var end = styleString.indexOf(')', start    1);
+    var parts = styleString.substring(start    1, end).split(',');
     // add alpha if needed
     if (parts.length != 4 || styleString.charAt(3) != 'a') {
       parts[3] = 1;
@@ -414,36 +414,36 @@ if (!document.createElement('canvas').getContext) {
     var r, g, b, h, s, l;
     h = parseFloat(parts[0]) / 360 % 360;
     if (h < 0)
-      h++;
+      h    ;
     s = clamp(percent(parts[1]), 0, 1);
     l = clamp(percent(parts[2]), 0, 1);
     if (s == 0) {
       r = g = b = l; // achromatic
     } else {
-      var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      var q = l < 0.5 ? l * (1    s) : l    s - l * s;
       var p = 2 * l - q;
-      r = hueToRgb(p, q, h + 1 / 3);
+      r = hueToRgb(p, q, h    1 / 3);
       g = hueToRgb(p, q, h);
       b = hueToRgb(p, q, h - 1 / 3);
     }
 
-    return '#' + decToHex[Math.floor(r * 255)] +
-        decToHex[Math.floor(g * 255)] +
+    return '#'    decToHex[Math.floor(r * 255)]   
+        decToHex[Math.floor(g * 255)]   
         decToHex[Math.floor(b * 255)];
   }
 
   function hueToRgb(m1, m2, h) {
     if (h < 0)
-      h++;
+      h    ;
     if (h > 1)
       h--;
 
     if (6 * h < 1)
-      return m1 + (m2 - m1) * 6 * h;
+      return m1    (m2 - m1) * 6 * h;
     else if (2 * h < 1)
       return m2;
     else if (3 * h < 2)
-      return m1 + (m2 - m1) * (2 / 3 - h) * 6;
+      return m1    (m2 - m1) * (2 / 3 - h) * 6;
     else
       return m1;
   }
@@ -463,15 +463,15 @@ if (!document.createElement('canvas').getContext) {
     } else if (/^rgb/.test(styleString)) {
       var parts = getRgbHslContent(styleString);
       var str = '#', n;
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < 3; i    ) {
         if (parts[i].indexOf('%') != -1) {
           n = Math.floor(percent(parts[i]) * 255);
         } else {
-          n = +parts[i];
+          n =   parts[i];
         }
-        str += decToHex[clamp(n, 0, 255)];
+        str   = decToHex[clamp(n, 0, 255)];
       }
-      alpha = +parts[3];
+      alpha =   parts[3];
     } else if (/^hsl/.test(styleString)) {
       var parts = getRgbHslContent(styleString);
       str = hslToRgb(parts);
@@ -548,8 +548,8 @@ if (!document.createElement('canvas').getContext) {
   }
 
   function buildStyle(style) {
-    return style.style + ' ' + style.variant + ' ' + style.weight + ' ' +
-        style.size + 'px ' + style.family;
+    return style.style    ' '    style.variant    ' '    style.weight    ' '   
+        style.size    'px '    style.family;
   }
 
   var lineCapMap = {
@@ -588,8 +588,8 @@ if (!document.createElement('canvas').getContext) {
     this.textBaseline = 'alphabetic';
     this.canvas = canvasElement;
 
-    var cssText = 'width:' + canvasElement.clientWidth + 'px;height:' +
-        canvasElement.clientHeight + 'px;overflow:hidden;position:absolute';
+    var cssText = 'width:'    canvasElement.clientWidth    'px;height:'   
+        canvasElement.clientHeight    'px;overflow:hidden;position:absolute';
     var el = canvasElement.ownerDocument.createElement('div');
     el.style.cssText = cssText;
     canvasElement.appendChild(el);
@@ -668,12 +668,12 @@ if (!document.createElement('canvas').getContext) {
     var p = getCoords(this, aX, aY);
 
     var cp1 = {
-      x: this.currentX_ + 2.0 / 3.0 * (cp.x - this.currentX_),
-      y: this.currentY_ + 2.0 / 3.0 * (cp.y - this.currentY_)
+      x: this.currentX_    2.0 / 3.0 * (cp.x - this.currentX_),
+      y: this.currentY_    2.0 / 3.0 * (cp.y - this.currentY_)
     };
     var cp2 = {
-      x: cp1.x + (p.x - this.currentX_) / 3.0,
-      y: cp1.y + (p.y - this.currentY_) / 3.0
+      x: cp1.x    (p.x - this.currentX_) / 3.0,
+      y: cp1.y    (p.y - this.currentY_) / 3.0
     };
 
     bezierCurveTo(this, cp1, cp2, p);
@@ -684,15 +684,15 @@ if (!document.createElement('canvas').getContext) {
     aRadius *= Z;
     var arcType = aClockwise ? 'at' : 'wa';
 
-    var xStart = aX + mc(aStartAngle) * aRadius - Z2;
-    var yStart = aY + ms(aStartAngle) * aRadius - Z2;
+    var xStart = aX    mc(aStartAngle) * aRadius - Z2;
+    var yStart = aY    ms(aStartAngle) * aRadius - Z2;
 
-    var xEnd = aX + mc(aEndAngle) * aRadius - Z2;
-    var yEnd = aY + ms(aEndAngle) * aRadius - Z2;
+    var xEnd = aX    mc(aEndAngle) * aRadius - Z2;
+    var yEnd = aY    ms(aEndAngle) * aRadius - Z2;
 
     // IE won't render arches drawn counter clockwise if xStart == xEnd.
     if (xStart == xEnd && !aClockwise) {
-      xStart += 0.125; // Offset xStart by 1/80 of a pixel. Use something
+      xStart   = 0.125; // Offset xStart by 1/80 of a pixel. Use something
                        // that can be represented in binary
     }
 
@@ -713,9 +713,9 @@ if (!document.createElement('canvas').getContext) {
 
   contextPrototype.rect = function(aX, aY, aWidth, aHeight) {
     this.moveTo(aX, aY);
-    this.lineTo(aX + aWidth, aY);
-    this.lineTo(aX + aWidth, aY + aHeight);
-    this.lineTo(aX, aY + aHeight);
+    this.lineTo(aX    aWidth, aY);
+    this.lineTo(aX    aWidth, aY    aHeight);
+    this.lineTo(aX, aY    aHeight);
     this.closePath();
   };
 
@@ -724,9 +724,9 @@ if (!document.createElement('canvas').getContext) {
     this.beginPath();
 
     this.moveTo(aX, aY);
-    this.lineTo(aX + aWidth, aY);
-    this.lineTo(aX + aWidth, aY + aHeight);
-    this.lineTo(aX, aY + aHeight);
+    this.lineTo(aX    aWidth, aY);
+    this.lineTo(aX    aWidth, aY    aHeight);
+    this.lineTo(aX, aY    aHeight);
     this.closePath();
     this.stroke();
 
@@ -738,9 +738,9 @@ if (!document.createElement('canvas').getContext) {
     this.beginPath();
 
     this.moveTo(aX, aY);
-    this.lineTo(aX + aWidth, aY);
-    this.lineTo(aX + aWidth, aY + aHeight);
-    this.lineTo(aX, aY + aHeight);
+    this.lineTo(aX    aWidth, aY);
+    this.lineTo(aX    aWidth, aY    aHeight);
+    this.lineTo(aX, aY    aHeight);
     this.closePath();
     this.fill();
 
@@ -848,9 +848,9 @@ if (!document.createElement('canvas').getContext) {
       // Bounding box calculation (need to minimize displayed area so that
       // filters don't waste time on unused pixels.
       var max = d;
-      var c2 = getCoords(this, dx + dw, dy);
-      var c3 = getCoords(this, dx, dy + dh);
-      var c4 = getCoords(this, dx + dw, dy + dh);
+      var c2 = getCoords(this, dx    dw, dy);
+      var c3 = getCoords(this, dx, dy    dh);
+      var c4 = getCoords(this, dx    dw, dy    dh);
 
       max.x = m.max(max.x, c2.x, c3.x, c4.x);
       max.y = m.max(max.y, c2.y, c3.y, c4.y);
@@ -888,7 +888,7 @@ if (!document.createElement('canvas').getContext) {
     var min = {x: null, y: null};
     var max = {x: null, y: null};
 
-    for (var j = 0; j < this.currentPath_.length; j += chunkSize) {
+    for (var j = 0; j < this.currentPath_.length; j   = chunkSize) {
       var lineStr = [];
       var lineOpen = false;
 
@@ -902,7 +902,7 @@ if (!document.createElement('canvas').getContext) {
 
       var newSeq = false;
 
-      for (var i = j; i < Math.min(j + chunkSize, this.currentPath_.length); i++) {
+      for (var i = j; i < Math.min(j    chunkSize, this.currentPath_.length); i    ) {
         if (i % chunkSize == 0 && i > 0) { // move into position for next chunk
           lineStr.push(' m ', mr(this.currentPath_[i-1].x), ',', mr(this.currentPath_[i-1].y));
         }
@@ -933,8 +933,8 @@ if (!document.createElement('canvas').getContext) {
             lineStr.push(' ', p.type, ' ',
                          mr(p.x - this.arcScaleX_ * p.radius), ',',
                          mr(p.y - this.arcScaleY_ * p.radius), ' ',
-                         mr(p.x + this.arcScaleX_ * p.radius), ',',
-                         mr(p.y + this.arcScaleY_ * p.radius), ' ',
+                         mr(p.x    this.arcScaleX_ * p.radius), ',',
+                         mr(p.y    this.arcScaleY_ * p.radius), ' ',
                          mr(p.xStart), ',', mr(p.yStart), ' ',
                          mr(p.xEnd), ',', mr(p.yEnd));
             break;
@@ -1027,7 +1027,7 @@ if (!document.createElement('canvas').getContext) {
 
         // The angle should be a non-negative number.
         if (angle < 0) {
-          angle += 360;
+          angle   = 360;
         }
 
         // Very small angles produce an unexpected result because they are
@@ -1063,9 +1063,9 @@ if (!document.createElement('canvas').getContext) {
       var opacity2 = stops[length - 1].alpha * ctx.globalAlpha;
 
       var colors = [];
-      for (var i = 0; i < length; i++) {
+      for (var i = 0; i < length; i    ) {
         var stop = stops[i];
-        colors.push(stop.offset * expansion + shift + ' ' + stop.color);
+        colors.push(stop.offset * expansion    shift    ' '    stop.color);
       }
 
       // When colors attribute is used, the meanings of opacity and o:opacity2
@@ -1112,8 +1112,8 @@ if (!document.createElement('canvas').getContext) {
   function getCoords(ctx, aX, aY) {
     var m = ctx.m_;
     return {
-      x: Z * (aX * m[0][0] + aY * m[1][0] + m[2][0]) - Z2,
-      y: Z * (aX * m[0][1] + aY * m[1][1] + m[2][1]) - Z2
+      x: Z * (aX * m[0][0]    aY * m[1][0]    m[2][0]) - Z2,
+      y: Z * (aX * m[0][1]    aY * m[1][1]    m[2][1]) - Z2
     };
   };
 
@@ -1271,7 +1271,7 @@ if (!document.createElement('canvas').getContext) {
         break;
     }
 
-    var d = getCoords(this, x + offset.x, y + offset.y);
+    var d = getCoords(this, x    offset.x, y    offset.y);
 
     lineStr.push('<g_vml_:line from="', -left ,' 0" to="', right ,' 0.05" ',
                  ' coordsize="100 100" coordorigin="0 0"',
@@ -1286,10 +1286,10 @@ if (!document.createElement('canvas').getContext) {
                  {x: right, y: fontStyle.size});
     }
 
-    var skewM = m[0][0].toFixed(3) + ',' + m[1][0].toFixed(3) + ',' +
-                m[0][1].toFixed(3) + ',' + m[1][1].toFixed(3) + ',0,0';
+    var skewM = m[0][0].toFixed(3)    ','    m[1][0].toFixed(3)    ','   
+                m[0][1].toFixed(3)    ','    m[1][1].toFixed(3)    ',0,0';
 
-    var skewOffset = mr(d.x / Z) + ',' + mr(d.y / Z);
+    var skewOffset = mr(d.x / Z)    ','    mr(d.y / Z);
 
     lineStr.push('<g_vml_:skew on="t" matrix="', skewM ,'" ',
                  ' offset="', skewOffset, '" origin="', left ,' 0" />',
@@ -1313,8 +1313,8 @@ if (!document.createElement('canvas').getContext) {
 
   contextPrototype.measureText = function(text) {
     if (!this.textMeasureEl_) {
-      var s = '<span style="position:absolute;' +
-          'top:-20000px;left:0;padding:0;margin:0;border:none;' +
+      var s = '<span style="position:absolute;'   
+          'top:-20000px;left:0;padding:0;margin:0;border:none;'   
           'white-space:pre;"></span>';
       this.element_.insertAdjacentHTML('beforeEnd', s);
       this.textMeasureEl_ = this.element_.lastChild;
@@ -1396,7 +1396,7 @@ if (!document.createElement('canvas').getContext) {
 
   function DOMException_(s) {
     this.code = this[s];
-    this.message = s +': DOM Exception ' + this.code;
+    this.message = s   ': DOM Exception '    this.code;
   }
   var p = DOMException_.prototype = new Error;
   p.INDEX_SIZE_ERR = 1;

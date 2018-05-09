@@ -29,7 +29,7 @@ Licensed under the MIT license.
  * V. 1.1: Fix error handling so e.g. parsing an empty string does
  * produce a color rather than just crashing.
  */
-(function($){$.color={};$.color.make=function(r,g,b,a){var o={};o.r=r||0;o.g=g||0;o.b=b||0;o.a=a!=null?a:1;o.add=function(c,d){for(var i=0;i<c.length;++i)o[c.charAt(i)]+=d;return o.normalize()};o.scale=function(c,f){for(var i=0;i<c.length;++i)o[c.charAt(i)]*=f;return o.normalize()};o.toString=function(){if(o.a>=1){return"rgb("+[o.r,o.g,o.b].join(",")+")"}else{return"rgba("+[o.r,o.g,o.b,o.a].join(",")+")"}};o.normalize=function(){function clamp(min,value,max){return value<min?min:value>max?max:value}o.r=clamp(0,parseInt(o.r),255);o.g=clamp(0,parseInt(o.g),255);o.b=clamp(0,parseInt(o.b),255);o.a=clamp(0,o.a,1);return o};o.clone=function(){return $.color.make(o.r,o.b,o.g,o.a)};return o.normalize()};$.color.extract=function(elem,css){var c;do{c=elem.css(css).toLowerCase();if(c!=""&&c!="transparent")break;elem=elem.parent()}while(elem.length&&!$.nodeName(elem.get(0),"body"));if(c=="rgba(0, 0, 0, 0)")c="transparent";return $.color.parse(c)};$.color.parse=function(str){var res,m=$.color.make;if(res=/rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(str))return m(parseInt(res[1],10),parseInt(res[2],10),parseInt(res[3],10));if(res=/rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(str))return m(parseInt(res[1],10),parseInt(res[2],10),parseInt(res[3],10),parseFloat(res[4]));if(res=/rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(str))return m(parseFloat(res[1])*2.55,parseFloat(res[2])*2.55,parseFloat(res[3])*2.55);if(res=/rgba\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(str))return m(parseFloat(res[1])*2.55,parseFloat(res[2])*2.55,parseFloat(res[3])*2.55,parseFloat(res[4]));if(res=/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(str))return m(parseInt(res[1],16),parseInt(res[2],16),parseInt(res[3],16));if(res=/#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(str))return m(parseInt(res[1]+res[1],16),parseInt(res[2]+res[2],16),parseInt(res[3]+res[3],16));var name=$.trim(str).toLowerCase();if(name=="transparent")return m(255,255,255,0);else{res=lookupColors[name]||[0,0,0];return m(res[0],res[1],res[2])}};var lookupColors={aqua:[0,255,255],azure:[240,255,255],beige:[245,245,220],black:[0,0,0],blue:[0,0,255],brown:[165,42,42],cyan:[0,255,255],darkblue:[0,0,139],darkcyan:[0,139,139],darkgrey:[169,169,169],darkgreen:[0,100,0],darkkhaki:[189,183,107],darkmagenta:[139,0,139],darkolivegreen:[85,107,47],darkorange:[255,140,0],darkorchid:[153,50,204],darkred:[139,0,0],darksalmon:[233,150,122],darkviolet:[148,0,211],fuchsia:[255,0,255],gold:[255,215,0],green:[0,128,0],indigo:[75,0,130],khaki:[240,230,140],lightblue:[173,216,230],lightcyan:[224,255,255],lightgreen:[144,238,144],lightgrey:[211,211,211],lightpink:[255,182,193],lightyellow:[255,255,224],lime:[0,255,0],magenta:[255,0,255],maroon:[128,0,0],navy:[0,0,128],olive:[128,128,0],orange:[255,165,0],pink:[255,192,203],purple:[128,0,128],violet:[128,0,128],red:[255,0,0],silver:[192,192,192],white:[255,255,255],yellow:[255,255,0]}})(jQuery);
+(function($){$.color={};$.color.make=function(r,g,b,a){var o={};o.r=r||0;o.g=g||0;o.b=b||0;o.a=a!=null?a:1;o.add=function(c,d){for(var i=0;i<c.length;    i)o[c.charAt(i)]  =d;return o.normalize()};o.scale=function(c,f){for(var i=0;i<c.length;    i)o[c.charAt(i)]*=f;return o.normalize()};o.toString=function(){if(o.a>=1){return"rgb("  [o.r,o.g,o.b].join(",")  ")"}else{return"rgba("  [o.r,o.g,o.b,o.a].join(",")  ")"}};o.normalize=function(){function clamp(min,value,max){return value<min?min:value>max?max:value}o.r=clamp(0,parseInt(o.r),255);o.g=clamp(0,parseInt(o.g),255);o.b=clamp(0,parseInt(o.b),255);o.a=clamp(0,o.a,1);return o};o.clone=function(){return $.color.make(o.r,o.b,o.g,o.a)};return o.normalize()};$.color.extract=function(elem,css){var c;do{c=elem.css(css).toLowerCase();if(c!=""&&c!="transparent")break;elem=elem.parent()}while(elem.length&&!$.nodeName(elem.get(0),"body"));if(c=="rgba(0, 0, 0, 0)")c="transparent";return $.color.parse(c)};$.color.parse=function(str){var res,m=$.color.make;if(res=/rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(str))return m(parseInt(res[1],10),parseInt(res[2],10),parseInt(res[3],10));if(res=/rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]  (?:\.[0-9]  )?)\s*\)/.exec(str))return m(parseInt(res[1],10),parseInt(res[2],10),parseInt(res[3],10),parseFloat(res[4]));if(res=/rgb\(\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\%\s*\)/.exec(str))return m(parseFloat(res[1])*2.55,parseFloat(res[2])*2.55,parseFloat(res[3])*2.55);if(res=/rgba\(\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\s*\)/.exec(str))return m(parseFloat(res[1])*2.55,parseFloat(res[2])*2.55,parseFloat(res[3])*2.55,parseFloat(res[4]));if(res=/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(str))return m(parseInt(res[1],16),parseInt(res[2],16),parseInt(res[3],16));if(res=/#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(str))return m(parseInt(res[1]  res[1],16),parseInt(res[2]  res[2],16),parseInt(res[3]  res[3],16));var name=$.trim(str).toLowerCase();if(name=="transparent")return m(255,255,255,0);else{res=lookupColors[name]||[0,0,0];return m(res[0],res[1],res[2])}};var lookupColors={aqua:[0,255,255],azure:[240,255,255],beige:[245,245,220],black:[0,0,0],blue:[0,0,255],brown:[165,42,42],cyan:[0,255,255],darkblue:[0,0,139],darkcyan:[0,139,139],darkgrey:[169,169,169],darkgreen:[0,100,0],darkkhaki:[189,183,107],darkmagenta:[139,0,139],darkolivegreen:[85,107,47],darkorange:[255,140,0],darkorchid:[153,50,204],darkred:[139,0,0],darksalmon:[233,150,122],darkviolet:[148,0,211],fuchsia:[255,0,255],gold:[255,215,0],green:[0,128,0],indigo:[75,0,130],khaki:[240,230,140],lightblue:[173,216,230],lightcyan:[224,255,255],lightgreen:[144,238,144],lightgrey:[211,211,211],lightpink:[255,182,193],lightyellow:[255,255,224],lime:[0,255,0],magenta:[255,0,255],maroon:[128,0,0],navy:[0,0,128],olive:[128,128,0],orange:[255,165,0],pink:[255,192,203],purple:[128,0,128],violet:[128,0,128],red:[255,0,0],silver:[192,192,192],white:[255,255,255],yellow:[255,255,0]}})(jQuery);
 
 // the actual Flot code
 (function($) {
@@ -42,7 +42,7 @@ Licensed under the MIT license.
     // operation produces the same effect as detach, i.e. removing the element
     // without touching its jQuery data.
 
-    // Do not merge this into Flot 0.9, since it requires jQuery 1.4.4+.
+    // Do not merge this into Flot 0.9, since it requires jQuery 1.4.4  .
 
     if (!$.fn.detach) {
         $.fn.detach = function() {
@@ -66,7 +66,7 @@ Licensed under the MIT license.
 
 	function Canvas(cls, container) {
 
-		var element = container.children("." + cls)[0];
+		var element = container.children("."    cls)[0];
 
 		if (element == null) {
 
@@ -132,7 +132,7 @@ Licensed under the MIT license.
 	Canvas.prototype.resize = function(width, height) {
 
 		if (width <= 0 || height <= 0) {
-			throw new Error("Invalid dimensions for plot, width = " + width + ", height = " + height);
+			throw new Error("Invalid dimensions for plot, width = "    width    ", height = "    height);
 		}
 
 		var element = this.element,
@@ -148,13 +148,13 @@ Licensed under the MIT license.
 
 		if (this.width != width) {
 			element.width = width * pixelRatio;
-			element.style.width = width + "px";
+			element.style.width = width    "px";
 			this.width = width;
 		}
 
 		if (this.height != height) {
 			element.height = height * pixelRatio;
-			element.style.height = height + "px";
+			element.style.height = height    "px";
 			this.height = height;
 		}
 
@@ -203,7 +203,7 @@ Licensed under the MIT license.
 
 								var positions = styleCache[key].positions;
 
-								for (var i = 0, position; position = positions[i]; i++) {
+								for (var i = 0, position; position = positions[i]; i    ) {
 									if (position.active) {
 										if (!position.rendered) {
 											layer.append(position.element);
@@ -321,12 +321,12 @@ Licensed under the MIT license.
 
 		// Cast the value to a string, in case we were given a number or such
 
-		text = "" + text;
+		text = ""    text;
 
 		// If the font is a font-spec object, generate a CSS font definition
 
 		if (typeof font === "object") {
-			textStyle = font.style + " " + font.variant + " " + font.weight + " " + font.size + "px/" + font.lineHeight + "px " + font.family;
+			textStyle = font.style    " "    font.variant    " "    font.weight    " "    font.size    "px/"    font.lineHeight    "px "    font.family;
 		} else {
 			textStyle = font;
 		}
@@ -423,7 +423,7 @@ Licensed under the MIT license.
 		// Determine whether this text already exists at this position.
 		// If so, mark it for inclusion in the next render pass.
 
-		for (var i = 0, position; position = positions[i]; i++) {
+		for (var i = 0, position; position = positions[i]; i    ) {
 			if (position.x == x && position.y == y) {
 				position.active = true;
 				return;
@@ -484,7 +484,7 @@ Licensed under the MIT license.
 						for (var key in styleCache) {
 							if (hasOwnProperty.call(styleCache, key)) {
 								var positions = styleCache[key].positions;
-								for (var i = 0, position; position = positions[i]; i++) {
+								for (var i = 0, position; position = positions[i]; i    ) {
 									position.active = false;
 								}
 							}
@@ -494,7 +494,7 @@ Licensed under the MIT license.
 			}
 		} else {
 			var positions = this.getTextInfo(layer, text, font, angle).positions;
-			for (var i = 0, position; position = positions[i]; i++) {
+			for (var i = 0, position; position = positions[i]; i    ) {
 				if (position.x == x && position.y == y) {
 					position.active = false;
 				}
@@ -646,8 +646,8 @@ Licensed under the MIT license.
         plot.height = function () { return plotHeight; };
         plot.offset = function () {
             var o = eventHolder.offset();
-            o.left += plotOffset.left;
-            o.top += plotOffset.top;
+            o.left   = plotOffset.left;
+            o.top   = plotOffset.top;
             return o;
         };
         plot.getData = function () { return series; };
@@ -655,7 +655,7 @@ Licensed under the MIT license.
             var res = {}, i;
             $.each(xaxes.concat(yaxes), function (_, axis) {
                 if (axis)
-                    res[axis.direction + (axis.n != 1 ? axis.n : "") + "axis"] = axis;
+                    res[axis.direction    (axis.n != 1 ? axis.n : "")    "axis"] = axis;
             });
             return res;
         };
@@ -669,8 +669,8 @@ Licensed under the MIT license.
         plot.triggerRedrawOverlay = triggerRedrawOverlay;
         plot.pointOffset = function(point) {
             return {
-                left: parseInt(xaxes[axisNumber(point, "x") - 1].p2c(+point.x) + plotOffset.left, 10),
-                top: parseInt(yaxes[axisNumber(point, "y") - 1].p2c(+point.y) + plotOffset.top, 10)
+                left: parseInt(xaxes[axisNumber(point, "x") - 1].p2c(  point.x)    plotOffset.left, 10),
+                top: parseInt(yaxes[axisNumber(point, "y") - 1].p2c(  point.y)    plotOffset.top, 10)
             };
         };
         plot.shutdown = shutdown;
@@ -713,7 +713,7 @@ Licensed under the MIT license.
 
         function executeHooks(hook, args) {
             args = [plot].concat(args);
-            for (var i = 0; i < hook.length; ++i)
+            for (var i = 0; i < hook.length;     i)
                 hook[i].apply(this, args);
         }
 
@@ -725,7 +725,7 @@ Licensed under the MIT license.
                 Canvas: Canvas
             };
 
-            for (var i = 0; i < plugins.length; ++i) {
+            for (var i = 0; i < plugins.length;     i) {
                 var p = plugins[i];
                 p.init(plot, classes);
                 if (p.options)
@@ -769,7 +769,7 @@ Licensed under the MIT license.
 
             var i, axisOptions, axisCount,
                 fontSize = placeholder.css("font-size"),
-                fontSizeDefault = fontSize ? +fontSize.replace("px", "") : 13,
+                fontSizeDefault = fontSize ?   fontSize.replace("px", "") : 13,
                 fontDefaults = {
                     style: placeholder.css("font-style"),
                     size: Math.round(0.8 * fontSizeDefault),
@@ -779,7 +779,7 @@ Licensed under the MIT license.
                 };
 
             axisCount = options.xaxes.length || 1;
-            for (i = 0; i < axisCount; ++i) {
+            for (i = 0; i < axisCount;     i) {
 
                 axisOptions = options.xaxes[i];
                 if (axisOptions && !axisOptions.tickColor) {
@@ -801,7 +801,7 @@ Licensed under the MIT license.
             }
 
             axisCount = options.yaxes.length || 1;
-            for (i = 0; i < axisCount; ++i) {
+            for (i = 0; i < axisCount;     i) {
 
                 axisOptions = options.yaxes[i];
                 if (axisOptions && !axisOptions.tickColor) {
@@ -865,10 +865,10 @@ Licensed under the MIT license.
                 options.series.highlightColor = options.highlightColor;
 
             // save options on axes for future reference
-            for (i = 0; i < options.xaxes.length; ++i)
-                getOrCreateAxis(xaxes, i + 1).options = options.xaxes[i];
-            for (i = 0; i < options.yaxes.length; ++i)
-                getOrCreateAxis(yaxes, i + 1).options = options.yaxes[i];
+            for (i = 0; i < options.xaxes.length;     i)
+                getOrCreateAxis(xaxes, i    1).options = options.xaxes[i];
+            for (i = 0; i < options.yaxes.length;     i)
+                getOrCreateAxis(yaxes, i    1).options = options.yaxes[i];
 
             // add hooks from options
             for (var n in hooks)
@@ -886,7 +886,7 @@ Licensed under the MIT license.
 
         function parseData(d) {
             var res = [];
-            for (var i = 0; i < d.length; ++i) {
+            for (var i = 0; i < d.length;     i) {
                 var s = $.extend(true, {}, options.series);
 
                 if (d[i].data != null) {
@@ -906,7 +906,7 @@ Licensed under the MIT license.
         }
 
         function axisNumber(obj, coord) {
-            var a = obj[coord + "axis"];
+            var a = obj[coord    "axis"];
             if (typeof a == "object") // if we got a real axis, extract number
                 a = a.n;
             if (typeof a != "number")
@@ -922,16 +922,16 @@ Licensed under the MIT license.
         function canvasToAxisCoords(pos) {
             // return an object with x/y corresponding to all used axes
             var res = {}, i, axis;
-            for (i = 0; i < xaxes.length; ++i) {
+            for (i = 0; i < xaxes.length;     i) {
                 axis = xaxes[i];
                 if (axis && axis.used)
-                    res["x" + axis.n] = axis.c2p(pos.left);
+                    res["x"    axis.n] = axis.c2p(pos.left);
             }
 
-            for (i = 0; i < yaxes.length; ++i) {
+            for (i = 0; i < yaxes.length;     i) {
                 axis = yaxes[i];
                 if (axis && axis.used)
-                    res["y" + axis.n] = axis.c2p(pos.top);
+                    res["y"    axis.n] = axis.c2p(pos.top);
             }
 
             if (res.x1 !== undefined)
@@ -946,10 +946,10 @@ Licensed under the MIT license.
             // get canvas coords from the first pair of x/y found in pos
             var res = {}, i, axis, key;
 
-            for (i = 0; i < xaxes.length; ++i) {
+            for (i = 0; i < xaxes.length;     i) {
                 axis = xaxes[i];
                 if (axis && axis.used) {
-                    key = "x" + axis.n;
+                    key = "x"    axis.n;
                     if (pos[key] == null && axis.n == 1)
                         key = "x";
 
@@ -960,10 +960,10 @@ Licensed under the MIT license.
                 }
             }
 
-            for (i = 0; i < yaxes.length; ++i) {
+            for (i = 0; i < yaxes.length;     i) {
                 axis = yaxes[i];
                 if (axis && axis.used) {
-                    key = "y" + axis.n;
+                    key = "y"    axis.n;
                     if (pos[key] == null && axis.n == 1)
                         key = "y";
 
@@ -995,7 +995,7 @@ Licensed under the MIT license.
             // Subtract the number of series that already have fixed colors or
             // color indexes from the number that we still need to generate.
 
-            for (i = 0; i < series.length; ++i) {
+            for (i = 0; i < series.length;     i) {
                 var sc = series[i].color;
                 if (sc != null) {
                     neededColors--;
@@ -1009,7 +1009,7 @@ Licensed under the MIT license.
             // generate at least as many colors as the highest index.
 
             if (neededColors <= maxIndex) {
-                neededColors = maxIndex + 1;
+                neededColors = maxIndex    1;
             }
 
             // Generate all the colors, using first the option colors and then
@@ -1018,7 +1018,7 @@ Licensed under the MIT license.
             var c, colors = [], colorPool = options.colors,
                 colorPoolSize = colorPool.length, variation = 0;
 
-            for (i = 0; i < neededColors; i++) {
+            for (i = 0; i < neededColors; i    ) {
 
                 c = $.color.parse(colorPool[i % colorPoolSize] || "#666");
 
@@ -1038,19 +1038,19 @@ Licensed under the MIT license.
                     } else variation = -variation;
                 }
 
-                colors[i] = c.scale('rgb', 1 + variation);
+                colors[i] = c.scale('rgb', 1    variation);
             }
 
             // Finalize the series options, filling in their colors
 
             var colori = 0, s;
-            for (i = 0; i < series.length; ++i) {
+            for (i = 0; i < series.length;     i) {
                 s = series[i];
 
                 // assign colors
                 if (s.color == null) {
                     s.color = colors[colori].toString();
-                    ++colori;
+                        colori;
                 }
                 else if (typeof s.color == "number")
                     s.color = colors[s.color].toString();
@@ -1102,7 +1102,7 @@ Licensed under the MIT license.
                 axis.used = false;
             });
 
-            for (i = 0; i < series.length; ++i) {
+            for (i = 0; i < series.length;     i) {
                 s = series[i];
                 s.datapoints = { points: [] };
 
@@ -1110,7 +1110,7 @@ Licensed under the MIT license.
             }
 
             // first pass: clean and copy data
-            for (i = 0; i < series.length; ++i) {
+            for (i = 0; i < series.length;     i) {
                 s = series[i];
 
                 data = s.data;
@@ -1145,18 +1145,18 @@ Licensed under the MIT license.
                 var insertSteps = s.lines.show && s.lines.steps;
                 s.xaxis.used = s.yaxis.used = true;
 
-                for (j = k = 0; j < data.length; ++j, k += ps) {
+                for (j = k = 0; j < data.length;     j, k   = ps) {
                     p = data[j];
 
                     var nullify = p == null;
                     if (!nullify) {
-                        for (m = 0; m < ps; ++m) {
+                        for (m = 0; m < ps;     m) {
                             val = p[m];
                             f = format[m];
 
                             if (f) {
                                 if (f.number && val != null) {
-                                    val = +val; // convert to number
+                                    val =   val; // convert to number
                                     if (isNaN(val))
                                         val = null;
                                     else if (val == Infinity)
@@ -1174,13 +1174,13 @@ Licensed under the MIT license.
                                 }
                             }
 
-                            points[k + m] = val;
+                            points[k    m] = val;
                         }
                     }
 
                     if (nullify) {
-                        for (m = 0; m < ps; ++m) {
-                            val = points[k + m];
+                        for (m = 0; m < ps;     m) {
+                            val = points[k    m];
                             if (val != null) {
                                 f = format[m];
                                 // extract min/max info
@@ -1193,7 +1193,7 @@ Licensed under the MIT license.
                                     }
                                 }
                             }
-                            points[k + m] = null;
+                            points[k    m] = null;
                         }
                     }
                     else {
@@ -1203,30 +1203,30 @@ Licensed under the MIT license.
                         if (insertSteps && k > 0
                             && points[k - ps] != null
                             && points[k - ps] != points[k]
-                            && points[k - ps + 1] != points[k + 1]) {
+                            && points[k - ps    1] != points[k    1]) {
                             // copy the point to make room for a middle point
-                            for (m = 0; m < ps; ++m)
-                                points[k + ps + m] = points[k + m];
+                            for (m = 0; m < ps;     m)
+                                points[k    ps    m] = points[k    m];
 
                             // middle point has same y
-                            points[k + 1] = points[k - ps + 1];
+                            points[k    1] = points[k - ps    1];
 
                             // we've added a point, better reflect that
-                            k += ps;
+                            k   = ps;
                         }
                     }
                 }
             }
 
             // give the hooks a chance to run
-            for (i = 0; i < series.length; ++i) {
+            for (i = 0; i < series.length;     i) {
                 s = series[i];
 
                 executeHooks(hooks.processDatapoints, [ s, s.datapoints]);
             }
 
             // second pass: find datamax/datamin for auto-scaling
-            for (i = 0; i < series.length; ++i) {
+            for (i = 0; i < series.length;     i) {
                 s = series[i];
                 points = s.datapoints.points;
                 ps = s.datapoints.pointsize;
@@ -1235,12 +1235,12 @@ Licensed under the MIT license.
                 var xmin = topSentry, ymin = topSentry,
                     xmax = bottomSentry, ymax = bottomSentry;
 
-                for (j = 0; j < points.length; j += ps) {
+                for (j = 0; j < points.length; j   = ps) {
                     if (points[j] == null)
                         continue;
 
-                    for (m = 0; m < ps; ++m) {
-                        val = points[j + m];
+                    for (m = 0; m < ps;     m) {
+                        val = points[j    m];
                         f = format[m];
                         if (!f || f.autoscale === false || val == fakeInfinity || val == -fakeInfinity)
                             continue;
@@ -1276,12 +1276,12 @@ Licensed under the MIT license.
                     }
 
                     if (s.bars.horizontal) {
-                        ymin += delta;
-                        ymax += delta + s.bars.barWidth;
+                        ymin   = delta;
+                        ymax   = delta    s.bars.barWidth;
                     }
                     else {
-                        xmin += delta;
-                        xmax += delta + s.bars.barWidth;
+                        xmin   = delta;
+                        xmax   = delta    s.bars.barWidth;
                     }
                 }
 
@@ -1391,9 +1391,9 @@ Licensed under the MIT license.
                 axis.p2c = function (p) { return (t(p) - m) * s; };
             // canvas coordinate to data point
             if (!it)
-                axis.c2p = function (c) { return m + c / s; };
+                axis.c2p = function (c) { return m    c / s; };
             else
-                axis.c2p = function (c) { return it(m + c / s); };
+                axis.c2p = function (c) { return it(m    c / s); };
         }
 
         function measureTickLabels(axis) {
@@ -1403,11 +1403,11 @@ Licensed under the MIT license.
                 labelWidth = opts.labelWidth || 0,
                 labelHeight = opts.labelHeight || 0,
                 maxWidth = labelWidth || (axis.direction == "x" ? Math.floor(surface.width / (ticks.length || 1)) : null),
-                legacyStyles = axis.direction + "Axis " + axis.direction + axis.n + "Axis",
-                layer = "flot-" + axis.direction + "-axis flot-" + axis.direction + axis.n + "-axis " + legacyStyles,
+                legacyStyles = axis.direction    "Axis "    axis.direction    axis.n    "Axis",
+                layer = "flot-"    axis.direction    "-axis flot-"    axis.direction    axis.n    "-axis "    legacyStyles,
                 font = opts.font || "flot-tick-label tickLabel";
 
-            for (var i = 0; i < ticks.length; ++i) {
+            for (var i = 0; i < ticks.length;     i) {
 
                 var t = ticks[i];
 
@@ -1474,30 +1474,30 @@ Licensed under the MIT license.
                 tickLength = first ? "full" : 5;
             }
 
-            if (!isNaN(+tickLength))
-                padding += +tickLength;
+            if (!isNaN(  tickLength))
+                padding   =   tickLength;
 
             if (isXAxis) {
-                lh += padding;
+                lh   = padding;
 
                 if (pos == "bottom") {
-                    plotOffset.bottom += lh + axisMargin;
+                    plotOffset.bottom   = lh    axisMargin;
                     axis.box = { top: surface.height - plotOffset.bottom, height: lh };
                 }
                 else {
-                    axis.box = { top: plotOffset.top + axisMargin, height: lh };
-                    plotOffset.top += lh + axisMargin;
+                    axis.box = { top: plotOffset.top    axisMargin, height: lh };
+                    plotOffset.top   = lh    axisMargin;
                 }
             }
             else {
-                lw += padding;
+                lw   = padding;
 
                 if (pos == "left") {
-                    axis.box = { left: plotOffset.left + axisMargin, width: lw };
-                    plotOffset.left += lw + axisMargin;
+                    axis.box = { left: plotOffset.left    axisMargin, width: lw };
+                    plotOffset.left   = lw    axisMargin;
                 }
                 else {
-                    plotOffset.right += lw + axisMargin;
+                    plotOffset.right   = lw    axisMargin;
                     axis.box = { left: surface.width - plotOffset.right, width: lw };
                 }
             }
@@ -1514,11 +1514,11 @@ Licensed under the MIT license.
             // dimension, we can set the remaining dimension coordinates
             if (axis.direction == "x") {
                 axis.box.left = plotOffset.left - axis.labelWidth / 2;
-                axis.box.width = surface.width - plotOffset.left - plotOffset.right + axis.labelWidth;
+                axis.box.width = surface.width - plotOffset.left - plotOffset.right    axis.labelWidth;
             }
             else {
                 axis.box.top = plotOffset.top - axis.labelHeight / 2;
-                axis.box.height = surface.height - plotOffset.bottom - plotOffset.top + axis.labelHeight;
+                axis.box.height = surface.height - plotOffset.bottom - plotOffset.top    axis.labelHeight;
             }
         }
 
@@ -1534,8 +1534,8 @@ Licensed under the MIT license.
             // customize)
             if (minMargin == null) {
                 minMargin = 0;
-                for (i = 0; i < series.length; ++i)
-                    minMargin = Math.max(minMargin, 2 * (series[i].points.radius + series[i].points.lineWidth/2));
+                for (i = 0; i < series.length;     i)
+                    minMargin = Math.max(minMargin, 2 * (series[i].points.radius    series[i].points.lineWidth/2));
             }
 
             var margins = {
@@ -1582,10 +1582,10 @@ Licensed under the MIT license.
 
             for (var a in plotOffset) {
                 if(typeof(options.grid.borderWidth) == "object") {
-                    plotOffset[a] += showGrid ? options.grid.borderWidth[a] : 0;
+                    plotOffset[a]   = showGrid ? options.grid.borderWidth[a] : 0;
                 }
                 else {
-                    plotOffset[a] += showGrid ? options.grid.borderWidth : 0;
+                    plotOffset[a]   = showGrid ? options.grid.borderWidth : 0;
                 }
             }
 
@@ -1643,8 +1643,8 @@ Licensed under the MIT license.
 
         function setRange(axis) {
             var opts = axis.options,
-                min = +(opts.min != null ? opts.min : axis.datamin),
-                max = +(opts.max != null ? opts.max : axis.datamax),
+                min =   (opts.min != null ? opts.min : axis.datamin),
+                max =   (opts.max != null ? opts.max : axis.datamax),
                 delta = max - min;
 
             if (delta == 0.0) {
@@ -1656,7 +1656,7 @@ Licensed under the MIT license.
                 // always widen max if we couldn't widen min to ensure we
                 // don't fall into min == max which doesn't work
                 if (opts.max == null || opts.min != null)
-                    max += widen;
+                    max   = widen;
             }
             else {
                 // consider autoscaling
@@ -1670,7 +1670,7 @@ Licensed under the MIT license.
                             min = 0;
                     }
                     if (opts.max == null) {
-                        max += delta * margin;
+                        max   = delta * margin;
                         if (max > 0 && axis.datamax != null && axis.datamax <= 0)
                             max = 0;
                     }
@@ -1709,9 +1709,9 @@ Licensed under the MIT license.
             } else if (norm < 3) {
                 size = 2;
                 // special case for 2.5, requires an extra decimal
-                if (norm > 2.25 && (maxDec == null || dec + 1 <= maxDec)) {
+                if (norm > 2.25 && (maxDec == null || dec    1 <= maxDec)) {
                     size = 2.5;
-                    ++dec;
+                        dec;
                 }
             } else if (norm < 7.5) {
                 size = 5;
@@ -1751,9 +1751,9 @@ Licensed under the MIT license.
 
                     do {
                         prev = v;
-                        v = start + i * axis.tickSize;
+                        v = start    i * axis.tickSize;
                         ticks.push(v);
-                        ++i;
+                            i;
                     } while (v < axis.max && v != prev);
                     return ticks;
                 };
@@ -1761,7 +1761,7 @@ Licensed under the MIT license.
 				axis.tickFormatter = function (value, axis) {
 
 					var factor = axis.tickDecimals ? Math.pow(10, axis.tickDecimals) : 1;
-					var formatted = "" + Math.round(value * factor) / factor;
+					var formatted = ""    Math.round(value * factor) / factor;
 
 					// If tickDecimals was specified, ensure that we have exactly that
 					// much precision; otherwise default to the value's own precision.
@@ -1770,7 +1770,7 @@ Licensed under the MIT license.
 						var decimal = formatted.indexOf(".");
 						var precision = decimal == -1 ? 0 : formatted.length - decimal - 1;
 						if (precision < axis.tickDecimals) {
-							return (precision ? formatted : formatted + ".") + ("" + factor).substr(1, axis.tickDecimals - precision);
+							return (precision ? formatted : formatted    ".")    (""    factor).substr(1, axis.tickDecimals - precision);
 						}
 					}
 
@@ -1779,7 +1779,7 @@ Licensed under the MIT license.
             }
 
             if ($.isFunction(opts.tickFormatter))
-                axis.tickFormatter = function (v, axis) { return "" + opts.tickFormatter(v, axis); };
+                axis.tickFormatter = function (v, axis) { return ""    opts.tickFormatter(v, axis); };
 
             if (opts.alignTicksWithAxis != null) {
                 var otherAxis = (axis.direction == "x" ? xaxes : yaxes)[opts.alignTicksWithAxis - 1];
@@ -1796,9 +1796,9 @@ Licensed under the MIT license.
                     axis.tickGenerator = function (axis) {
                         // copy ticks, scaled to this axis
                         var ticks = [], v, i;
-                        for (i = 0; i < otherAxis.ticks.length; ++i) {
+                        for (i = 0; i < otherAxis.ticks.length;     i) {
                             v = (otherAxis.ticks[i].v - otherAxis.min) / (otherAxis.max - otherAxis.min);
-                            v = axis.min + v * (axis.max - axis.min);
+                            v = axis.min    v * (axis.max - axis.min);
                             ticks.push(v);
                         }
                         return ticks;
@@ -1807,7 +1807,7 @@ Licensed under the MIT license.
                     // we might need an extra decimal since forced
                     // ticks don't necessarily fit naturally
                     if (!axis.mode && opts.tickDecimals == null) {
-                        var extraDec = Math.max(0, -Math.floor(Math.log(axis.delta) / Math.LN10) + 1),
+                        var extraDec = Math.max(0, -Math.floor(Math.log(axis.delta) / Math.LN10)    1),
                             ts = axis.tickGenerator(axis);
 
                         // only proceed if the tick interval rounded
@@ -1835,16 +1835,16 @@ Licensed under the MIT license.
             // clean up/labelify the supplied ticks, copy them over
             var i, v;
             axis.ticks = [];
-            for (i = 0; i < ticks.length; ++i) {
+            for (i = 0; i < ticks.length;     i) {
                 var label = null;
                 var t = ticks[i];
                 if (typeof t == "object") {
-                    v = +t[0];
+                    v =   t[0];
                     if (t.length > 1)
                         label = t[1];
                 }
                 else
-                    v = +t;
+                    v =   t;
                 if (label == null)
                     label = axis.tickFormatter(v, axis);
                 if (!isNaN(v))
@@ -1878,7 +1878,7 @@ Licensed under the MIT license.
                 drawGrid();
             }
 
-            for (var i = 0; i < series.length; ++i) {
+            for (var i = 0; i < series.length;     i) {
                 executeHooks(hooks.drawSeries, [ctx, series[i]]);
                 drawSeries(series[i]);
             }
@@ -1900,12 +1900,12 @@ Licensed under the MIT license.
         function extractRange(ranges, coord) {
             var axis, from, to, key, axes = allAxes();
 
-            for (var i = 0; i < axes.length; ++i) {
+            for (var i = 0; i < axes.length;     i) {
                 axis = axes[i];
                 if (axis.direction == coord) {
-                    key = coord + axis.n + "axis";
+                    key = coord    axis.n    "axis";
                     if (!ranges[key] && axis.n == 1)
-                        key = coord + "axis"; // support x1axis as xaxis
+                        key = coord    "axis"; // support x1axis as xaxis
                     if (ranges[key]) {
                         from = ranges[key].from;
                         to = ranges[key].to;
@@ -1917,8 +1917,8 @@ Licensed under the MIT license.
             // backwards-compat stuff - to be removed in future
             if (!ranges[key]) {
                 axis = coord == "x" ? xaxes[0] : yaxes[0];
-                from = ranges[coord + "1"];
-                to = ranges[coord + "2"];
+                from = ranges[coord    "1"];
+                to = ranges[coord    "2"];
             }
 
             // auto-reverse as an added bonus
@@ -1961,7 +1961,7 @@ Licensed under the MIT license.
                     markings = markings(axes);
                 }
 
-                for (i = 0; i < markings.length; ++i) {
+                for (i = 0; i < markings.length;     i) {
                     var m = markings[i],
                         xrange = extractRange(m, "x"),
                         yrange = extractRange(m, "y");
@@ -2006,11 +2006,11 @@ Licensed under the MIT license.
                         ctx.strokeStyle = m.color || options.grid.markingsColor;
                         ctx.lineWidth = lineWidth;
                         if (xequal) {
-                            ctx.moveTo(xrange.to + subPixel, yrange.from);
-                            ctx.lineTo(xrange.to + subPixel, yrange.to);
+                            ctx.moveTo(xrange.to    subPixel, yrange.from);
+                            ctx.lineTo(xrange.to    subPixel, yrange.to);
                         } else {
-                            ctx.moveTo(xrange.from, yrange.to + subPixel);
-                            ctx.lineTo(xrange.to, yrange.to + subPixel);                            
+                            ctx.moveTo(xrange.from, yrange.to    subPixel);
+                            ctx.lineTo(xrange.to, yrange.to    subPixel);                            
                         }
                         ctx.stroke();
                     } else {
@@ -2026,7 +2026,7 @@ Licensed under the MIT license.
             axes = allAxes();
             bw = options.grid.borderWidth;
 
-            for (var j = 0; j < axes.length; ++j) {
+            for (var j = 0; j < axes.length;     j) {
                 var axis = axes[j], box = axis.box,
                     t = axis.tickLength, x, y, xoff, yoff;
                 if (!axis.show || axis.ticks.length == 0)
@@ -2040,14 +2040,14 @@ Licensed under the MIT license.
                     if (t == "full")
                         y = (axis.position == "top" ? 0 : plotHeight);
                     else
-                        y = box.top - plotOffset.top + (axis.position == "top" ? box.height : 0);
+                        y = box.top - plotOffset.top    (axis.position == "top" ? box.height : 0);
                 }
                 else {
                     y = 0;
                     if (t == "full")
                         x = (axis.position == "left" ? 0 : plotWidth);
                     else
-                        x = box.left - plotOffset.left + (axis.position == "left" ? box.width : 0);
+                        x = box.left - plotOffset.left    (axis.position == "left" ? box.width : 0);
                 }
 
                 // draw tick bar
@@ -2056,20 +2056,20 @@ Licensed under the MIT license.
                     ctx.beginPath();
                     xoff = yoff = 0;
                     if (axis.direction == "x")
-                        xoff = plotWidth + 1;
+                        xoff = plotWidth    1;
                     else
-                        yoff = plotHeight + 1;
+                        yoff = plotHeight    1;
 
                     if (ctx.lineWidth == 1) {
                         if (axis.direction == "x") {
-                            y = Math.floor(y) + 0.5;
+                            y = Math.floor(y)    0.5;
                         } else {
-                            x = Math.floor(x) + 0.5;
+                            x = Math.floor(x)    0.5;
                         }
                     }
 
                     ctx.moveTo(x, y);
-                    ctx.lineTo(x + xoff, y + yoff);
+                    ctx.lineTo(x    xoff, y    yoff);
                     ctx.stroke();
                 }
 
@@ -2078,7 +2078,7 @@ Licensed under the MIT license.
                 ctx.strokeStyle = axis.options.tickColor;
 
                 ctx.beginPath();
-                for (i = 0; i < axis.ticks.length; ++i) {
+                for (i = 0; i < axis.ticks.length;     i) {
                     var v = axis.ticks[i].v;
 
                     xoff = yoff = 0;
@@ -2107,13 +2107,13 @@ Licensed under the MIT license.
 
                     if (ctx.lineWidth == 1) {
                         if (axis.direction == "x")
-                            x = Math.floor(x) + 0.5;
+                            x = Math.floor(x)    0.5;
                         else
-                            y = Math.floor(y) + 0.5;
+                            y = Math.floor(y)    0.5;
                     }
 
                     ctx.moveTo(x, y);
-                    ctx.lineTo(x + xoff, y + yoff);
+                    ctx.lineTo(x    xoff, y    yoff);
                 }
 
                 ctx.stroke();
@@ -2146,8 +2146,8 @@ Licensed under the MIT license.
                         ctx.strokeStyle = bc.right;
                         ctx.lineWidth = bw.right;
                         ctx.beginPath();
-                        ctx.moveTo(plotWidth + bw.right / 2, 0 - bw.top);
-                        ctx.lineTo(plotWidth + bw.right / 2, plotHeight);
+                        ctx.moveTo(plotWidth    bw.right / 2, 0 - bw.top);
+                        ctx.lineTo(plotWidth    bw.right / 2, plotHeight);
                         ctx.stroke();
                     }
 
@@ -2155,8 +2155,8 @@ Licensed under the MIT license.
                         ctx.strokeStyle = bc.bottom;
                         ctx.lineWidth = bw.bottom;
                         ctx.beginPath();
-                        ctx.moveTo(plotWidth + bw.right, plotHeight + bw.bottom / 2);
-                        ctx.lineTo(0, plotHeight + bw.bottom / 2);
+                        ctx.moveTo(plotWidth    bw.right, plotHeight    bw.bottom / 2);
+                        ctx.lineTo(0, plotHeight    bw.bottom / 2);
                         ctx.stroke();
                     }
 
@@ -2164,7 +2164,7 @@ Licensed under the MIT license.
                         ctx.strokeStyle = bc.left;
                         ctx.lineWidth = bw.left;
                         ctx.beginPath();
-                        ctx.moveTo(0 - bw.left/2, plotHeight + bw.bottom);
+                        ctx.moveTo(0 - bw.left/2, plotHeight    bw.bottom);
                         ctx.lineTo(0- bw.left/2, 0);
                         ctx.stroke();
                     }
@@ -2172,7 +2172,7 @@ Licensed under the MIT license.
                 else {
                     ctx.lineWidth = bw;
                     ctx.strokeStyle = options.grid.borderColor;
-                    ctx.strokeRect(-bw/2, -bw/2, plotWidth + bw, plotHeight + bw);
+                    ctx.strokeRect(-bw/2, -bw/2, plotWidth    bw, plotHeight    bw);
                 }
             }
 
@@ -2183,8 +2183,8 @@ Licensed under the MIT license.
 
             $.each(allAxes(), function (_, axis) {
                 var box = axis.box,
-                    legacyStyles = axis.direction + "Axis " + axis.direction + axis.n + "Axis",
-                    layer = "flot-" + axis.direction + "-axis flot-" + axis.direction + axis.n + "-axis " + legacyStyles,
+                    legacyStyles = axis.direction    "Axis "    axis.direction    axis.n    "Axis",
+                    layer = "flot-"    axis.direction    "-axis flot-"    axis.direction    axis.n    "-axis "    legacyStyles,
                     font = axis.options.font || "flot-tick-label tickLabel",
                     tick, x, y, halign, valign;
 
@@ -2197,7 +2197,7 @@ Licensed under the MIT license.
                 if (!axis.show || axis.ticks.length == 0)
                     return;
 
-                for (var i = 0; i < axis.ticks.length; ++i) {
+                for (var i = 0; i < axis.ticks.length;     i) {
 
                     tick = axis.ticks[i];
                     if (!tick.label || tick.v < axis.min || tick.v > axis.max)
@@ -2205,21 +2205,21 @@ Licensed under the MIT license.
 
                     if (axis.direction == "x") {
                         halign = "center";
-                        x = plotOffset.left + axis.p2c(tick.v);
+                        x = plotOffset.left    axis.p2c(tick.v);
                         if (axis.position == "bottom") {
-                            y = box.top + box.padding;
+                            y = box.top    box.padding;
                         } else {
-                            y = box.top + box.height - box.padding;
+                            y = box.top    box.height - box.padding;
                             valign = "bottom";
                         }
                     } else {
                         valign = "middle";
-                        y = plotOffset.top + axis.p2c(tick.v);
+                        y = plotOffset.top    axis.p2c(tick.v);
                         if (axis.position == "left") {
-                            x = box.left + box.width - box.padding;
+                            x = box.left    box.width - box.padding;
                             halign = "right";
                         } else {
-                            x = box.left + box.padding;
+                            x = box.left    box.padding;
                         }
                     }
 
@@ -2244,9 +2244,9 @@ Licensed under the MIT license.
                     prevx = null, prevy = null;
 
                 ctx.beginPath();
-                for (var i = ps; i < points.length; i += ps) {
-                    var x1 = points[i - ps], y1 = points[i - ps + 1],
-                        x2 = points[i], y2 = points[i + 1];
+                for (var i = ps; i < points.length; i   = ps) {
+                    var x1 = points[i - ps], y1 = points[i - ps    1],
+                        x2 = points[i], y2 = points[i    1];
 
                     if (x1 == null || x2 == null)
                         continue;
@@ -2256,13 +2256,13 @@ Licensed under the MIT license.
                         if (y2 < axisy.min)
                             continue;   // line segment is outside
                         // compute new intersection point
-                        x1 = (axisy.min - y1) / (y2 - y1) * (x2 - x1) + x1;
+                        x1 = (axisy.min - y1) / (y2 - y1) * (x2 - x1)    x1;
                         y1 = axisy.min;
                     }
                     else if (y2 <= y1 && y2 < axisy.min) {
                         if (y1 < axisy.min)
                             continue;
-                        x2 = (axisy.min - y1) / (y2 - y1) * (x2 - x1) + x1;
+                        x2 = (axisy.min - y1) / (y2 - y1) * (x2 - x1)    x1;
                         y2 = axisy.min;
                     }
 
@@ -2270,13 +2270,13 @@ Licensed under the MIT license.
                     if (y1 >= y2 && y1 > axisy.max) {
                         if (y2 > axisy.max)
                             continue;
-                        x1 = (axisy.max - y1) / (y2 - y1) * (x2 - x1) + x1;
+                        x1 = (axisy.max - y1) / (y2 - y1) * (x2 - x1)    x1;
                         y1 = axisy.max;
                     }
                     else if (y2 >= y1 && y2 > axisy.max) {
                         if (y1 > axisy.max)
                             continue;
-                        x2 = (axisy.max - y1) / (y2 - y1) * (x2 - x1) + x1;
+                        x2 = (axisy.max - y1) / (y2 - y1) * (x2 - x1)    x1;
                         y2 = axisy.max;
                     }
 
@@ -2284,13 +2284,13 @@ Licensed under the MIT license.
                     if (x1 <= x2 && x1 < axisx.min) {
                         if (x2 < axisx.min)
                             continue;
-                        y1 = (axisx.min - x1) / (x2 - x1) * (y2 - y1) + y1;
+                        y1 = (axisx.min - x1) / (x2 - x1) * (y2 - y1)    y1;
                         x1 = axisx.min;
                     }
                     else if (x2 <= x1 && x2 < axisx.min) {
                         if (x1 < axisx.min)
                             continue;
-                        y2 = (axisx.min - x1) / (x2 - x1) * (y2 - y1) + y1;
+                        y2 = (axisx.min - x1) / (x2 - x1) * (y2 - y1)    y1;
                         x2 = axisx.min;
                     }
 
@@ -2298,22 +2298,22 @@ Licensed under the MIT license.
                     if (x1 >= x2 && x1 > axisx.max) {
                         if (x2 > axisx.max)
                             continue;
-                        y1 = (axisx.max - x1) / (x2 - x1) * (y2 - y1) + y1;
+                        y1 = (axisx.max - x1) / (x2 - x1) * (y2 - y1)    y1;
                         x1 = axisx.max;
                     }
                     else if (x2 >= x1 && x2 > axisx.max) {
                         if (x1 > axisx.max)
                             continue;
-                        y2 = (axisx.max - x1) / (x2 - x1) * (y2 - y1) + y1;
+                        y2 = (axisx.max - x1) / (x2 - x1) * (y2 - y1)    y1;
                         x2 = axisx.max;
                     }
 
                     if (x1 != prevx || y1 != prevy)
-                        ctx.moveTo(axisx.p2c(x1) + xoffset, axisy.p2c(y1) + yoffset);
+                        ctx.moveTo(axisx.p2c(x1)    xoffset, axisy.p2c(y1)    yoffset);
 
                     prevx = x2;
                     prevy = y2;
-                    ctx.lineTo(axisx.p2c(x2) + xoffset, axisy.p2c(y2) + yoffset);
+                    ctx.lineTo(axisx.p2c(x2)    xoffset, axisy.p2c(y2)    yoffset);
                 }
                 ctx.stroke();
             }
@@ -2329,14 +2329,14 @@ Licensed under the MIT license.
                 // direction to sketch out top, then once we hit the
                 // end we go backwards to sketch the bottom
                 while (true) {
-                    if (ps > 0 && i > points.length + ps)
+                    if (ps > 0 && i > points.length    ps)
                         break;
 
-                    i += ps; // ps is negative if going backwards
+                    i   = ps; // ps is negative if going backwards
 
                     var x1 = points[i - ps],
-                        y1 = points[i - ps + ypos],
-                        x2 = points[i], y2 = points[i + ypos];
+                        y1 = points[i - ps    ypos],
+                        x2 = points[i], y2 = points[i    ypos];
 
                     if (areaOpen) {
                         if (ps > 0 && x1 != null && x2 == null) {
@@ -2347,13 +2347,13 @@ Licensed under the MIT license.
                             continue;
                         }
 
-                        if (ps < 0 && i == segmentStart + ps) {
+                        if (ps < 0 && i == segmentStart    ps) {
                             // done with the reverse sweep
                             ctx.fill();
                             areaOpen = false;
                             ps = -ps;
                             ypos = 1;
-                            i = segmentStart = segmentEnd + ps;
+                            i = segmentStart = segmentEnd    ps;
                             continue;
                         }
                     }
@@ -2367,13 +2367,13 @@ Licensed under the MIT license.
                     if (x1 <= x2 && x1 < axisx.min) {
                         if (x2 < axisx.min)
                             continue;
-                        y1 = (axisx.min - x1) / (x2 - x1) * (y2 - y1) + y1;
+                        y1 = (axisx.min - x1) / (x2 - x1) * (y2 - y1)    y1;
                         x1 = axisx.min;
                     }
                     else if (x2 <= x1 && x2 < axisx.min) {
                         if (x1 < axisx.min)
                             continue;
-                        y2 = (axisx.min - x1) / (x2 - x1) * (y2 - y1) + y1;
+                        y2 = (axisx.min - x1) / (x2 - x1) * (y2 - y1)    y1;
                         x2 = axisx.min;
                     }
 
@@ -2381,13 +2381,13 @@ Licensed under the MIT license.
                     if (x1 >= x2 && x1 > axisx.max) {
                         if (x2 > axisx.max)
                             continue;
-                        y1 = (axisx.max - x1) / (x2 - x1) * (y2 - y1) + y1;
+                        y1 = (axisx.max - x1) / (x2 - x1) * (y2 - y1)    y1;
                         x1 = axisx.max;
                     }
                     else if (x2 >= x1 && x2 > axisx.max) {
                         if (x1 > axisx.max)
                             continue;
-                        y2 = (axisx.max - x1) / (x2 - x1) * (y2 - y1) + y1;
+                        y2 = (axisx.max - x1) / (x2 - x1) * (y2 - y1)    y1;
                         x2 = axisx.max;
                     }
 
@@ -2421,21 +2421,21 @@ Licensed under the MIT license.
 
                     // clip with ymin
                     if (y1 <= y2 && y1 < axisy.min && y2 >= axisy.min) {
-                        x1 = (axisy.min - y1) / (y2 - y1) * (x2 - x1) + x1;
+                        x1 = (axisy.min - y1) / (y2 - y1) * (x2 - x1)    x1;
                         y1 = axisy.min;
                     }
                     else if (y2 <= y1 && y2 < axisy.min && y1 >= axisy.min) {
-                        x2 = (axisy.min - y1) / (y2 - y1) * (x2 - x1) + x1;
+                        x2 = (axisy.min - y1) / (y2 - y1) * (x2 - x1)    x1;
                         y2 = axisy.min;
                     }
 
                     // clip with ymax
                     if (y1 >= y2 && y1 > axisy.max && y2 <= axisy.max) {
-                        x1 = (axisy.max - y1) / (y2 - y1) * (x2 - x1) + x1;
+                        x1 = (axisy.max - y1) / (y2 - y1) * (x2 - x1)    x1;
                         y1 = axisy.max;
                     }
                     else if (y2 >= y1 && y2 > axisy.max && y1 <= axisy.max) {
-                        x2 = (axisy.max - y1) / (y2 - y1) * (x2 - x1) + x1;
+                        x2 = (axisy.max - y1) / (y2 - y1) * (x2 - x1)    x1;
                         y2 = axisy.max;
                     }
 
@@ -2473,9 +2473,9 @@ Licensed under the MIT license.
                 ctx.strokeStyle = "rgba(0,0,0,0.1)";
                 // position shadow at angle from the mid of line
                 var angle = Math.PI/18;
-                plotLine(series.datapoints, Math.sin(angle) * (lw/2 + sw/2), Math.cos(angle) * (lw/2 + sw/2), series.xaxis, series.yaxis);
+                plotLine(series.datapoints, Math.sin(angle) * (lw/2    sw/2), Math.cos(angle) * (lw/2    sw/2), series.xaxis, series.yaxis);
                 ctx.lineWidth = sw/2;
-                plotLine(series.datapoints, Math.sin(angle) * (lw/2 + sw/4), Math.cos(angle) * (lw/2 + sw/4), series.xaxis, series.yaxis);
+                plotLine(series.datapoints, Math.sin(angle) * (lw/2    sw/4), Math.cos(angle) * (lw/2    sw/4), series.xaxis, series.yaxis);
             }
 
             ctx.lineWidth = lw;
@@ -2495,14 +2495,14 @@ Licensed under the MIT license.
             function plotPoints(datapoints, radius, fillStyle, offset, shadow, axisx, axisy, symbol) {
                 var points = datapoints.points, ps = datapoints.pointsize;
 
-                for (var i = 0; i < points.length; i += ps) {
-                    var x = points[i], y = points[i + 1];
+                for (var i = 0; i < points.length; i   = ps) {
+                    var x = points[i], y = points[i    1];
                     if (x == null || x < axisx.min || x > axisx.max || y < axisy.min || y > axisy.max)
                         continue;
 
                     ctx.beginPath();
                     x = axisx.p2c(x);
-                    y = axisy.p2c(y) + offset;
+                    y = axisy.p2c(y)    offset;
                     if (symbol == "circle")
                         ctx.arc(x, y, radius, 0, shadow ? Math.PI : Math.PI * 2, false);
                     else
@@ -2538,7 +2538,7 @@ Licensed under the MIT license.
                 var w = sw / 2;
                 ctx.lineWidth = w;
                 ctx.strokeStyle = "rgba(0,0,0,0.1)";
-                plotPoints(series.datapoints, radius, null, w + w/2, true,
+                plotPoints(series.datapoints, radius, null, w    w/2, true,
                            series.xaxis, series.yaxis, symbol);
 
                 ctx.strokeStyle = "rgba(0,0,0,0.2)";
@@ -2567,8 +2567,8 @@ Licensed under the MIT license.
                 drawLeft = false;
                 left = b;
                 right = x;
-                top = y + barLeft;
-                bottom = y + barRight;
+                top = y    barLeft;
+                bottom = y    barRight;
 
                 // account for negative bars
                 if (right < left) {
@@ -2582,8 +2582,8 @@ Licensed under the MIT license.
             else {
                 drawLeft = drawRight = drawTop = true;
                 drawBottom = false;
-                left = x + barLeft;
-                right = x + barRight;
+                left = x    barLeft;
+                right = x    barRight;
                 bottom = b;
                 top = y;
 
@@ -2663,10 +2663,10 @@ Licensed under the MIT license.
             function plotBars(datapoints, barLeft, barRight, fillStyleCallback, axisx, axisy) {
                 var points = datapoints.points, ps = datapoints.pointsize;
 
-                for (var i = 0; i < points.length; i += ps) {
+                for (var i = 0; i < points.length; i   = ps) {
                     if (points[i] == null)
                         continue;
-                    drawBar(points[i], points[i + 1], points[i + 2], barLeft, barRight, fillStyleCallback, axisx, axisy, ctx, series.bars.horizontal, series.bars.lineWidth);
+                    drawBar(points[i], points[i    1], points[i    2], barLeft, barRight, fillStyleCallback, axisx, axisy, ctx, series.bars.horizontal, series.bars.lineWidth);
                 }
             }
 
@@ -2691,7 +2691,7 @@ Licensed under the MIT license.
             }
 
             var fillStyleCallback = series.bars.fill ? function (bottom, top) { return getFillStyle(series.bars, series.color, bottom, top); } : null;
-            plotBars(series.datapoints, barLeft, barLeft + series.bars.barWidth, fillStyleCallback, series.xaxis, series.yaxis);
+            plotBars(series.datapoints, barLeft, barLeft    series.bars.barWidth, fillStyleCallback, series.xaxis, series.yaxis);
             ctx.restore();
         }
 
@@ -2726,7 +2726,7 @@ Licensed under the MIT license.
 
             // Build a list of legend entries, with each having a label and a color
 
-            for (var i = 0; i < series.length; ++i) {
+            for (var i = 0; i < series.length;     i) {
                 s = series[i];
                 if (s.label) {
                     label = lf ? lf(s.label, s) : s.label;
@@ -2758,7 +2758,7 @@ Licensed under the MIT license.
 
             // Generate markup for the list of entries, in their final order
 
-            for (var i = 0; i < entries.length; ++i) {
+            for (var i = 0; i < entries.length;     i) {
 
                 var entry = entries[i];
 
@@ -2770,8 +2770,8 @@ Licensed under the MIT license.
                 }
 
                 fragments.push(
-                    '<td class="legendColorBox"><div style="border:1px solid ' + options.legend.labelBoxBorderColor + ';padding:1px"><div style="width:4px;height:0;border:5px solid ' + entry.color + ';overflow:hidden"></div></div></td>' +
-                    '<td class="legendLabel">' + entry.label + '</td>'
+                    '<td class="legendColorBox"><div style="border:1px solid '    options.legend.labelBoxBorderColor    ';padding:1px"><div style="width:4px;height:0;border:5px solid '    entry.color    ';overflow:hidden"></div></div></td>'   
+                    '<td class="legendLabel">'    entry.label    '</td>'
                 );
             }
 
@@ -2781,7 +2781,7 @@ Licensed under the MIT license.
             if (fragments.length == 0)
                 return;
 
-            var table = '<table style="font-size:smaller;color:' + options.grid.color + '">' + fragments.join("") + '</table>';
+            var table = '<table style="font-size:smaller;color:'    options.grid.color    '">'    fragments.join("")    '</table>';
             if (options.legend.container != null)
                 $(options.legend.container).html(table);
             else {
@@ -2791,14 +2791,14 @@ Licensed under the MIT license.
                 if (m[0] == null)
                     m = [m, m];
                 if (p.charAt(0) == "n")
-                    pos += 'top:' + (m[1] + plotOffset.top) + 'px;';
+                    pos   = 'top:'    (m[1]    plotOffset.top)    'px;';
                 else if (p.charAt(0) == "s")
-                    pos += 'bottom:' + (m[1] + plotOffset.bottom) + 'px;';
+                    pos   = 'bottom:'    (m[1]    plotOffset.bottom)    'px;';
                 if (p.charAt(1) == "e")
-                    pos += 'right:' + (m[0] + plotOffset.right) + 'px;';
+                    pos   = 'right:'    (m[0]    plotOffset.right)    'px;';
                 else if (p.charAt(1) == "w")
-                    pos += 'left:' + (m[0] + plotOffset.left) + 'px;';
-                var legend = $('<div class="legend">' + table.replace('style="', 'style="position:absolute;' + pos +';') + '</div>').appendTo(placeholder);
+                    pos   = 'left:'    (m[0]    plotOffset.left)    'px;';
+                var legend = $('<div class="legend">'    table.replace('style="', 'style="position:absolute;'    pos   ';')    '</div>').appendTo(placeholder);
                 if (options.legend.backgroundOpacity != 0.0) {
                     // put in the transparent background
                     // separately to avoid blended labels and
@@ -2814,7 +2814,7 @@ Licensed under the MIT license.
                         c = c.toString();
                     }
                     var div = legend.children();
-                    $('<div style="position:absolute;width:' + div.width() + 'px;height:' + div.height() + 'px;' + pos +'background-color:' + c + ';"> </div>').prependTo(legend).css('opacity', options.legend.backgroundOpacity);
+                    $('<div style="position:absolute;width:'    div.width()    'px;height:'    div.height()    'px;'    pos   'background-color:'    c    ';"> </div>').prependTo(legend).css('opacity', options.legend.backgroundOpacity);
                 }
             }
         }
@@ -2828,7 +2828,7 @@ Licensed under the MIT license.
         // returns the data item the mouse is over, or null if none is found
         function findNearbyItem(mouseX, mouseY, seriesFilter) {
             var maxDistance = options.grid.mouseActiveRadius,
-                smallestDistance = maxDistance * maxDistance + 1,
+                smallestDistance = maxDistance * maxDistance    1,
                 item = null, foundPoint = false, i, j, ps;
 
             for (i = series.length - 1; i >= 0; --i) {
@@ -2853,8 +2853,8 @@ Licensed under the MIT license.
                     maxy = Number.MAX_VALUE;
 
                 if (s.lines.show || s.points.show) {
-                    for (j = 0; j < points.length; j += ps) {
-                        var x = points[j], y = points[j + 1];
+                    for (j = 0; j < points.length; j   = ps) {
+                        var x = points[j], y = points[j    1];
                         if (x == null)
                             continue;
 
@@ -2868,7 +2868,7 @@ Licensed under the MIT license.
                         // data units, because the scales of the axes may be different
                         var dx = Math.abs(axisx.p2c(x) - mouseX),
                             dy = Math.abs(axisy.p2c(y) - mouseY),
-                            dist = dx * dx + dy * dy; // we save the sqrt
+                            dist = dx * dx    dy * dy; // we save the sqrt
 
                         // use <= to ensure last point takes precedence
                         // (last generally means on top of)
@@ -2894,18 +2894,18 @@ Licensed under the MIT license.
                             barLeft = -s.bars.barWidth / 2;
                     }
 
-                    barRight = barLeft + s.bars.barWidth;
+                    barRight = barLeft    s.bars.barWidth;
 
-                    for (j = 0; j < points.length; j += ps) {
-                        var x = points[j], y = points[j + 1], b = points[j + 2];
+                    for (j = 0; j < points.length; j   = ps) {
+                        var x = points[j], y = points[j    1], b = points[j    2];
                         if (x == null)
                             continue;
 
                         // for a bar graph, the cursor must be inside the bar
                         if (series[i].bars.horizontal ?
                             (mx <= Math.max(b, x) && mx >= Math.min(b, x) &&
-                             my >= y + barLeft && my <= y + barRight) :
-                            (mx >= x + barLeft && mx <= x + barRight &&
+                             my >= y    barLeft && my <= y    barRight) :
+                            (mx >= x    barLeft && mx <= x    barRight &&
                              my >= Math.min(b, y) && my <= Math.max(b, y)))
                                 item = [i, j / ps];
                     }
@@ -2917,7 +2917,7 @@ Licensed under the MIT license.
                 j = item[1];
                 ps = series[i].datapoints.pointsize;
 
-                return { datapoint: series[i].datapoints.points.slice(j * ps, (j + 1) * ps),
+                return { datapoint: series[i].datapoints.points.slice(j * ps, (j    1) * ps),
                          dataIndex: j,
                          series: series[i],
                          seriesIndex: i };
@@ -2958,13 +2958,13 @@ Licensed under the MIT license.
 
             if (item) {
                 // fill in mouse pos for any listeners out there
-                item.pageX = parseInt(item.series.xaxis.p2c(item.datapoint[0]) + offset.left + plotOffset.left, 10);
-                item.pageY = parseInt(item.series.yaxis.p2c(item.datapoint[1]) + offset.top + plotOffset.top, 10);
+                item.pageX = parseInt(item.series.xaxis.p2c(item.datapoint[0])    offset.left    plotOffset.left, 10);
+                item.pageY = parseInt(item.series.yaxis.p2c(item.datapoint[1])    offset.top    plotOffset.top, 10);
             }
 
             if (options.grid.autoHighlight) {
                 // clear auto-highlights
-                for (var i = 0; i < highlights.length; ++i) {
+                for (var i = 0; i < highlights.length;     i) {
                     var h = highlights[i];
                     if (h.auto == eventname &&
                         !(item && h.series == item.series &&
@@ -3000,7 +3000,7 @@ Licensed under the MIT license.
             octx.translate(plotOffset.left, plotOffset.top);
 
             var i, hi;
-            for (i = 0; i < highlights.length; ++i) {
+            for (i = 0; i < highlights.length;     i) {
                 hi = highlights[i];
 
                 if (hi.series.bars.show)
@@ -3019,7 +3019,7 @@ Licensed under the MIT license.
 
             if (typeof point == "number") {
                 var ps = s.datapoints.pointsize;
-                point = s.datapoints.points.slice(ps * point, ps * (point + 1));
+                point = s.datapoints.points.slice(ps * point, ps * (point    1));
             }
 
             var i = indexOfHighlight(s, point);
@@ -3044,7 +3044,7 @@ Licensed under the MIT license.
 
             if (typeof point == "number") {
                 var ps = s.datapoints.pointsize;
-                point = s.datapoints.points.slice(ps * point, ps * (point + 1));
+                point = s.datapoints.points.slice(ps * point, ps * (point    1));
             }
 
             var i = indexOfHighlight(s, point);
@@ -3056,7 +3056,7 @@ Licensed under the MIT license.
         }
 
         function indexOfHighlight(s, p) {
-            for (var i = 0; i < highlights.length; ++i) {
+            for (var i = 0; i < highlights.length;     i) {
                 var h = highlights[i];
                 if (h.series == s && h.point[0] == p[0]
                     && h.point[1] == p[1])
@@ -3073,7 +3073,7 @@ Licensed under the MIT license.
             if (x < axisx.min || x > axisx.max || y < axisy.min || y > axisy.max)
                 return;
 
-            var pointRadius = series.points.radius + series.points.lineWidth / 2;
+            var pointRadius = series.points.radius    series.points.lineWidth / 2;
             octx.lineWidth = pointRadius;
             octx.strokeStyle = highlightColor;
             var radius = 1.5 * pointRadius;
@@ -3108,7 +3108,7 @@ Licensed under the MIT license.
             octx.lineWidth = series.bars.lineWidth;
             octx.strokeStyle = highlightColor;
 
-            drawBar(point[0], point[1], point[2] || 0, barLeft, barLeft + series.bars.barWidth,
+            drawBar(point[0], point[1], point[2] || 0, barLeft, barLeft    series.bars.barWidth,
                     function () { return fillStyle; }, series.xaxis, series.yaxis, octx, series.bars.horizontal, series.bars.lineWidth);
         }
 
@@ -3121,7 +3121,7 @@ Licensed under the MIT license.
                 // what we support too
                 var gradient = ctx.createLinearGradient(0, top, 0, bottom);
 
-                for (var i = 0, l = spec.colors.length; i < l; ++i) {
+                for (var i = 0, l = spec.colors.length; i < l;     i) {
                     var c = spec.colors[i];
                     if (typeof c != "string") {
                         var co = $.color.parse(defaultColor);
@@ -3144,7 +3144,7 @@ Licensed under the MIT license.
     $.plot = function(placeholder, data, options) {
         //var t0 = new Date();
         var plot = new Plot($(placeholder), data, options, $.plot.plugins);
-        //(window.console ? console.log : alert)("time used (msecs): " + ((new Date()).getTime() - t0.getTime()));
+        //(window.console ? console.log : alert)("time used (msecs): "    ((new Date()).getTime() - t0.getTime()));
         return plot;
     };
 

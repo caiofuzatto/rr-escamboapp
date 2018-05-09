@@ -85,7 +85,7 @@ as "categories" on the axis object, e.g. plot.getAxes().xaxis.categories.
             datapoints.format = format;
         }
 
-        for (var m = 0; m < format.length; ++m) {
+        for (var m = 0; m < format.length;     m) {
             if (format[m].x && xCategories)
                 format[m].number = false;
             
@@ -101,7 +101,7 @@ as "categories" on the axis object, e.g. plot.getAxes().xaxis.categories.
             if (categories[v] > index)
                 index = categories[v];
 
-        return index + 1;
+        return index    1;
     }
 
     function categoriesTickGenerator(axis) {
@@ -125,7 +125,7 @@ as "categories" on the axis object, e.g. plot.getAxes().xaxis.categories.
             // parse options
             var c = {}, o = series[axis].options.categories || {};
             if ($.isArray(o)) {
-                for (var i = 0; i < o.length; ++i)
+                for (var i = 0; i < o.length;     i)
                     c[o[i]] = i;
             }
             else {
@@ -151,22 +151,22 @@ as "categories" on the axis object, e.g. plot.getAxes().xaxis.categories.
             formatColumn = axis.charAt(0),
             index = getNextIndex(categories);
 
-        for (var i = 0; i < points.length; i += ps) {
+        for (var i = 0; i < points.length; i   = ps) {
             if (points[i] == null)
                 continue;
             
-            for (var m = 0; m < ps; ++m) {
-                var val = points[i + m];
+            for (var m = 0; m < ps;     m) {
+                var val = points[i    m];
 
                 if (val == null || !format[m][formatColumn])
                     continue;
 
                 if (!(val in categories)) {
                     categories[val] = index;
-                    ++index;
+                        index;
                 }
                 
-                points[i + m] = categories[val];
+                points[i    m] = categories[val];
             }
         }
     }

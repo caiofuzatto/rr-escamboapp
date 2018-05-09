@@ -11,7 +11,7 @@ Licensed under the BSD-2-Clause License.
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i    ) { if (i in this && this[i] === item) return i; } return -1; };
 
   Morris = window.Morris = {};
 
@@ -37,7 +37,7 @@ Licensed under the BSD-2-Clause License.
       if ((this.handlers != null) && (this.handlers[name] != null)) {
         _ref = this.handlers[name];
         _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
           handler = _ref[_i];
           _results.push(handler.apply(null, args));
         }
@@ -55,10 +55,10 @@ Licensed under the BSD-2-Clause License.
       ret = num < 0 ? "-" : "";
       absnum = Math.abs(num);
       intnum = Math.floor(absnum).toFixed(0);
-      ret += intnum.replace(/(?=(?:\d{3})+$)(?!^)/g, ',');
+      ret   = intnum.replace(/(?=(?:\d{3})  $)(?!^)/g, ',');
       strabsnum = absnum.toString();
       if (strabsnum.length > intnum.length) {
-        ret += strabsnum.slice(intnum.length);
+        ret   = strabsnum.slice(intnum.length);
       }
       return ret;
     } else {
@@ -67,7 +67,7 @@ Licensed under the BSD-2-Clause License.
   };
 
   Morris.pad2 = function(number) {
-    return (number < 10 ? '0' : '') + number;
+    return (number < 10 ? '0' : '')    number;
   };
 
   Morris.Grid = (function(_super) {
@@ -221,7 +221,7 @@ Licensed under the BSD-2-Clause License.
       this.data = (function() {
         var _i, _len, _results;
         _results = [];
-        for (index = _i = 0, _len = data.length; _i < _len; index = ++_i) {
+        for (index = _i = 0, _len = data.length; _i < _len; index =     _i) {
           row = data[index];
           ret = {
             src: row
@@ -245,7 +245,7 @@ Licensed under the BSD-2-Clause License.
             var _j, _len1, _ref, _results1;
             _ref = this.options.ykeys;
             _results1 = [];
-            for (idx = _j = 0, _len1 = _ref.length; _j < _len1; idx = ++_j) {
+            for (idx = _j = 0, _len1 = _ref.length; _j < _len1; idx =     _j) {
               ykey = _ref[idx];
               yval = row[ykey];
               if (typeof yval === 'string') {
@@ -256,7 +256,7 @@ Licensed under the BSD-2-Clause License.
               }
               if (yval != null) {
                 if (this.cumulative) {
-                  total += yval;
+                  total   = yval;
                 } else {
                   if (ymax != null) {
                     ymax = Math.max(yval, ymax);
@@ -292,7 +292,7 @@ Licensed under the BSD-2-Clause License.
             var _i, _len, _ref, _results;
             _ref = this.options.events;
             _results = [];
-            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
               e = _ref[_i];
               _results.push(Morris.parseDate(e));
             }
@@ -306,7 +306,7 @@ Licensed under the BSD-2-Clause License.
       }
       if (this.xmin === this.xmax) {
         this.xmin -= 1;
-        this.xmax += 1;
+        this.xmax   = 1;
       }
       this.ymin = this.yboundary('min', ymin);
       this.ymax = this.yboundary('max', ymax);
@@ -314,7 +314,7 @@ Licensed under the BSD-2-Clause License.
         if (ymin) {
           this.ymin -= 1;
         }
-        this.ymax += 1;
+        this.ymax   = 1;
       }
       if (((_ref = this.options.axes) === true || _ref === 'both' || _ref === 'y') || this.options.grid === true) {
         if (this.options.ymax === this.gridDefaults.ymax && this.options.ymin === this.gridDefaults.ymin) {
@@ -326,7 +326,7 @@ Licensed under the BSD-2-Clause License.
           this.grid = (function() {
             var _i, _ref1, _ref2, _results;
             _results = [];
-            for (y = _i = _ref1 = this.ymin, _ref2 = this.ymax; step > 0 ? _i <= _ref2 : _i >= _ref2; y = _i += step) {
+            for (y = _i = _ref1 = this.ymin, _ref2 = this.ymax; step > 0 ? _i <= _ref2 : _i >= _ref2; y = _i   = step) {
               _results.push(y);
             }
             return _results;
@@ -341,7 +341,7 @@ Licensed under the BSD-2-Clause License.
 
     Grid.prototype.yboundary = function(boundaryType, currentValue) {
       var boundaryOption, suggestedValue;
-      boundaryOption = this.options["y" + boundaryType];
+      boundaryOption = this.options["y"    boundaryType];
       if (typeof boundaryOption === 'string') {
         if (boundaryOption.slice(0, 4) === 'auto') {
           if (boundaryOption.length > 5) {
@@ -375,7 +375,7 @@ Licensed under the BSD-2-Clause License.
       step = (gmax - gmin) / (nlines - 1);
       if (unit === 1 && step > 1 && Math.ceil(step) !== step) {
         step = Math.ceil(step);
-        gmax = gmin + step * (nlines - 1);
+        gmax = gmin    step * (nlines - 1);
       }
       if (gmin < 0 && gmax > 0) {
         gmin = Math.floor(ymin / step) * step;
@@ -386,7 +386,7 @@ Licensed under the BSD-2-Clause License.
         grid = (function() {
           var _i, _results;
           _results = [];
-          for (y = _i = gmin; step > 0 ? _i <= gmax : _i >= gmax; y = _i += step) {
+          for (y = _i = gmin; step > 0 ? _i <= gmax : _i >= gmax; y = _i   = step) {
             _results.push(parseFloat(y.toFixed(1 - smag)));
           }
           return _results;
@@ -395,7 +395,7 @@ Licensed under the BSD-2-Clause License.
         grid = (function() {
           var _i, _results;
           _results = [];
-          for (y = _i = gmin; step > 0 ? _i <= gmax : _i >= gmax; y = _i += step) {
+          for (y = _i = gmin; step > 0 ? _i <= gmax : _i >= gmax; y = _i   = step) {
             _results.push(y);
           }
           return _results;
@@ -421,19 +421,19 @@ Licensed under the BSD-2-Clause License.
             var _i, _len, _ref1, _results;
             _ref1 = this.grid;
             _results = [];
-            for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+            for (_i = 0, _len = _ref1.length; _i < _len; _i    ) {
               gridLine = _ref1[_i];
               _results.push(this.measureText(this.yAxisFormat(gridLine)).width);
             }
             return _results;
           }).call(this);
-          this.left += Math.max.apply(Math, yLabelWidths);
+          this.left   = Math.max.apply(Math, yLabelWidths);
         }
         if ((_ref1 = this.options.axes) === true || _ref1 === 'both' || _ref1 === 'x') {
           bottomOffsets = (function() {
             var _i, _ref2, _results;
             _results = [];
-            for (i = _i = 0, _ref2 = this.data.length; 0 <= _ref2 ? _i < _ref2 : _i > _ref2; i = 0 <= _ref2 ? ++_i : --_i) {
+            for (i = _i = 0, _ref2 = this.data.length; 0 <= _ref2 ? _i < _ref2 : _i > _ref2; i = 0 <= _ref2 ?     _i : --_i) {
               _results.push(this.measureText(this.data[i].text, -this.options.xLabelAngle).height);
             }
             return _results;
@@ -456,9 +456,9 @@ Licensed under the BSD-2-Clause License.
 
     Grid.prototype.transX = function(x) {
       if (this.data.length === 1) {
-        return (this.left + this.right) / 2;
+        return (this.left    this.right) / 2;
       } else {
-        return this.left + (x - this.xmin) * this.dx;
+        return this.left    (x - this.xmin) * this.dx;
       }
     };
 
@@ -492,7 +492,7 @@ Licensed under the BSD-2-Clause License.
       if (typeof this.options.yLabelFormat === 'function') {
         return this.options.yLabelFormat(label);
       } else {
-        return "" + this.options.preUnits + (Morris.commas(label)) + this.options.postUnits;
+        return ""    this.options.preUnits    (Morris.commas(label))    this.options.postUnits;
       }
     };
 
@@ -503,14 +503,14 @@ Licensed under the BSD-2-Clause License.
       }
       _ref1 = this.grid;
       _results = [];
-      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+      for (_i = 0, _len = _ref1.length; _i < _len; _i    ) {
         lineY = _ref1[_i];
         y = this.transY(lineY);
         if ((_ref2 = this.options.axes) === true || _ref2 === 'both' || _ref2 === 'y') {
           this.drawYAxisLabel(this.left - this.options.padding / 2, y, this.yAxisFormat(lineY));
         }
         if (this.options.grid) {
-          _results.push(this.drawGridLine("M" + this.left + "," + y + "H" + (this.left + this.width)));
+          _results.push(this.drawGridLine("M"    this.left    ","    y    "H"    (this.left    this.width)));
         } else {
           _results.push(void 0);
         }
@@ -522,7 +522,7 @@ Licensed under the BSD-2-Clause License.
       var color, goal, i, _i, _len, _ref, _results;
       _ref = this.options.goals;
       _results = [];
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      for (i = _i = 0, _len = _ref.length; _i < _len; i =     _i) {
         goal = _ref[i];
         color = this.options.goalLineColors[i % this.options.goalLineColors.length];
         _results.push(this.drawGoal(goal, color));
@@ -534,7 +534,7 @@ Licensed under the BSD-2-Clause License.
       var color, event, i, _i, _len, _ref, _results;
       _ref = this.events;
       _results = [];
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      for (i = _i = 0, _len = _ref.length; _i < _len; i =     _i) {
         event = _ref[i];
         color = this.options.eventLineColors[i % this.options.eventLineColors.length];
         _results.push(this.drawEvent(event, color));
@@ -543,11 +543,11 @@ Licensed under the BSD-2-Clause License.
     };
 
     Grid.prototype.drawGoal = function(goal, color) {
-      return this.raphael.path("M" + this.left + "," + (this.transY(goal)) + "H" + this.right).attr('stroke', color).attr('stroke-width', this.options.goalStrokeWidth);
+      return this.raphael.path("M"    this.left    ","    (this.transY(goal))    "H"    this.right).attr('stroke', color).attr('stroke-width', this.options.goalStrokeWidth);
     };
 
     Grid.prototype.drawEvent = function(event, color) {
-      return this.raphael.path("M" + (this.transX(event)) + "," + this.bottom + "V" + this.top).attr('stroke', color).attr('stroke-width', this.options.eventStrokeWidth);
+      return this.raphael.path("M"    (this.transX(event))    ","    this.bottom    "V"    this.top).attr('stroke', color).attr('stroke-width', this.options.eventStrokeWidth);
     };
 
     Grid.prototype.drawYAxisLabel = function(xPos, yPos, text) {
@@ -595,12 +595,12 @@ Licensed under the BSD-2-Clause License.
     if (typeof date === 'number') {
       return date;
     }
-    m = date.match(/^(\d+) Q(\d)$/);
-    n = date.match(/^(\d+)-(\d+)$/);
-    o = date.match(/^(\d+)-(\d+)-(\d+)$/);
-    p = date.match(/^(\d+) W(\d+)$/);
-    q = date.match(/^(\d+)-(\d+)-(\d+)[ T](\d+):(\d+)(Z|([+-])(\d\d):?(\d\d))?$/);
-    r = date.match(/^(\d+)-(\d+)-(\d+)[ T](\d+):(\d+):(\d+(\.\d+)?)(Z|([+-])(\d\d):?(\d\d))?$/);
+    m = date.match(/^(\d  ) Q(\d)$/);
+    n = date.match(/^(\d  )-(\d  )$/);
+    o = date.match(/^(\d  )-(\d  )-(\d  )$/);
+    p = date.match(/^(\d  ) W(\d  )$/);
+    q = date.match(/^(\d  )-(\d  )-(\d  )[ T](\d  ):(\d  )(Z|([  -])(\d\d):?(\d\d))?$/);
+    r = date.match(/^(\d  )-(\d  )-(\d  )[ T](\d  ):(\d  ):(\d  (\.\d  )?)(Z|([  -])(\d\d):?(\d\d))?$/);
     if (m) {
       return new Date(parseInt(m[1], 10), parseInt(m[2], 10) * 3 - 1, 1).getTime();
     } else if (n) {
@@ -610,21 +610,21 @@ Licensed under the BSD-2-Clause License.
     } else if (p) {
       ret = new Date(parseInt(p[1], 10), 0, 1);
       if (ret.getDay() !== 4) {
-        ret.setMonth(0, 1 + ((4 - ret.getDay()) + 7) % 7);
+        ret.setMonth(0, 1    ((4 - ret.getDay())    7) % 7);
       }
-      return ret.getTime() + parseInt(p[2], 10) * 604800000;
+      return ret.getTime()    parseInt(p[2], 10) * 604800000;
     } else if (q) {
       if (!q[6]) {
         return new Date(parseInt(q[1], 10), parseInt(q[2], 10) - 1, parseInt(q[3], 10), parseInt(q[4], 10), parseInt(q[5], 10)).getTime();
       } else {
         offsetmins = 0;
         if (q[6] !== 'Z') {
-          offsetmins = parseInt(q[8], 10) * 60 + parseInt(q[9], 10);
-          if (q[7] === '+') {
+          offsetmins = parseInt(q[8], 10) * 60    parseInt(q[9], 10);
+          if (q[7] === '  ') {
             offsetmins = 0 - offsetmins;
           }
         }
-        return Date.UTC(parseInt(q[1], 10), parseInt(q[2], 10) - 1, parseInt(q[3], 10), parseInt(q[4], 10), parseInt(q[5], 10) + offsetmins);
+        return Date.UTC(parseInt(q[1], 10), parseInt(q[2], 10) - 1, parseInt(q[3], 10), parseInt(q[4], 10), parseInt(q[5], 10)    offsetmins);
       }
     } else if (r) {
       secs = parseFloat(r[6]);
@@ -635,12 +635,12 @@ Licensed under the BSD-2-Clause License.
       } else {
         offsetmins = 0;
         if (r[8] !== 'Z') {
-          offsetmins = parseInt(r[10], 10) * 60 + parseInt(r[11], 10);
-          if (r[9] === '+') {
+          offsetmins = parseInt(r[10], 10) * 60    parseInt(r[11], 10);
+          if (r[9] === '  ') {
             offsetmins = 0 - offsetmins;
           }
         }
-        return Date.UTC(parseInt(r[1], 10), parseInt(r[2], 10) - 1, parseInt(r[3], 10), parseInt(r[4], 10), parseInt(r[5], 10) + offsetmins, isecs, msecs);
+        return Date.UTC(parseInt(r[1], 10), parseInt(r[2], 10) - 1, parseInt(r[3], 10), parseInt(r[4], 10), parseInt(r[5], 10)    offsetmins, isecs, msecs);
       }
     } else {
       return new Date(parseInt(date, 10), 0, 1).getTime();
@@ -657,7 +657,7 @@ Licensed under the BSD-2-Clause License.
         options = {};
       }
       this.options = $.extend({}, Morris.Hover.defaults, options);
-      this.el = $("<div class='" + this.options["class"] + "'></div>");
+      this.el = $("<div class='"    this.options["class"]    "'></div>");
       this.el.hide();
       this.options.parent.append(this.el);
     }
@@ -686,8 +686,8 @@ Licensed under the BSD-2-Clause License.
       if (y != null) {
         top = y - hoverHeight - 10;
         if (top < 0) {
-          top = y + 10;
-          if (top + hoverHeight > parentHeight) {
+          top = y    10;
+          if (top    hoverHeight > parentHeight) {
             top = parentHeight / 2 - hoverHeight / 2;
           }
         }
@@ -695,8 +695,8 @@ Licensed under the BSD-2-Clause License.
         top = parentHeight / 2 - hoverHeight / 2;
       }
       return this.el.css({
-        left: left + "px",
-        top: parseInt(top) + "px"
+        left: left    "px",
+        top: parseInt(top)    "px"
       });
     };
 
@@ -760,14 +760,14 @@ Licensed under the BSD-2-Clause License.
       var row, y, _i, _len, _ref, _results;
       _ref = this.data;
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
         row = _ref[_i];
         row._x = this.transX(row.x);
         row._y = (function() {
           var _j, _len1, _ref1, _results1;
           _ref1 = row.y;
           _results1 = [];
-          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j    ) {
             y = _ref1[_j];
             if (y != null) {
               _results1.push(this.transY(y));
@@ -781,7 +781,7 @@ Licensed under the BSD-2-Clause License.
           var _j, _len1, _ref1, _results1;
           _ref1 = row._y;
           _results1 = [];
-          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j    ) {
             y = _ref1[_j];
             if (y != null) {
               _results1.push(y);
@@ -799,9 +799,9 @@ Licensed under the BSD-2-Clause License.
         return null;
       }
       _ref = this.data.slice(1);
-      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+      for (index = _i = 0, _len = _ref.length; _i < _len; index =     _i) {
         r = _ref[index];
-        if (x < (r._x + this.data[index]._x) / 2) {
+        if (x < (r._x    this.data[index]._x) / 2) {
           break;
         }
       }
@@ -840,11 +840,11 @@ Licensed under the BSD-2-Clause License.
     Line.prototype.hoverContentForRow = function(index) {
       var content, j, row, y, _i, _len, _ref;
       row = this.data[index];
-      content = "<div class='morris-hover-row-label'>" + row.label + "</div>";
+      content = "<div class='morris-hover-row-label'>"    row.label    "</div>";
       _ref = row.y;
-      for (j = _i = 0, _len = _ref.length; _i < _len; j = ++_i) {
+      for (j = _i = 0, _len = _ref.length; _i < _len; j =     _i) {
         y = _ref[j];
-        content += "<div class='morris-hover-point' style='color: " + (this.colorFor(row, j, 'label')) + "'>\n  " + this.options.labels[j] + ":\n  " + (this.yLabelFormat(y)) + "\n</div>";
+        content   = "<div class='morris-hover-point' style='color: "    (this.colorFor(row, j, 'label'))    "'>\n  "    this.options.labels[j]    ":\n  "    (this.yLabelFormat(y))    "\n</div>";
       }
       if (typeof this.options.hoverCallback === 'function') {
         content = this.options.hoverCallback(index, this.options, content, row.src);
@@ -857,13 +857,13 @@ Licensed under the BSD-2-Clause License.
       return this.paths = (function() {
         var _i, _ref, _ref1, _results;
         _results = [];
-        for (i = _i = 0, _ref = this.options.ykeys.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        for (i = _i = 0, _ref = this.options.ykeys.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ?     _i : --_i) {
           smooth = typeof this.options.smooth === "boolean" ? this.options.smooth : (_ref1 = this.options.ykeys[i], __indexOf.call(this.options.smooth, _ref1) >= 0);
           coords = (function() {
             var _j, _len, _ref2, _results1;
             _ref2 = this.data;
             _results1 = [];
-            for (_j = 0, _len = _ref2.length; _j < _len; _j++) {
+            for (_j = 0, _len = _ref2.length; _j < _len; _j    ) {
               r = _ref2[_j];
               if (r._y[i] !== void 0) {
                 _results1.push({
@@ -898,22 +898,22 @@ Licensed under the BSD-2-Clause License.
     Line.prototype.drawXAxis = function() {
       var drawLabel, l, labels, prevAngleMargin, prevLabelMargin, row, ypos, _i, _len, _results,
         _this = this;
-      ypos = this.bottom + this.options.padding / 2;
+      ypos = this.bottom    this.options.padding / 2;
       prevLabelMargin = null;
       prevAngleMargin = null;
       drawLabel = function(labelText, xpos) {
         var label, labelBox, margin, offset, textBox;
         label = _this.drawXAxisLabel(_this.transX(xpos), ypos, labelText);
         textBox = label.getBBox();
-        label.transform("r" + (-_this.options.xLabelAngle));
+        label.transform("r"    (-_this.options.xLabelAngle));
         labelBox = label.getBBox();
-        label.transform("t0," + (labelBox.height / 2) + "...");
+        label.transform("t0,"    (labelBox.height / 2)    "...");
         if (_this.options.xLabelAngle !== 0) {
           offset = -0.5 * textBox.width * Math.cos(_this.options.xLabelAngle * Math.PI / 180.0);
-          label.transform("t" + offset + ",0...");
+          label.transform("t"    offset    ",0...");
         }
         labelBox = label.getBBox();
-        if (((prevLabelMargin == null) || prevLabelMargin >= labelBox.x + labelBox.width || (prevAngleMargin != null) && prevAngleMargin >= labelBox.x) && labelBox.x >= 0 && (labelBox.x + labelBox.width) < _this.el.width()) {
+        if (((prevLabelMargin == null) || prevLabelMargin >= labelBox.x    labelBox.width || (prevAngleMargin != null) && prevAngleMargin >= labelBox.x) && labelBox.x >= 0 && (labelBox.x    labelBox.width) < _this.el.width()) {
           if (_this.options.xLabelAngle !== 0) {
             margin = 1.25 * _this.options.gridTextSize / Math.sin(_this.options.xLabelAngle * Math.PI / 180.0);
             prevAngleMargin = labelBox.x - margin;
@@ -934,7 +934,7 @@ Licensed under the BSD-2-Clause License.
           var _i, _len, _ref, _results;
           _ref = this.data;
           _results = [];
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
             row = _ref[_i];
             _results.push([row.label, row.x]);
           }
@@ -943,7 +943,7 @@ Licensed under the BSD-2-Clause License.
       }
       labels.reverse();
       _results = [];
-      for (_i = 0, _len = labels.length; _i < _len; _i++) {
+      for (_i = 0, _len = labels.length; _i < _len; _i    ) {
         l = labels[_i];
         _results.push(drawLabel(l[0], l[1]));
       }
@@ -953,11 +953,11 @@ Licensed under the BSD-2-Clause License.
     Line.prototype.drawSeries = function() {
       var i, _i, _j, _ref, _ref1, _results;
       this.seriesPoints = [];
-      for (i = _i = _ref = this.options.ykeys.length - 1; _ref <= 0 ? _i <= 0 : _i >= 0; i = _ref <= 0 ? ++_i : --_i) {
+      for (i = _i = _ref = this.options.ykeys.length - 1; _ref <= 0 ? _i <= 0 : _i >= 0; i = _ref <= 0 ?     _i : --_i) {
         this._drawLineFor(i);
       }
       _results = [];
-      for (i = _j = _ref1 = this.options.ykeys.length - 1; _ref1 <= 0 ? _j <= 0 : _j >= 0; i = _ref1 <= 0 ? ++_j : --_j) {
+      for (i = _j = _ref1 = this.options.ykeys.length - 1; _ref1 <= 0 ? _j <= 0 : _j >= 0; i = _ref1 <= 0 ?     _j : --_j) {
         _results.push(this._drawPointFor(i));
       }
       return _results;
@@ -968,7 +968,7 @@ Licensed under the BSD-2-Clause License.
       this.seriesPoints[index] = [];
       _ref = this.data;
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
         row = _ref[_i];
         circle = null;
         if (row._y[index] != null) {
@@ -996,7 +996,7 @@ Licensed under the BSD-2-Clause License.
       prevCoord = {
         y: null
       };
-      for (i = _i = 0, _len = coords.length; _i < _len; i = ++_i) {
+      for (i = _i = 0, _len = coords.length; _i < _len; i =     _i) {
         coord = coords[i];
         if (coord.y != null) {
           if (prevCoord.y != null) {
@@ -1004,17 +1004,17 @@ Licensed under the BSD-2-Clause License.
               g = grads[i];
               lg = grads[i - 1];
               ix = (coord.x - prevCoord.x) / 4;
-              x1 = prevCoord.x + ix;
-              y1 = Math.min(bottom, prevCoord.y + ix * lg);
+              x1 = prevCoord.x    ix;
+              y1 = Math.min(bottom, prevCoord.y    ix * lg);
               x2 = coord.x - ix;
               y2 = Math.min(bottom, coord.y - ix * g);
-              path += "C" + x1 + "," + y1 + "," + x2 + "," + y2 + "," + coord.x + "," + coord.y;
+              path   = "C"    x1    ","    y1    ","    x2    ","    y2    ","    coord.x    ","    coord.y;
             } else {
-              path += "L" + coord.x + "," + coord.y;
+              path   = "L"    coord.x    ","    coord.y;
             }
           } else {
             if (!smooth || (grads[i] != null)) {
-              path += "M" + coord.x + "," + coord.y;
+              path   = "M"    coord.x    ","    coord.y;
             }
           }
         }
@@ -1029,10 +1029,10 @@ Licensed under the BSD-2-Clause License.
         return (a.y - b.y) / (a.x - b.x);
       };
       _results = [];
-      for (i = _i = 0, _len = coords.length; _i < _len; i = ++_i) {
+      for (i = _i = 0, _len = coords.length; _i < _len; i =     _i) {
         coord = coords[i];
         if (coord.y != null) {
-          nextCoord = coords[i + 1] || {
+          nextCoord = coords[i    1] || {
             y: null
           };
           prevCoord = coords[i - 1] || {
@@ -1057,14 +1057,14 @@ Licensed under the BSD-2-Clause License.
     Line.prototype.hilight = function(index) {
       var i, _i, _j, _ref, _ref1;
       if (this.prevHilight !== null && this.prevHilight !== index) {
-        for (i = _i = 0, _ref = this.seriesPoints.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+        for (i = _i = 0, _ref = this.seriesPoints.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ?     _i : --_i) {
           if (this.seriesPoints[i][this.prevHilight]) {
             this.seriesPoints[i][this.prevHilight].animate(this.pointShrinkSeries(i));
           }
         }
       }
       if (index !== null && this.prevHilight !== index) {
-        for (i = _j = 0, _ref1 = this.seriesPoints.length - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; i = 0 <= _ref1 ? ++_j : --_j) {
+        for (i = _j = 0, _ref1 = this.seriesPoints.length - 1; 0 <= _ref1 ? _j <= _ref1 : _j >= _ref1; i = 0 <= _ref1 ?     _j : --_j) {
           if (this.seriesPoints[i][index]) {
             this.seriesPoints[i][index].animate(this.pointGrowSeries(i));
           }
@@ -1121,7 +1121,7 @@ Licensed under the BSD-2-Clause License.
 
     Line.prototype.pointGrowSeries = function(index) {
       return Raphael.animation({
-        r: this.pointSizeForSeries(index) + 3
+        r: this.pointSizeForSeries(index)    3
       }, 25, 'linear');
     };
 
@@ -1142,7 +1142,7 @@ Licensed under the BSD-2-Clause License.
     spec = Morris.LABEL_SPECS[specName];
     if (spec === void 0) {
       _ref = Morris.AUTO_LABEL_ORDER;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
         name = _ref[_i];
         s = Morris.LABEL_SPECS[name];
         if (ddensity >= s.span) {
@@ -1177,10 +1177,10 @@ Licensed under the BSD-2-Clause License.
         return new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours());
       },
       fmt: function(d) {
-        return "" + (Morris.pad2(d.getHours())) + ":" + (Morris.pad2(d.getMinutes()));
+        return ""    (Morris.pad2(d.getHours()))    ":"    (Morris.pad2(d.getMinutes()));
       },
       incr: function(d) {
-        return d.setUTCMinutes(d.getUTCMinutes() + interval);
+        return d.setUTCMinutes(d.getUTCMinutes()    interval);
       }
     };
   };
@@ -1192,10 +1192,10 @@ Licensed under the BSD-2-Clause License.
         return new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes());
       },
       fmt: function(d) {
-        return "" + (Morris.pad2(d.getHours())) + ":" + (Morris.pad2(d.getMinutes())) + ":" + (Morris.pad2(d.getSeconds()));
+        return ""    (Morris.pad2(d.getHours()))    ":"    (Morris.pad2(d.getMinutes()))    ":"    (Morris.pad2(d.getSeconds()));
       },
       incr: function(d) {
-        return d.setUTCSeconds(d.getUTCSeconds() + interval);
+        return d.setUTCSeconds(d.getUTCSeconds()    interval);
       }
     };
   };
@@ -1207,10 +1207,10 @@ Licensed under the BSD-2-Clause License.
         return new Date(d.getFullYear() - d.getFullYear() % 10, 0, 1);
       },
       fmt: function(d) {
-        return "" + (d.getFullYear());
+        return ""    (d.getFullYear());
       },
       incr: function(d) {
-        return d.setFullYear(d.getFullYear() + 10);
+        return d.setFullYear(d.getFullYear()    10);
       }
     },
     "year": {
@@ -1219,10 +1219,10 @@ Licensed under the BSD-2-Clause License.
         return new Date(d.getFullYear(), 0, 1);
       },
       fmt: function(d) {
-        return "" + (d.getFullYear());
+        return ""    (d.getFullYear());
       },
       incr: function(d) {
-        return d.setFullYear(d.getFullYear() + 1);
+        return d.setFullYear(d.getFullYear()    1);
       }
     },
     "month": {
@@ -1231,10 +1231,10 @@ Licensed under the BSD-2-Clause License.
         return new Date(d.getFullYear(), d.getMonth(), 1);
       },
       fmt: function(d) {
-        return "" + (d.getFullYear()) + "-" + (Morris.pad2(d.getMonth() + 1));
+        return ""    (d.getFullYear())    "-"    (Morris.pad2(d.getMonth()    1));
       },
       incr: function(d) {
-        return d.setMonth(d.getMonth() + 1);
+        return d.setMonth(d.getMonth()    1);
       }
     },
     "week": {
@@ -1243,10 +1243,10 @@ Licensed under the BSD-2-Clause License.
         return new Date(d.getFullYear(), d.getMonth(), d.getDate());
       },
       fmt: function(d) {
-        return "" + (d.getFullYear()) + "-" + (Morris.pad2(d.getMonth() + 1)) + "-" + (Morris.pad2(d.getDate()));
+        return ""    (d.getFullYear())    "-"    (Morris.pad2(d.getMonth()    1))    "-"    (Morris.pad2(d.getDate()));
       },
       incr: function(d) {
-        return d.setDate(d.getDate() + 7);
+        return d.setDate(d.getDate()    7);
       }
     },
     "day": {
@@ -1255,10 +1255,10 @@ Licensed under the BSD-2-Clause License.
         return new Date(d.getFullYear(), d.getMonth(), d.getDate());
       },
       fmt: function(d) {
-        return "" + (d.getFullYear()) + "-" + (Morris.pad2(d.getMonth() + 1)) + "-" + (Morris.pad2(d.getDate()));
+        return ""    (d.getFullYear())    "-"    (Morris.pad2(d.getMonth()    1))    "-"    (Morris.pad2(d.getDate()));
       },
       incr: function(d) {
-        return d.setDate(d.getDate() + 1);
+        return d.setDate(d.getDate()    1);
       }
     },
     "hour": minutesSpecHelper(60),
@@ -1303,7 +1303,7 @@ Licensed under the BSD-2-Clause License.
       var row, total, y, _i, _len, _ref, _results;
       _ref = this.data;
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
         row = _ref[_i];
         row._x = this.transX(row.x);
         total = 0;
@@ -1311,12 +1311,12 @@ Licensed under the BSD-2-Clause License.
           var _j, _len1, _ref1, _results1;
           _ref1 = row.y;
           _results1 = [];
-          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j    ) {
             y = _ref1[_j];
             if (this.options.behaveLikeLine) {
               _results1.push(this.transY(y));
             } else {
-              total += y || 0;
+              total   = y || 0;
               _results1.push(this.transY(total));
             }
           }
@@ -1333,18 +1333,18 @@ Licensed under the BSD-2-Clause License.
       if (this.options.behaveLikeLine) {
         range = (function() {
           _results = [];
-          for (var _i = 0, _ref = this.options.ykeys.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; 0 <= _ref ? _i++ : _i--){ _results.push(_i); }
+          for (var _i = 0, _ref = this.options.ykeys.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; 0 <= _ref ? _i     : _i--){ _results.push(_i); }
           return _results;
         }).apply(this);
       } else {
         range = (function() {
           _results1 = [];
-          for (var _j = _ref1 = this.options.ykeys.length - 1; _ref1 <= 0 ? _j <= 0 : _j >= 0; _ref1 <= 0 ? _j++ : _j--){ _results1.push(_j); }
+          for (var _j = _ref1 = this.options.ykeys.length - 1; _ref1 <= 0 ? _j <= 0 : _j >= 0; _ref1 <= 0 ? _j     : _j--){ _results1.push(_j); }
           return _results1;
         }).apply(this);
       }
       _results2 = [];
-      for (_k = 0, _len = range.length; _k < _len; _k++) {
+      for (_k = 0, _len = range.length; _k < _len; _k    ) {
         i = range[_k];
         this._drawFillFor(i);
         this._drawLineFor(i);
@@ -1357,7 +1357,7 @@ Licensed under the BSD-2-Clause License.
       var path;
       path = this.paths[index];
       if (path !== null) {
-        path = path + ("L" + (this.transX(this.xmax)) + "," + this.bottom + "L" + (this.transX(this.xmin)) + "," + this.bottom + "Z");
+        path = path    ("L"    (this.transX(this.xmax))    ","    this.bottom    "L"    (this.transX(this.xmin))    ","    this.bottom    "Z");
         return this.drawFilledPath(path, this.fillForSeries(index));
       }
     };
@@ -1424,14 +1424,14 @@ Licensed under the BSD-2-Clause License.
       var idx, row, y, _i, _len, _ref, _results;
       _ref = this.data;
       _results = [];
-      for (idx = _i = 0, _len = _ref.length; _i < _len; idx = ++_i) {
+      for (idx = _i = 0, _len = _ref.length; _i < _len; idx =     _i) {
         row = _ref[idx];
-        row._x = this.left + this.width * (idx + 0.5) / this.data.length;
+        row._x = this.left    this.width * (idx    0.5) / this.data.length;
         _results.push(row._y = (function() {
           var _j, _len1, _ref1, _results1;
           _ref1 = row.y;
           _results1 = [];
-          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j    ) {
             y = _ref1[_j];
             if (y != null) {
               _results1.push(this.transY(y));
@@ -1455,22 +1455,22 @@ Licensed under the BSD-2-Clause License.
 
     Bar.prototype.drawXAxis = function() {
       var i, label, labelBox, margin, offset, prevAngleMargin, prevLabelMargin, row, textBox, ypos, _i, _ref, _results;
-      ypos = this.bottom + (this.options.xAxisLabelTopPadding || this.options.padding / 2);
+      ypos = this.bottom    (this.options.xAxisLabelTopPadding || this.options.padding / 2);
       prevLabelMargin = null;
       prevAngleMargin = null;
       _results = [];
-      for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ?     _i : --_i) {
         row = this.data[this.data.length - 1 - i];
         label = this.drawXAxisLabel(row._x, ypos, row.label);
         textBox = label.getBBox();
-        label.transform("r" + (-this.options.xLabelAngle));
+        label.transform("r"    (-this.options.xLabelAngle));
         labelBox = label.getBBox();
-        label.transform("t0," + (labelBox.height / 2) + "...");
+        label.transform("t0,"    (labelBox.height / 2)    "...");
         if (this.options.xLabelAngle !== 0) {
           offset = -0.5 * textBox.width * Math.cos(this.options.xLabelAngle * Math.PI / 180.0);
-          label.transform("t" + offset + ",0...");
+          label.transform("t"    offset    ",0...");
         }
-        if (((prevLabelMargin == null) || prevLabelMargin >= labelBox.x + labelBox.width || (prevAngleMargin != null) && prevAngleMargin >= labelBox.x) && labelBox.x >= 0 && (labelBox.x + labelBox.width) < this.el.width()) {
+        if (((prevLabelMargin == null) || prevLabelMargin >= labelBox.x    labelBox.width || (prevAngleMargin != null) && prevAngleMargin >= labelBox.x) && labelBox.x >= 0 && (labelBox.x    labelBox.width) < this.el.width()) {
           if (this.options.xLabelAngle !== 0) {
             margin = 1.25 * this.options.gridTextSize / Math.sin(this.options.xLabelAngle * Math.PI / 180.0);
             prevAngleMargin = labelBox.x - margin;
@@ -1498,14 +1498,14 @@ Licensed under the BSD-2-Clause License.
         var _i, _len, _ref, _results;
         _ref = this.data;
         _results = [];
-        for (idx = _i = 0, _len = _ref.length; _i < _len; idx = ++_i) {
+        for (idx = _i = 0, _len = _ref.length; _i < _len; idx =     _i) {
           row = _ref[idx];
           lastTop = 0;
           _results.push((function() {
             var _j, _len1, _ref1, _results1;
             _ref1 = row._y;
             _results1 = [];
-            for (sidx = _j = 0, _len1 = _ref1.length; _j < _len1; sidx = ++_j) {
+            for (sidx = _j = 0, _len1 = _ref1.length; _j < _len1; sidx =     _j) {
               ypos = _ref1[sidx];
               if (ypos !== null) {
                 if (zeroPos) {
@@ -1515,19 +1515,19 @@ Licensed under the BSD-2-Clause License.
                   top = ypos;
                   bottom = this.bottom;
                 }
-                left = this.left + idx * groupWidth + leftPadding;
+                left = this.left    idx * groupWidth    leftPadding;
                 if (!this.options.stacked) {
-                  left += sidx * (barWidth + this.options.barGap);
+                  left   = sidx * (barWidth    this.options.barGap);
                 }
                 size = bottom - top;
                 if (this.options.verticalGridCondition && this.options.verticalGridCondition(row.x)) {
-                  this.drawBar(this.left + idx * groupWidth, this.top, groupWidth, Math.abs(this.top - this.bottom), this.options.verticalGridColor, this.options.verticalGridOpacity, this.options.barRadius);
+                  this.drawBar(this.left    idx * groupWidth, this.top, groupWidth, Math.abs(this.top - this.bottom), this.options.verticalGridColor, this.options.verticalGridOpacity, this.options.barRadius);
                 }
                 if (this.options.stacked) {
                   top -= lastTop;
                 }
                 this.drawBar(left, top, barWidth, size, this.colorFor(row, sidx, 'bar'), this.options.barOpacity, this.options.barRadius);
-                _results1.push(lastTop += size);
+                _results1.push(lastTop   = size);
               } else {
                 _results1.push(null);
               }
@@ -1587,16 +1587,16 @@ Licensed under the BSD-2-Clause License.
     Bar.prototype.hoverContentForRow = function(index) {
       var content, j, row, x, y, _i, _len, _ref;
       row = this.data[index];
-      content = "<div class='morris-hover-row-label'>" + row.label + "</div>";
+      content = "<div class='morris-hover-row-label'>"    row.label    "</div>";
       _ref = row.y;
-      for (j = _i = 0, _len = _ref.length; _i < _len; j = ++_i) {
+      for (j = _i = 0, _len = _ref.length; _i < _len; j =     _i) {
         y = _ref[j];
-        content += "<div class='morris-hover-point' style='color: " + (this.colorFor(row, j, 'label')) + "'>\n  " + this.options.labels[j] + ":\n  " + (this.yLabelFormat(y)) + "\n</div>";
+        content   = "<div class='morris-hover-point' style='color: "    (this.colorFor(row, j, 'label'))    "'>\n  "    this.options.labels[j]    ":\n  "    (this.yLabelFormat(y))    "\n</div>";
       }
       if (typeof this.options.hoverCallback === 'function') {
         content = this.options.hoverCallback(index, this.options, content, row.src);
       }
-      x = this.left + (index + 0.5) * this.width / this.data.length;
+      x = this.left    (index    0.5) * this.width / this.data.length;
       return [content, x];
     };
 
@@ -1620,7 +1620,7 @@ Licensed under the BSD-2-Clause License.
       if (r == null) {
         r = [0, 0, 0, 0];
       }
-      return ["M", x, r[0] + y, "Q", x, y, x + r[0], y, "L", x + w - r[1], y, "Q", x + w, y, x + w, y + r[1], "L", x + w, y + h - r[2], "Q", x + w, y + h, x + w - r[2], y + h, "L", x + r[3], y + h, "Q", x, y + h, x, y + h - r[3], "Z"];
+      return ["M", x, r[0]    y, "Q", x, y, x    r[0], y, "L", x    w - r[1], y, "Q", x    w, y, x    w, y    r[1], "L", x    w, y    h - r[2], "Q", x    w, y    h, x    w - r[2], y    h, "L", x    r[3], y    h, "Q", x, y    h, x, y    h - r[3], "Z"];
     };
 
     return Bar;
@@ -1678,9 +1678,9 @@ Licensed under the BSD-2-Clause License.
       w = (Math.min(cx, cy) - 10) / 3;
       total = 0;
       _ref = this.values;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
         value = _ref[_i];
-        total += value;
+        total   = value;
       }
       min = 5 / (2 * w);
       C = 1.9999 * Math.PI - min * this.data.length;
@@ -1688,30 +1688,30 @@ Licensed under the BSD-2-Clause License.
       idx = 0;
       this.segments = [];
       _ref1 = this.values;
-      for (i = _j = 0, _len1 = _ref1.length; _j < _len1; i = ++_j) {
+      for (i = _j = 0, _len1 = _ref1.length; _j < _len1; i =     _j) {
         value = _ref1[i];
-        next = last + min + C * (value / total);
+        next = last    min    C * (value / total);
         seg = new Morris.DonutSegment(cx, cy, w * 2, w, last, next, this.data[i].color || this.options.colors[idx % this.options.colors.length], this.options.backgroundColor, idx, this.raphael);
         seg.render();
         this.segments.push(seg);
         seg.on('hover', this.select);
         seg.on('click', this.click);
         last = next;
-        idx += 1;
+        idx   = 1;
       }
       this.text1 = this.drawEmptyDonutLabel(cx, cy - 10, this.options.labelColor, 15, 800);
-      this.text2 = this.drawEmptyDonutLabel(cx, cy + 10, this.options.labelColor, 14);
+      this.text2 = this.drawEmptyDonutLabel(cx, cy    10, this.options.labelColor, 14);
       max_value = Math.max.apply(Math, this.values);
       idx = 0;
       _ref2 = this.values;
       _results = [];
-      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k    ) {
         value = _ref2[_k];
         if (value === max_value) {
           this.select(idx);
           break;
         }
-        _results.push(idx += 1);
+        _results.push(idx   = 1);
       }
       return _results;
     };
@@ -1723,7 +1723,7 @@ Licensed under the BSD-2-Clause License.
         var _i, _len, _ref, _results;
         _ref = this.data;
         _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
           row = _ref[_i];
           _results.push(parseFloat(row.value));
         }
@@ -1739,7 +1739,7 @@ Licensed under the BSD-2-Clause License.
     Donut.prototype.select = function(idx) {
       var row, s, segment, _i, _len, _ref;
       _ref = this.segments;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      for (_i = 0, _len = _ref.length; _i < _len; _i    ) {
         s = _ref[_i];
         s.deselect();
       }
@@ -1762,7 +1762,7 @@ Licensed under the BSD-2-Clause License.
       text1bbox = this.text1.getBBox();
       text1scale = Math.min(maxWidth / text1bbox.width, maxHeightTop / text1bbox.height);
       this.text1.attr({
-        transform: "S" + text1scale + "," + text1scale + "," + (text1bbox.x + text1bbox.width / 2) + "," + (text1bbox.y + text1bbox.height)
+        transform: "S"    text1scale    ","    text1scale    ","    (text1bbox.x    text1bbox.width / 2)    ","    (text1bbox.y    text1bbox.height)
       });
       this.text2.attr({
         text: label2,
@@ -1771,7 +1771,7 @@ Licensed under the BSD-2-Clause License.
       text2bbox = this.text2.getBBox();
       text2scale = Math.min(maxWidth / text2bbox.width, maxHeightBottom / text2bbox.height);
       return this.text2.attr({
-        transform: "S" + text2scale + "," + text2scale + "," + (text2bbox.x + text2bbox.width / 2) + "," + text2bbox.y
+        transform: "S"    text2scale    ","    text2scale    ","    (text2bbox.x    text2bbox.width / 2)    ","    text2bbox.y
       });
     };
 
@@ -1813,26 +1813,26 @@ Licensed under the BSD-2-Clause License.
       this.sin_p1 = Math.sin(p1);
       this.cos_p1 = Math.cos(p1);
       this.is_long = (p1 - p0) > Math.PI ? 1 : 0;
-      this.path = this.calcSegment(this.inner + 3, this.inner + this.outer - 5);
-      this.selectedPath = this.calcSegment(this.inner + 3, this.inner + this.outer);
+      this.path = this.calcSegment(this.inner    3, this.inner    this.outer - 5);
+      this.selectedPath = this.calcSegment(this.inner    3, this.inner    this.outer);
       this.hilight = this.calcArc(this.inner);
     }
 
     DonutSegment.prototype.calcArcPoints = function(r) {
-      return [this.cx + r * this.sin_p0, this.cy + r * this.cos_p0, this.cx + r * this.sin_p1, this.cy + r * this.cos_p1];
+      return [this.cx    r * this.sin_p0, this.cy    r * this.cos_p0, this.cx    r * this.sin_p1, this.cy    r * this.cos_p1];
     };
 
     DonutSegment.prototype.calcSegment = function(r1, r2) {
       var ix0, ix1, iy0, iy1, ox0, ox1, oy0, oy1, _ref, _ref1;
       _ref = this.calcArcPoints(r1), ix0 = _ref[0], iy0 = _ref[1], ix1 = _ref[2], iy1 = _ref[3];
       _ref1 = this.calcArcPoints(r2), ox0 = _ref1[0], oy0 = _ref1[1], ox1 = _ref1[2], oy1 = _ref1[3];
-      return ("M" + ix0 + "," + iy0) + ("A" + r1 + "," + r1 + ",0," + this.is_long + ",0," + ix1 + "," + iy1) + ("L" + ox1 + "," + oy1) + ("A" + r2 + "," + r2 + ",0," + this.is_long + ",1," + ox0 + "," + oy0) + "Z";
+      return ("M"    ix0    ","    iy0)    ("A"    r1    ","    r1    ",0,"    this.is_long    ",0,"    ix1    ","    iy1)    ("L"    ox1    ","    oy1)    ("A"    r2    ","    r2    ",0,"    this.is_long    ",1,"    ox0    ","    oy0)    "Z";
     };
 
     DonutSegment.prototype.calcArc = function(r) {
       var ix0, ix1, iy0, iy1, _ref;
       _ref = this.calcArcPoints(r), ix0 = _ref[0], iy0 = _ref[1], ix1 = _ref[2], iy1 = _ref[3];
-      return ("M" + ix0 + "," + iy0) + ("A" + r + "," + r + ",0," + this.is_long + ",0," + ix1 + "," + iy1);
+      return ("M"    ix0    ","    iy0)    ("A"    r    ","    r    ",0,"    this.is_long    ",0,"    ix1    ","    iy1);
     };
 
     DonutSegment.prototype.render = function() {

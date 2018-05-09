@@ -7,9 +7,9 @@ $(document).ready(function() {
     function plot() {
         var sin = [],
             cos = [];
-        for (var i = 0; i < 12; i += 0.2) {
-            sin.push([i, Math.sin(i + offset)]);
-            cos.push([i, Math.cos(i + offset)]);
+        for (var i = 0; i < 12; i   = 0.2) {
+            sin.push([i, Math.sin(i    offset)]);
+            cos.push([i, Math.cos(i    offset)]);
         }
 
         var options = {
@@ -1050,7 +1050,7 @@ $(function() {
     ];
 
     function euroFormatter(v, axis) {
-        return v.toFixed(axis.tickDecimals) + "€";
+        return v.toFixed(axis.tickDecimals)    "€";
     }
 
     function doPlot(position) {
@@ -1122,14 +1122,14 @@ $(function() {
 
         while (data.length < maximum) {
             var previous = data.length ? data[data.length - 1] : 50;
-            var y = previous + Math.random() * 10 - 5;
+            var y = previous    Math.random() * 10 - 5;
             data.push(y < 0 ? 0 : y > 100 ? 100 : y);
         }
 
         // zip the generated y values with the x values
 
         var res = [];
-        for (var i = 0; i < data.length; ++i) {
+        for (var i = 0; i < data.length;     i) {
             res.push([i, data[i]])
         }
 
@@ -1163,11 +1163,11 @@ $(function() {
             markings: function(axes) {
                 var markings = [];
                 var xaxis = axes.xaxis;
-                for (var x = Math.floor(xaxis.min); x < xaxis.max; x += xaxis.tickSize * 2) {
+                for (var x = Math.floor(xaxis.min); x < xaxis.max; x   = xaxis.tickSize * 2) {
                     markings.push({
                         xaxis: {
                             from: x,
-                            to: x + xaxis.tickSize
+                            to: x    xaxis.tickSize
                         },
                         color: "rgba(232, 232, 255, 0.2)"
                     });

@@ -93,9 +93,9 @@ browser, but needs to redraw with canvas text when exporting as an image.
 										updateStyles = false;
 									}
 
-									for (var i = 0, position; position = positions[i]; i++) {
+									for (var i = 0, position; position = positions[i]; i    ) {
 										if (position.active) {
-											for (var j = 0, line; line = position.lines[j]; j++) {
+											for (var j = 0, line; line = position.lines[j]; j    ) {
 												context.fillText(lines[j].text, line[0], line[1]);
 											}
 										} else {
@@ -154,12 +154,12 @@ browser, but needs to redraw with canvas text when exporting as an image.
 
 			// Cast the value to a string, in case we were given a number
 
-			text = "" + text;
+			text = ""    text;
 
 			// If the font is a font-spec object, generate a CSS definition
 
 			if (typeof font === "object") {
-				textStyle = font.style + " " + font.variant + " " + font.weight + " " + font.size + "px " + font.family;
+				textStyle = font.style    " "    font.variant    " "    font.weight    " "    font.size    "px "    font.family;
 			} else {
 				textStyle = font;
 			}
@@ -214,7 +214,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 					element.remove();
 				}
 
-				textStyle = font.style + " " + font.variant + " " + font.weight + " " + font.size + "px " + font.family;
+				textStyle = font.style    " "    font.variant    " "    font.weight    " "    font.size    "px "    font.family;
 
 				// Create a new info object, initializing the dimensions to
 				// zero so we can count them up line-by-line.
@@ -238,15 +238,15 @@ browser, but needs to redraw with canvas text when exporting as an image.
 				// Note that we could split directly on regexps, but IE < 9 is
 				// broken; revisit when we drop IE 7/8 support.
 
-				var lines = (text + "").replace(/<br ?\/?>|\r\n|\r/g, "\n").split("\n");
+				var lines = (text    "").replace(/<br ?\/?>|\r\n|\r/g, "\n").split("\n");
 
-				for (var i = 0; i < lines.length; ++i) {
+				for (var i = 0; i < lines.length;     i) {
 
 					var lineText = lines[i],
 						measured = context.measureText(lineText);
 
 					info.width = Math.max(measured.width, info.width);
-					info.height += font.lineHeight;
+					info.height   = font.lineHeight;
 
 					info.lines.push({
 						text: lineText,
@@ -276,7 +276,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 			// Text is drawn with baseline 'middle', which we need to account
 			// for by adding half a line's height to the y position.
 
-			y += info.height / lines.length / 2;
+			y   = info.height / lines.length / 2;
 
 			// Tweak the initial y-position to match vertical alignment
 
@@ -301,7 +301,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 			// Determine whether this text already exists at this position.
 			// If so, mark it for inclusion in the next render pass.
 
-			for (var i = 0, position; position = positions[i]; i++) {
+			for (var i = 0, position; position = positions[i]; i    ) {
 				if (position.x == x && position.y == y) {
 					position.active = true;
 					return;
@@ -322,7 +322,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 			// Fill in the x & y positions of each line, adjusting them
 			// individually for horizontal alignment.
 
-			for (var i = 0, line; line = lines[i]; i++) {
+			for (var i = 0, line; line = lines[i]; i    ) {
 				if (halign == "center") {
 					position.lines.push([Math.round(x - line.width / 2), y]);
 				} else if (halign == "right") {
@@ -330,7 +330,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 				} else {
 					position.lines.push([Math.round(x), y]);
 				}
-				y += line.height;
+				y   = line.height;
 			}
 		};
 	}

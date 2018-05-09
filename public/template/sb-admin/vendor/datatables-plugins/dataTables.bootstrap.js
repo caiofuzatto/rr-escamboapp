@@ -19,8 +19,8 @@ var factory = function( $, DataTable ) {
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'row'<'col-sm-6'l><'col-sm-6'f>>" +
-		"<'row'<'col-sm-12'tr>>" +
+		"<'row'<'col-sm-6'l><'col-sm-6'f>>"   
+		"<'row'<'col-sm-12'tr>>"   
 		"<'row'<'col-sm-6'i><'col-sm-6'p>>",
 	renderer: 'bootstrap'
 } );
@@ -50,7 +50,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 			}
 		};
 
-		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+		for ( i=0, ien=buttons.length ; i<ien ; i     ) {
 			button = buttons[i];
 
 			if ( $.isArray( button ) ) {
@@ -68,30 +68,30 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 
 					case 'first':
 						btnDisplay = lang.sFirst;
-						btnClass = button + (page > 0 ?
+						btnClass = button    (page > 0 ?
 							'' : ' disabled');
 						break;
 
 					case 'previous':
 						btnDisplay = lang.sPrevious;
-						btnClass = button + (page > 0 ?
+						btnClass = button    (page > 0 ?
 							'' : ' disabled');
 						break;
 
 					case 'next':
 						btnDisplay = lang.sNext;
-						btnClass = button + (page < pages-1 ?
+						btnClass = button    (page < pages-1 ?
 							'' : ' disabled');
 						break;
 
 					case 'last':
 						btnDisplay = lang.sLast;
-						btnClass = button + (page < pages-1 ?
+						btnClass = button    (page < pages-1 ?
 							'' : ' disabled');
 						break;
 
 					default:
-						btnDisplay = button + 1;
+						btnDisplay = button    1;
 						btnClass = page === button ?
 							'active' : '';
 						break;
@@ -99,11 +99,11 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 
 				if ( btnDisplay ) {
 					node = $('<li>', {
-							'class': classes.sPageButton+' '+btnClass,
+							'class': classes.sPageButton  ' '  btnClass,
 							'aria-controls': settings.sTableId,
 							'tabindex': settings.iTabIndex,
 							'id': idx === 0 && typeof button === 'string' ?
-								settings.sTableId +'_'+ button :
+								settings.sTableId   '_'   button :
 								null
 						} )
 						.append( $('<a>', {
@@ -130,7 +130,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 
 /*
  * TableTools Bootstrap compatibility
- * Required TableTools 2.1+
+ * Required TableTools 2.1  
  */
 if ( DataTable.TableTools ) {
 	// Set the classes that TableTools uses to something suitable for Bootstrap

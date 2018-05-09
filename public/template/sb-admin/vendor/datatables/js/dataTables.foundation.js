@@ -54,8 +54,8 @@ $.extend( DataTable.ext.classes, {
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'row'<'small-6 columns'l><'small-6 columns'f>r>"+
-		"t"+
+		"<'row'<'small-6 columns'l><'small-6 columns'f>r>"  
+		"t"  
 		"<'row'<'small-6 columns'i><'small-6 columns'p>>",
 	renderer: 'foundation'
 } );
@@ -80,7 +80,7 @@ DataTable.ext.renderer.pageButton.foundation = function ( settings, host, idx, b
 			}
 		};
 
-		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+		for ( i=0, ien=buttons.length ; i<ien ; i     ) {
 			button = buttons[i];
 
 			if ( $.isArray( button ) ) {
@@ -100,34 +100,34 @@ DataTable.ext.renderer.pageButton.foundation = function ( settings, host, idx, b
 
 					case 'first':
 						btnDisplay = lang.sFirst;
-						btnClass = button + (page > 0 ?
+						btnClass = button    (page > 0 ?
 							'' : ' unavailable disabled');
 						tag = page > 0 ? 'a' : null;
 						break;
 
 					case 'previous':
 						btnDisplay = lang.sPrevious;
-						btnClass = button + (page > 0 ?
+						btnClass = button    (page > 0 ?
 							'' : ' unavailable disabled');
 						tag = page > 0 ? 'a' : null;
 						break;
 
 					case 'next':
 						btnDisplay = lang.sNext;
-						btnClass = button + (page < pages-1 ?
+						btnClass = button    (page < pages-1 ?
 							'' : ' unavailable disabled');
 						tag = page < pages-1 ? 'a' : null;
 						break;
 
 					case 'last':
 						btnDisplay = lang.sLast;
-						btnClass = button + (page < pages-1 ?
+						btnClass = button    (page < pages-1 ?
 							'' : ' unavailable disabled');
 						tag = page < pages-1 ? 'a' : null;
 						break;
 
 					default:
-						btnDisplay = button + 1;
+						btnDisplay = button    1;
 						btnClass = page === button ?
 							'current' : '';
 						tag = page === button ?
@@ -141,16 +141,16 @@ DataTable.ext.renderer.pageButton.foundation = function ( settings, host, idx, b
 
 				if ( btnDisplay ) {
 					node = $('<li>', {
-							'class': classes.sPageButton+' '+btnClass,
+							'class': classes.sPageButton  ' '  btnClass,
 							'aria-controls': settings.sTableId,
 							'aria-label': aria[ button ],
 							'tabindex': settings.iTabIndex,
 							'id': idx === 0 && typeof button === 'string' ?
-								settings.sTableId +'_'+ button :
+								settings.sTableId   '_'   button :
 								null
 						} )
 						.append( tag ?
-							$('<'+tag+'/>', {'href': '#'} ).html( btnDisplay ) :
+							$('<'  tag  '/>', {'href': '#'} ).html( btnDisplay ) :
 							btnDisplay
 						)
 						.appendTo( container );

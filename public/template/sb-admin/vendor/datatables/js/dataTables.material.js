@@ -46,16 +46,16 @@ var DataTable = $.fn.dataTable;
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'mdl-grid'"+
-			"<'mdl-cell mdl-cell--6-col'l>"+
-			"<'mdl-cell mdl-cell--6-col'f>"+
-		">"+
-		"<'mdl-grid dt-table'"+
-			"<'mdl-cell mdl-cell--12-col'tr>"+
-		">"+
-		"<'mdl-grid'"+
-			"<'mdl-cell mdl-cell--4-col'i>"+
-			"<'mdl-cell mdl-cell--8-col'p>"+
+		"<'mdl-grid'"  
+			"<'mdl-cell mdl-cell--6-col'l>"  
+			"<'mdl-cell mdl-cell--6-col'f>"  
+		">"  
+		"<'mdl-grid dt-table'"  
+			"<'mdl-cell mdl-cell--12-col'tr>"  
+		">"  
+		"<'mdl-grid'"  
+			"<'mdl-cell mdl-cell--4-col'i>"  
+			"<'mdl-cell mdl-cell--8-col'p>"  
 		">",
 	renderer: 'material'
 } );
@@ -87,7 +87,7 @@ DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, but
 			}
 		};
 
-		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+		for ( i=0, ien=buttons.length ; i<ien ; i     ) {
 			button = buttons[i];
 
 			if ( $.isArray( button ) ) {
@@ -105,44 +105,44 @@ DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, but
 
 					case 'first':
 						btnDisplay = lang.sFirst;
-						btnClass = button + (page > 0 ?
+						btnClass = button    (page > 0 ?
 							'' : ' disabled');
 						break;
 
 					case 'previous':
 						btnDisplay = lang.sPrevious;
-						btnClass = button + (page > 0 ?
+						btnClass = button    (page > 0 ?
 							'' : ' disabled');
 						break;
 
 					case 'next':
 						btnDisplay = lang.sNext;
-						btnClass = button + (page < pages-1 ?
+						btnClass = button    (page < pages-1 ?
 							'' : ' disabled');
 						break;
 
 					case 'last':
 						btnDisplay = lang.sLast;
-						btnClass = button + (page < pages-1 ?
+						btnClass = button    (page < pages-1 ?
 							'' : ' disabled');
 						break;
 
 					default:
-						btnDisplay = button + 1;
+						btnDisplay = button    1;
 						btnClass = '';
 						active = page === button;
 						break;
 				}
 
 				if ( active ) {
-					btnClass += ' mdl-button--raised mdl-button--colored';
+					btnClass   = ' mdl-button--raised mdl-button--colored';
 				}
 
 				if ( btnDisplay ) {
 					node = $('<button>', {
-							'class': 'mdl-button '+btnClass,
+							'class': 'mdl-button '  btnClass,
 							'id': idx === 0 && typeof button === 'string' ?
-								settings.sTableId +'_'+ button :
+								settings.sTableId   '_'   button :
 								null,
 							'aria-controls': settings.sTableId,
 							'aria-label': aria[ button ],
@@ -157,7 +157,7 @@ DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, but
 						node, {action: button}, clickHandler
 					);
 
-					counter++;
+					counter    ;
 				}
 			}
 		}
@@ -182,7 +182,7 @@ DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, but
 	);
 
 	if ( activeEl ) {
-		$(host).find( '[data-dt-idx='+activeEl+']' ).focus();
+		$(host).find( '[data-dt-idx='  activeEl  ']' ).focus();
 	}
 };
 

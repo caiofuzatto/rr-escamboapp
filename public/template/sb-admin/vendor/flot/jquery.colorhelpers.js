@@ -32,22 +32,22 @@
         o.a = a != null ? a : 1;
 
         o.add = function (c, d) {
-            for (var i = 0; i < c.length; ++i)
-                o[c.charAt(i)] += d;
+            for (var i = 0; i < c.length;     i)
+                o[c.charAt(i)]   = d;
             return o.normalize();
         };
         
         o.scale = function (c, f) {
-            for (var i = 0; i < c.length; ++i)
+            for (var i = 0; i < c.length;     i)
                 o[c.charAt(i)] *= f;
             return o.normalize();
         };
         
         o.toString = function () {
             if (o.a >= 1.0) {
-                return "rgb("+[o.r, o.g, o.b].join(",")+")";
+                return "rgb("  [o.r, o.g, o.b].join(",")  ")";
             } else {
-                return "rgba("+[o.r, o.g, o.b, o.a].join(",")+")";
+                return "rgba("  [o.r, o.g, o.b, o.a].join(",")  ")";
             }
         };
 
@@ -102,15 +102,15 @@
             return m(parseInt(res[1], 10), parseInt(res[2], 10), parseInt(res[3], 10));
         
         // Look for rgba(num,num,num,num)
-        if (res = /rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(str))
+        if (res = /rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]  (?:\.[0-9]  )?)\s*\)/.exec(str))
             return m(parseInt(res[1], 10), parseInt(res[2], 10), parseInt(res[3], 10), parseFloat(res[4]));
             
         // Look for rgb(num%,num%,num%)
-        if (res = /rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(str))
+        if (res = /rgb\(\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\%\s*\)/.exec(str))
             return m(parseFloat(res[1])*2.55, parseFloat(res[2])*2.55, parseFloat(res[3])*2.55);
 
         // Look for rgba(num%,num%,num%,num)
-        if (res = /rgba\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(str))
+        if (res = /rgba\(\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\%\s*,\s*([0-9]  (?:\.[0-9]  )?)\s*\)/.exec(str))
             return m(parseFloat(res[1])*2.55, parseFloat(res[2])*2.55, parseFloat(res[3])*2.55, parseFloat(res[4]));
         
         // Look for #a0b1c2
@@ -119,7 +119,7 @@
 
         // Look for #fff
         if (res = /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(str))
-            return m(parseInt(res[1]+res[1], 16), parseInt(res[2]+res[2], 16), parseInt(res[3]+res[3], 16));
+            return m(parseInt(res[1]  res[1], 16), parseInt(res[2]  res[2], 16), parseInt(res[3]  res[3], 16));
 
         // Otherwise, we're most likely dealing with a named color
         var name = $.trim(str).toLowerCase();

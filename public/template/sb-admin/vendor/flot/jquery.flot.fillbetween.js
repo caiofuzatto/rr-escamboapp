@@ -43,7 +43,7 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
 
 			var i;
 
-			for ( i = 0; i < allseries.length; ++i ) {
+			for ( i = 0; i < allseries.length;     i ) {
 				if ( allseries[ i ].id === s.fillBetween ) {
 					return allseries[ i ];
 				}
@@ -97,56 +97,56 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
 
 					// copy gaps
 
-					for ( m = 0; m < ps; ++m ) {
-						newpoints.push( points[ i + m ] );
+					for ( m = 0; m < ps;     m ) {
+						newpoints.push( points[ i    m ] );
 					}
 
-					i += ps;
+					i   = ps;
 
 				} else if ( j >= otherpoints.length ) {
 
 					// for lines, we can't use the rest of the points
 
 					if ( !withlines ) {
-						for ( m = 0; m < ps; ++m ) {
-							newpoints.push( points[ i + m ] );
+						for ( m = 0; m < ps;     m ) {
+							newpoints.push( points[ i    m ] );
 						}
 					}
 
-					i += ps;
+					i   = ps;
 
 				} else if ( otherpoints[ j ] == null ) {
 
 					// oops, got a gap
 
-					for ( m = 0; m < ps; ++m ) {
+					for ( m = 0; m < ps;     m ) {
 						newpoints.push( null );
 					}
 
 					fromgap = true;
-					j += otherps;
+					j   = otherps;
 
 				} else {
 
 					// cases where we actually got two points
 
 					px = points[ i ];
-					py = points[ i + 1 ];
+					py = points[ i    1 ];
 					qx = otherpoints[ j ];
-					qy = otherpoints[ j + 1 ];
+					qy = otherpoints[ j    1 ];
 					bottom = 0;
 
 					if ( px === qx ) {
 
-						for ( m = 0; m < ps; ++m ) {
-							newpoints.push( points[ i + m ] );
+						for ( m = 0; m < ps;     m ) {
+							newpoints.push( points[ i    m ] );
 						}
 
-						//newpoints[ l + 1 ] += qy;
+						//newpoints[ l    1 ]   = qy;
 						bottom = qy;
 
-						i += ps;
-						j += otherps;
+						i   = ps;
+						j   = otherps;
 
 					} else if ( px > qx ) {
 
@@ -154,46 +154,46 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
 						// insert interpolated extra point
 
 						if ( withlines && i > 0 && points[ i - ps ] != null ) {
-							intery = py + ( points[ i - ps + 1 ] - py ) * ( qx - px ) / ( points[ i - ps ] - px );
+							intery = py    ( points[ i - ps    1 ] - py ) * ( qx - px ) / ( points[ i - ps ] - px );
 							newpoints.push( qx );
 							newpoints.push( intery );
-							for ( m = 2; m < ps; ++m ) {
-								newpoints.push( points[ i + m ] );
+							for ( m = 2; m < ps;     m ) {
+								newpoints.push( points[ i    m ] );
 							}
 							bottom = qy;
 						}
 
-						j += otherps;
+						j   = otherps;
 
 					} else { // px < qx
 
 						// if we come from a gap, we just skip this point
 
 						if ( fromgap && withlines ) {
-							i += ps;
+							i   = ps;
 							continue;
 						}
 
-						for ( m = 0; m < ps; ++m ) {
-							newpoints.push( points[ i + m ] );
+						for ( m = 0; m < ps;     m ) {
+							newpoints.push( points[ i    m ] );
 						}
 
 						// we might be able to interpolate a point below,
 						// this can give us a better y
 
 						if ( withlines && j > 0 && otherpoints[ j - otherps ] != null ) {
-							bottom = qy + ( otherpoints[ j - otherps + 1 ] - qy ) * ( px - qx ) / ( otherpoints[ j - otherps ] - qx );
+							bottom = qy    ( otherpoints[ j - otherps    1 ] - qy ) * ( px - qx ) / ( otherpoints[ j - otherps ] - qx );
 						}
 
-						//newpoints[l + 1] += bottom;
+						//newpoints[l    1]   = bottom;
 
-						i += ps;
+						i   = ps;
 					}
 
 					fromgap = false;
 
 					if ( l !== newpoints.length && withbottom ) {
-						newpoints[ l + 2 ] = bottom;
+						newpoints[ l    2 ] = bottom;
 					}
 				}
 
@@ -202,11 +202,11 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
 				if ( withsteps && l !== newpoints.length && l > 0 &&
 					newpoints[ l ] !== null &&
 					newpoints[ l ] !== newpoints[ l - ps ] &&
-					newpoints[ l + 1 ] !== newpoints[ l - ps + 1 ] ) {
-					for (m = 0; m < ps; ++m) {
-						newpoints[ l + ps + m ] = newpoints[ l + m ];
+					newpoints[ l    1 ] !== newpoints[ l - ps    1 ] ) {
+					for (m = 0; m < ps;     m) {
+						newpoints[ l    ps    m ] = newpoints[ l    m ];
 					}
-					newpoints[ l + 1 ] = newpoints[ l - ps + 1 ];
+					newpoints[ l    1 ] = newpoints[ l - ps    1 ];
 				}
 			}
 

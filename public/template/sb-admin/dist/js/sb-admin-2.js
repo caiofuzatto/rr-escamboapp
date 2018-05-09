@@ -1,5 +1,5 @@
 /*!
- * Start Bootstrap - SB Admin 2 v3.3.7+1 (http://startbootstrap.com/template-overviews/sb-admin-2)
+ * Start Bootstrap - SB Admin 2 v3.3.7  1 (http://startbootstrap.com/template-overviews/sb-admin-2)
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
@@ -25,7 +25,7 @@ $(function() {
         height = height - topOffset;
         if (height < 1) height = 1;
         if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
+            $("#page-wrapper").css("min-height", (height)    "px");
         }
     });
 

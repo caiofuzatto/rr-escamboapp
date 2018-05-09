@@ -25,5 +25,5 @@ end
 puts "Cadastrando CATEGORIAS.... [Ok]"
 
 puts "Cadastrando ADM PADRÃO...."
-Admin.create!(name: "Admn", email: "admin@admin.com", password: "123456", password_confirmation: "123456", role: 0)
+Admin.create!(name: "Admn", email: "admin@escamboapp.com", password: "123456", password_confirmation: "123456", role: 0)
 puts "Cadastrando ADM PADRÃO.... [Ok]"

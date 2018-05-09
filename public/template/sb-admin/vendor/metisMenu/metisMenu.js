@@ -42,7 +42,7 @@
                 $this.find("li.active").has("ul").children("a").addClass("doubleTapToGo");
             }
 
-            $this.find("li").has("ul").children("a").on("click" + "." + pluginName, function(e) {
+            $this.find("li").has("ul").children("a").on("click"    "."    pluginName, function(e) {
                 e.preventDefault();
 
                 //Do we need to enable the double tap
@@ -72,7 +72,7 @@
                 all = div.getElementsByTagName("i");
 
             while (
-                div.innerHTML = "<!--[if gt IE " + (++v) + "]><i></i><![endif]-->",
+                div.innerHTML = "<!--[if gt IE "    (    v)    "]><i></i><![endif]-->",
                 all[0]
             ) {
                 return v > 4 ? v : undef;
@@ -100,7 +100,7 @@
         },
 
         remove: function() {
-            this.element.off("." + pluginName);
+            this.element.off("."    pluginName);
             this.element.removeData(pluginName);
         }
 

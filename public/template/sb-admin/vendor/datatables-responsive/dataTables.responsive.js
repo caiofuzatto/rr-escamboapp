@@ -63,8 +63,8 @@ var factory = function( $, DataTable ) {
  *  @class
  *  @param {object} settings DataTables settings object for the host table
  *  @param {object} [opts] Configuration options
- *  @requires jQuery 1.7+
- *  @requires DataTables 1.10.1+
+ *  @requires jQuery 1.7  
+ *  @requires DataTables 1.10.1  
  *
  *  @example
  *      $('#example').DataTable( {
@@ -163,7 +163,7 @@ Responsive.prototype = {
 				} );
 			} );
 
-			$(dt.table().node()).addClass( 'dtr-'+details.type );
+			$(dt.table().node()).addClass( 'dtr-'  details.type );
 		}
 
 		// First pass - draw the table for the current viewport size
@@ -207,9 +207,9 @@ Responsive.prototype = {
 		// Auto column control - first pass: how much width is taken by the
 		// ones that must be included from the non-auto columns
 		var requiredWidth = 0;
-		for ( i=0, ien=display.length ; i<ien ; i++ ) {
+		for ( i=0, ien=display.length ; i<ien ; i     ) {
 			if ( display[i] === true ) {
-				requiredWidth += columns[i].minWidth;
+				requiredWidth   = columns[i].minWidth;
 			}
 		}
 
@@ -228,7 +228,7 @@ Responsive.prototype = {
 		// thrashing or overflow. Also we need to account for the control column
 		// width first so we know how much width is available for the other
 		// columns, since the control column might not be the first one shown
-		for ( i=0, ien=display.length ; i<ien ; i++ ) {
+		for ( i=0, ien=display.length ; i<ien ; i     ) {
 			if ( columns[i].control ) {
 				usedWidth -= columns[i].minWidth;
 			}
@@ -237,7 +237,7 @@ Responsive.prototype = {
 		// Allow columns to be shown (counting from the left) until we run out
 		// of room
 		var empty = false;
-		for ( i=0, ien=display.length ; i<ien ; i++ ) {
+		for ( i=0, ien=display.length ; i<ien ; i     ) {
 			if ( display[i] === '-' && ! columns[i].control ) {
 				// Once we've found a column that won't fit we don't let any
 				// others display either, or columns might disappear in the
@@ -261,14 +261,14 @@ Responsive.prototype = {
 		// first , before the action in the second can be taken
 		var showControl = false;
 
-		for ( i=0, ien=columns.length ; i<ien ; i++ ) {
+		for ( i=0, ien=columns.length ; i<ien ; i     ) {
 			if ( ! columns[i].control && ! columns[i].never && ! display[i] ) {
 				showControl = true;
 				break;
 			}
 		}
 
-		for ( i=0, ien=columns.length ; i<ien ; i++ ) {
+		for ( i=0, ien=columns.length ; i<ien ; i     ) {
 			if ( columns[i].control ) {
 				display[i] = showControl;
 			}
@@ -329,7 +329,7 @@ Responsive.prototype = {
 				// Add this breakpoint and all smaller
 				size = that._find( name ).width;
 
-				for ( i=0, ien=breakpoints.length ; i<ien ; i++ ) {
+				for ( i=0, ien=breakpoints.length ; i<ien ; i     ) {
 					if ( breakpoints[i].width <= size ) {
 						add( colIdx, breakpoints[i].name );
 					}
@@ -339,7 +339,7 @@ Responsive.prototype = {
 				// Add this breakpoint and all larger
 				size = that._find( name ).width;
 
-				for ( i=0, ien=breakpoints.length ; i<ien ; i++ ) {
+				for ( i=0, ien=breakpoints.length ; i<ien ; i     ) {
 					if ( breakpoints[i].width >= size ) {
 						add( colIdx, breakpoints[i].name );
 					}
@@ -348,7 +348,7 @@ Responsive.prototype = {
 			else if ( operator === 'not-' ) {
 				// Add all but this breakpoint (xxx need extra information)
 
-				for ( i=0, ien=breakpoints.length ; i<ien ; i++ ) {
+				for ( i=0, ien=breakpoints.length ; i<ien ; i     ) {
 					if ( breakpoints[i].name.indexOf( matched ) === -1 ) {
 						add( colIdx, breakpoints[i].name );
 					}
@@ -363,7 +363,7 @@ Responsive.prototype = {
 			var hasClass = false;
 
 			// Split the class name up so multiple rules can be applied if needed
-			for ( var k=0, ken=classNames.length ; k<ken ; k++ ) {
+			for ( var k=0, ken=classNames.length ; k<ken ; k     ) {
 				var className = $.trim( classNames[k] );
 
 				if ( className === 'all' ) {
@@ -390,15 +390,15 @@ Responsive.prototype = {
 				$.each( breakpoints, function ( j, breakpoint ) {
 					// Does this column have a class that matches this breakpoint?
 					var brokenPoint = breakpoint.name.split('-');
-					var re = new RegExp( '(min\\-|max\\-|not\\-)?('+brokenPoint[0]+')(\\-[_a-zA-Z0-9])?' );
+					var re = new RegExp( '(min\\-|max\\-|not\\-)?('  brokenPoint[0]  ')(\\-[_a-zA-Z0-9])?' );
 					var match = className.match( re );
 
 					if ( match ) {
 						hasClass = true;
 
-						if ( match[2] === brokenPoint[0] && match[3] === '-'+brokenPoint[1] ) {
+						if ( match[2] === brokenPoint[0] && match[3] === '-'  brokenPoint[1] ) {
 							// Class name matches breakpoint name fully
-							column( i, breakpoint.name, match[1], match[2]+match[3] );
+							column( i, breakpoint.name, match[1], match[2]  match[3] );
 						}
 						else if ( match[2] === brokenPoint[0] && ! match[3] ) {
 							// Class name matched primary breakpoint name with no qualifier
@@ -455,7 +455,7 @@ Responsive.prototype = {
 			// handler - otherwise it is already okay
 			if ( typeof target === 'number' ) {
 				var targetIdx = target < 0 ?
-					dt.columns().eq(0).length + target :
+					dt.columns().eq(0).length    target :
 					target;
 
 				if ( dt.cell( this ).index().column !== targetIdx ) {
@@ -542,7 +542,7 @@ Responsive.prototype = {
 	{
 		var breakpoints = this.c.breakpoints;
 
-		for ( var i=0, ien=breakpoints.length ; i<ien ; i++ ) {
+		for ( var i=0, ien=breakpoints.length ; i<ien ; i     ) {
 			if ( breakpoints[i].name === name ) {
 				return breakpoints[i];
 			}
@@ -581,7 +581,7 @@ Responsive.prototype = {
 		// listeners know what the state is. Need to determine if there are
 		// any columns that are not visible but can be shown
 		var collapsedClass = false;
-		for ( i=0, ien=columns.length ; i<ien ; i++ ) {
+		for ( i=0, ien=columns.length ; i<ien ; i     ) {
 			if ( columnsVis[i] === false && ! columns[i].never ) {
 				collapsedClass = true;
 				break;
@@ -758,21 +758,21 @@ Responsive.defaults = {
 				);
 				var title = header.text();
 				if ( title ) {
-					title = title + ':';
+					title = title    ':';
 				}
 
-				return '<li data-dtr-index="'+idx.column+'">'+
-						'<span class="dtr-title">'+
-							title+
-						'</span> '+
-						'<span class="dtr-data">'+
-							cellData+
-						'</span>'+
+				return '<li data-dtr-index="'  idx.column  '">'  
+						'<span class="dtr-title">'  
+							title  
+						'</span> '  
+						'<span class="dtr-data">'  
+							cellData  
+						'</span>'  
 					'</li>';
 			} ).toArray().join('');
 
 			return data ?
-				$('<ul data-dtr-index="'+rowIdx+'"/>').append( data ) :
+				$('<ul data-dtr-index="'  rowIdx  '"/>').append( data ) :
 				false;
 		},
 

@@ -129,7 +129,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (R.is(first, "function")) {
 	            return loaded ? first() : eve.on("raphael.DOMload", first);
 	        } else if (R.is(first, array)) {
-	            return R._engine.create[apply](R, first.splice(0, 3 + R.is(first[0], nu))).add(first);
+	            return R._engine.create[apply](R, first.splice(0, 3    R.is(first[0], nu))).add(first);
 	        } else {
 	            var args = Array.prototype.slice.call(arguments, 0);
 	            if (R.is(args[args.length - 1], "function")) {
@@ -145,9 +145,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    R.version = "2.2.0";
 	    R.eve = eve;
 	    var loaded,
-	        separator = /[, ]+/,
+	        separator = /[, ]  /,
 	        elements = {circle: 1, rect: 1, path: 1, ellipse: 1, text: 1, image: 1},
-	        formatrg = /\{(\d+)\}/g,
+	        formatrg = /\{(\d  )\}/g,
 	        proto = "prototype",
 	        has = "hasOwnProperty",
 	        g = {
@@ -174,7 +174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	             > Usage
 	             | paper.customAttributes.hue = function (num) {
 	             |     num = num % 1;
-	             |     return {fill: "hsb(" + num + ", 0.75, 1)"};
+	             |     return {fill: "hsb("    num    ", 0.75, 1)"};
 	             | };
 	             | // Custom attribute “hue” will change fill
 	             | // to be given hue with fixed saturation and brightness.
@@ -186,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	             | // You could also create custom attribute
 	             | // with multiple parameters:
 	             | paper.customAttributes.hsb = function (h, s, b) {
-	             |     return {fill: "hsb(" + [h, s, b].join(",") + ")"};
+	             |     return {fill: "hsb("    [h, s, b].join(",")    ")"};
 	             | };
 	             | c.attr({hsb: "0.5 .8 1"});
 	             | c.animate({hsb: [1, 0, 0.5]}, 1e3);
@@ -223,10 +223,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        objectToString = Object.prototype.toString,
 	        paper = {},
 	        push = "push",
-	        ISURL = R._ISURL = /^url\(['"]?(.+?)['"]?\)$/i,
-	        colourRegExp = /^\s*((#[a-f\d]{6})|(#[a-f\d]{3})|rgba?\(\s*([\d\.]+%?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+%?(?:\s*,\s*[\d\.]+%?)?)\s*\)|hsba?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?)%?\s*\)|hsla?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?)%?\s*\))\s*$/i,
+	        ISURL = R._ISURL = /^url\(['"]?(.  ?)['"]?\)$/i,
+	        colourRegExp = /^\s*((#[a-f\d]{6})|(#[a-f\d]{3})|rgba?\(\s*([\d\.]  %?\s*,\s*[\d\.]  %?\s*,\s*[\d\.]  %?(?:\s*,\s*[\d\.]  %?)?)\s*\)|hsba?\(\s*([\d\.]  (?:deg|\xb0|%)?\s*,\s*[\d\.]  %?\s*,\s*[\d\.]  (?:%?\s*,\s*[\d\.]  )?)%?\s*\)|hsla?\(\s*([\d\.]  (?:deg|\xb0|%)?\s*,\s*[\d\.]  %?\s*,\s*[\d\.]  (?:%?\s*,\s*[\d\.]  )?)%?\s*\))\s*$/i,
 	        isnan = {"NaN": 1, "Infinity": 1, "-Infinity": 1},
-	        bezierrg = /^(?:cubic-)?bezier\(([^,]+),([^,]+),([^,]+),([^\)]+)\)/,
+	        bezierrg = /^(?:cubic-)?bezier\(([^,]  ),([^,]  ),([^,]  ),([^\)]  )\)/,
 	        round = math.round,
 	        setAttribute = "setAttribute",
 	        toFloat = parseFloat,
@@ -299,10 +299,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        commaSpaces = /[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*/,
 	        hsrg = {hs: 1, rg: 1},
 	        p2s = /,?([achlmqrstvxz]),?/gi,
-	        pathCommand = /([achlmrqstvz])[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029,]*((-?\d*\.?\d*(?:e[\-+]?\d+)?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*)+)/ig,
-	        tCommand = /([rstm])[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029,]*((-?\d*\.?\d*(?:e[\-+]?\d+)?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*)+)/ig,
-	        pathValues = /(-?\d*\.?\d*(?:e[\-+]?\d+)?)[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*/ig,
-	        radial_gradient = R._radial_gradient = /^r(?:\(([^,]+?)[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*([^\)]+?)\))?/,
+	        pathCommand = /([achlmrqstvz])[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029,]*((-?\d*\.?\d*(?:e[\-  ]?\d  )?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*)  )/ig,
+	        tCommand = /([rstm])[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029,]*((-?\d*\.?\d*(?:e[\-  ]?\d  )?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*)  )/ig,
+	        pathValues = /(-?\d*\.?\d*(?:e[\-  ]?\d  )?)[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,?[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*/ig,
+	        radial_gradient = R._radial_gradient = /^r(?:\(([^,]  ?)[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*,[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029]*([^\)]  ?)\))?/,
 	        eldata = {},
 	        sortByKey = function (a, b) {
 	            return a.key - b.key;
@@ -316,7 +316,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        rectPath = R._rectPath = function (x, y, w, h, r) {
 	            if (r) {
-	                return [["M", x + r, y], ["l", w - r * 2, 0], ["a", r, r, 0, 0, 1, r, r], ["l", 0, h - r * 2], ["a", r, r, 0, 0, 1, -r, r], ["l", r * 2 - w, 0], ["a", r, r, 0, 0, 1, -r, -r], ["l", 0, r * 2 - h], ["a", r, r, 0, 0, 1, r, -r], ["z"]];
+	                return [["M", x    r, y], ["l", w - r * 2, 0], ["a", r, r, 0, 0, 1, r, r], ["l", 0, h - r * 2], ["a", r, r, 0, 0, 1, -r, r], ["l", r * 2 - w, 0], ["a", r, r, 0, 0, 1, -r, -r], ["l", 0, r * 2 - h], ["a", r, r, 0, 0, 1, r, -r], ["z"]];
 	            }
 	            return [["M", x, y], ["l", w, 0], ["l", 0, h], ["l", -w, 0], ["z"]];
 	        },
@@ -371,13 +371,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            var x, y, i, j, ii, jj, pathi;
 	            path = path2curve(path);
-	            for (i = 0, ii = path.length; i < ii; i++) {
+	            for (i = 0, ii = path.length; i < ii; i    ) {
 	                pathi = path[i];
-	                for (j = 1, jj = pathi.length; j < jj; j += 2) {
-	                    x = matrix.x(pathi[j], pathi[j + 1]);
-	                    y = matrix.y(pathi[j], pathi[j + 1]);
+	                for (j = 1, jj = pathi.length; j < jj; j   = 2) {
+	                    x = matrix.x(pathi[j], pathi[j    1]);
+	                    y = matrix.y(pathi[j], pathi[j    1]);
 	                    pathi[j] = x;
-	                    pathi[j + 1] = y;
+	                    pathi[j    1] = y;
 	                }
 	            }
 	            return path;
@@ -458,7 +458,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    R.is = function (o, type) {
 	        type = lowerCase.call(type);
 	        if (type == "finite") {
-	            return !isnan[has](+o);
+	            return !isnan[has](  o);
 	        }
 	        if (type == "array") {
 	            return o instanceof Array;
@@ -502,7 +502,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (!x && !y) {
 	                return 0;
 	            }
-	            return (180 + math.atan2(-y, -x) * 180 / PI + 360) % 360;
+	            return (180    math.atan2(-y, -x) * 180 / PI    360) % 360;
 	        } else {
 	            return R.angle(x1, y1, x3, y3) - R.angle(x2, y2, x3, y3);
 	        }
@@ -550,13 +550,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return values[i];
 	            }
 	        } else {
-	            values = +values;
+	            values =   values;
 	            var rem = value % values;
 	            if (rem < tolerance) {
 	                return value - rem;
 	            }
 	            if (rem > values - tolerance) {
-	                return value - rem + values;
+	                return value - rem    values;
 	            }
 	        }
 	        return value;
@@ -597,7 +597,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var toHex = function (color) {
 	        if (R.vml) {
 	            // http://dean.edwards.name/weblog/2009/10/convert-any-colour-value-to-hex-in-msie/
-	            var trim = /^\s+|\s+$/g;
+	            var trim = /^\s  |\s  $/g;
 	            var bod;
 	            try {
 	                var docum = new ActiveXObject("htmlfile");
@@ -613,7 +613,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    bod.style.color = Str(color).replace(trim, E);
 	                    var value = range.queryCommandValue("ForeColor");
 	                    value = ((value & 255) << 16) | (value & 65280) | ((value & 16711680) >>> 16);
-	                    return "#" + ("000000" + value.toString(16)).slice(-6);
+	                    return "#"    ("000000"    value.toString(16)).slice(-6);
 	                } catch(e) {
 	                    return "none";
 	                }
@@ -631,10 +631,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return toHex(color);
 	    },
 	    hsbtoString = function () {
-	        return "hsb(" + [this.h, this.s, this.b] + ")";
+	        return "hsb("    [this.h, this.s, this.b]    ")";
 	    },
 	    hsltoString = function () {
-	        return "hsl(" + [this.h, this.s, this.l] + ")";
+	        return "hsl("    [this.h, this.s, this.l]    ")";
 	    },
 	    rgbtoString = function () {
 	        return this.hex;
@@ -759,9 +759,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        R = G = B = v - C;
 
 	        h = ~~h;
-	        R += [C, X, 0, 0, X, C][h];
-	        G += [X, C, C, X, 0, 0][h];
-	        B += [0, 0, X, C, C, X][h];
+	        R   = [C, X, 0, 0, X, C][h];
+	        G   = [X, C, C, X, 0, 0][h];
+	        B   = [0, 0, X, C, C, X][h];
 	        return packageRGB(R, G, B, o);
 	    };
 	    /*\
@@ -800,9 +800,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        R = G = B = l - C / 2;
 
 	        h = ~~h;
-	        R += [C, X, 0, 0, X, C][h];
-	        G += [X, C, C, X, 0, 0][h];
-	        B += [0, 0, X, C, C, X][h];
+	        R   = [C, X, 0, 0, X, C][h];
+	        G   = [X, C, C, X, 0, 0][h];
+	        B   = [0, 0, X, C, C, X][h];
 	        return packageRGB(R, G, B, o);
 	    };
 	    /*\
@@ -832,10 +832,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        C = V - mmin(r, g, b);
 	        H = (C == 0 ? null :
 	             V == r ? (g - b) / C :
-	             V == g ? (b - r) / C + 2 :
-	                      (r - g) / C + 4
+	             V == g ? (b - r) / C    2 :
+	                      (r - g) / C    4
 	            );
-	        H = ((H + 360) % 6) * 60 / 360;
+	        H = ((H    360) % 6) * 60 / 360;
 	        S = C == 0 ? 0 : C / V;
 	        return {h: H, s: S, b: V, toString: hsbtoString};
 	    };
@@ -867,10 +867,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        C = M - m;
 	        H = (C == 0 ? null :
 	             M == r ? (g - b) / C :
-	             M == g ? (b - r) / C + 2 :
-	                      (r - g) / C + 4);
-	        H = ((H + 360) % 6) * 60 / 360;
-	        L = (M + m) / 2;
+	             M == g ? (b - r) / C    2 :
+	                      (r - g) / C    4);
+	        H = ((H    360) % 6) * 60 / 360;
+	        L = (M    m) / 2;
 	        S = (C == 0 ? 0 :
 	             L < .5 ? C / (2 * L) :
 	                      C / (2 - 2 * L));
@@ -880,7 +880,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.join(",").replace(p2s, "$1");
 	    };
 	    function repush(array, item) {
-	        for (var i = 0, ii = array.length; i < ii; i++) if (array[i] === item) {
+	        for (var i = 0, ii = array.length; i < ii; i    ) if (array[i] === item) {
 	            return array.push(array.splice(i, 1)[0]);
 	        }
 	    }
@@ -949,7 +949,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     o }
 	    \*/
 	    R.getRGB = cacher(function (colour) {
-	        if (!colour || !!((colour = Str(colour)).indexOf("-") + 1)) {
+	        if (!colour || !!((colour = Str(colour)).indexOf("-")    1)) {
 	            return {r: -1, g: -1, b: -1, hex: "none", error: 1, toString: clrToString};
 	        }
 	        if (colour == "none") {
@@ -971,9 +971,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                red = toInt(rgb[2].substring(1, 3), 16);
 	            }
 	            if (rgb[3]) {
-	                blue = toInt((t = rgb[3].charAt(3)) + t, 16);
-	                green = toInt((t = rgb[3].charAt(2)) + t, 16);
-	                red = toInt((t = rgb[3].charAt(1)) + t, 16);
+	                blue = toInt((t = rgb[3].charAt(3))    t, 16);
+	                green = toInt((t = rgb[3].charAt(2))    t, 16);
+	                red = toInt((t = rgb[3].charAt(1))    t, 16);
 	            }
 	            if (rgb[4]) {
 	                values = rgb[4][split](commaSpaces);
@@ -1013,7 +1013,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return R.hsl2rgb(red, green, blue, opacity);
 	            }
 	            rgb = {r: red, g: green, b: blue, toString: clrToString};
-	            rgb.hex = "#" + (16777216 | blue | (green << 8) | (red << 16)).toString(16).slice(1);
+	            rgb.hex = "#"    (16777216 | blue | (green << 8) | (red << 16)).toString(16).slice(1);
 	            R.is(opacity, "finite") && (rgb.opacity = opacity);
 	            return rgb;
 	        }
@@ -1059,8 +1059,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     = (string) hex representation of the colour.
 	    \*/
 	    R.rgb = cacher(function (r, g, b) {
-	        function round(x) { return (x + 0.5) | 0; }
-	        return "#" + (16777216 | round(b) | (round(g) << 8) | (round(r) << 16)).toString(16).slice(1);
+	        function round(x) { return (x    0.5) | 0; }
+	        return "#"    (16777216 | round(b) | (round(g) << 8) | (round(r) << 16)).toString(16).slice(1);
 	    });
 	    /*\
 	     * Raphael.getColor
@@ -1074,7 +1074,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    R.getColor = function (value) {
 	        var start = this.getColor.start = this.getColor.start || {h: 0, s: 1, b: value || .75},
 	            rgb = this.hsb2rgb(start.h, start.s, start.b);
-	        start.h += .075;
+	        start.h   = .075;
 	        if (start.h > 1) {
 	            start.h = 0;
 	            start.s -= .2;
@@ -1095,34 +1095,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // http://schepers.cc/getting-to-the-point
 	    function catmullRom2bezier(crp, z) {
 	        var d = [];
-	        for (var i = 0, iLen = crp.length; iLen - 2 * !z > i; i += 2) {
+	        for (var i = 0, iLen = crp.length; iLen - 2 * !z > i; i   = 2) {
 	            var p = [
-	                        {x: +crp[i - 2], y: +crp[i - 1]},
-	                        {x: +crp[i],     y: +crp[i + 1]},
-	                        {x: +crp[i + 2], y: +crp[i + 3]},
-	                        {x: +crp[i + 4], y: +crp[i + 5]}
+	                        {x:   crp[i - 2], y:   crp[i - 1]},
+	                        {x:   crp[i],     y:   crp[i    1]},
+	                        {x:   crp[i    2], y:   crp[i    3]},
+	                        {x:   crp[i    4], y:   crp[i    5]}
 	                    ];
 	            if (z) {
 	                if (!i) {
-	                    p[0] = {x: +crp[iLen - 2], y: +crp[iLen - 1]};
+	                    p[0] = {x:   crp[iLen - 2], y:   crp[iLen - 1]};
 	                } else if (iLen - 4 == i) {
-	                    p[3] = {x: +crp[0], y: +crp[1]};
+	                    p[3] = {x:   crp[0], y:   crp[1]};
 	                } else if (iLen - 2 == i) {
-	                    p[2] = {x: +crp[0], y: +crp[1]};
-	                    p[3] = {x: +crp[2], y: +crp[3]};
+	                    p[2] = {x:   crp[0], y:   crp[1]};
+	                    p[3] = {x:   crp[2], y:   crp[3]};
 	                }
 	            } else {
 	                if (iLen - 4 == i) {
 	                    p[3] = p[2];
 	                } else if (!i) {
-	                    p[0] = {x: +crp[i], y: +crp[i + 1]};
+	                    p[0] = {x:   crp[i], y:   crp[i    1]};
 	                }
 	            }
 	            d.push(["C",
-	                  (-p[0].x + 6 * p[1].x + p[2].x) / 6,
-	                  (-p[0].y + 6 * p[1].y + p[2].y) / 6,
-	                  (p[1].x + 6 * p[2].x - p[3].x) / 6,
-	                  (p[1].y + 6*p[2].y - p[3].y) / 6,
+	                  (-p[0].x    6 * p[1].x    p[2].x) / 6,
+	                  (-p[0].y    6 * p[1].y    p[2].y) / 6,
+	                  (p[1].x    6 * p[2].x - p[3].x) / 6,
+	                  (p[1].y    6*p[2].y - p[3].y) / 6,
 	                  p[2].x,
 	                  p[2].y
 	            ]);
@@ -1160,7 +1160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var params = [],
 	                    name = b.toLowerCase();
 	                c.replace(pathValues, function (a, b) {
-	                    b && params.push(+b);
+	                    b && params.push(  b);
 	                });
 	                if (name == "m" && params.length > 2) {
 	                    data.push([b][concat](params.splice(0, 2)));
@@ -1206,7 +1206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var params = [],
 	                    name = lowerCase.call(b);
 	                c.replace(pathValues, function (a, b) {
-	                    b && params.push(+b);
+	                    b && params.push(  b);
 	                });
 	                data.push([b][concat](params));
 	            });
@@ -1278,18 +1278,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	            t12 = pow(t1, 2),
 	            t2 = t * t,
 	            t3 = t2 * t,
-	            x = t13 * p1x + t12 * 3 * t * c1x + t1 * 3 * t * t * c2x + t3 * p2x,
-	            y = t13 * p1y + t12 * 3 * t * c1y + t1 * 3 * t * t * c2y + t3 * p2y,
-	            mx = p1x + 2 * t * (c1x - p1x) + t2 * (c2x - 2 * c1x + p1x),
-	            my = p1y + 2 * t * (c1y - p1y) + t2 * (c2y - 2 * c1y + p1y),
-	            nx = c1x + 2 * t * (c2x - c1x) + t2 * (p2x - 2 * c2x + c1x),
-	            ny = c1y + 2 * t * (c2y - c1y) + t2 * (p2y - 2 * c2y + c1y),
-	            ax = t1 * p1x + t * c1x,
-	            ay = t1 * p1y + t * c1y,
-	            cx = t1 * c2x + t * p2x,
-	            cy = t1 * c2y + t * p2y,
+	            x = t13 * p1x    t12 * 3 * t * c1x    t1 * 3 * t * t * c2x    t3 * p2x,
+	            y = t13 * p1y    t12 * 3 * t * c1y    t1 * 3 * t * t * c2y    t3 * p2y,
+	            mx = p1x    2 * t * (c1x - p1x)    t2 * (c2x - 2 * c1x    p1x),
+	            my = p1y    2 * t * (c1y - p1y)    t2 * (c2y - 2 * c1y    p1y),
+	            nx = c1x    2 * t * (c2x - c1x)    t2 * (p2x - 2 * c2x    c1x),
+	            ny = c1y    2 * t * (c2y - c1y)    t2 * (p2y - 2 * c2y    c1y),
+	            ax = t1 * p1x    t * c1x,
+	            ay = t1 * p1y    t * c1y,
+	            cx = t1 * c2x    t * p2x,
+	            cy = t1 * c2y    t * p2y,
 	            alpha = (90 - math.atan2(mx - nx, my - ny) * 180 / PI);
-	        (mx > nx || my < ny) && (alpha += 180);
+	        (mx > nx || my < ny) && (alpha   = 180);
 	        return {
 	            x: x,
 	            y: y,
@@ -1386,9 +1386,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            && (bbox1.y < bbox2.y2 && bbox1.y > bbox2.y || bbox2.y < bbox1.y2 && bbox2.y > bbox1.y);
 	    };
 	    function base3(t, p1, p2, p3, p4) {
-	        var t1 = -3 * p1 + 9 * p2 - 9 * p3 + 3 * p4,
-	            t2 = t * t1 + 6 * p1 - 12 * p2 + 6 * p3;
-	        return t * t2 - 3 * p1 + 3 * p2;
+	        var t1 = -3 * p1    9 * p2 - 9 * p3    3 * p4,
+	            t2 = t * t1    6 * p1 - 12 * p2    6 * p3;
+	        return t * t2 - 3 * p1    3 * p2;
 	    }
 	    function bezlen(x1, y1, x2, y2, x3, y3, x4, y4, z) {
 	        if (z == null) {
@@ -1400,12 +1400,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            Tvalues = [-0.1252,0.1252,-0.3678,0.3678,-0.5873,0.5873,-0.7699,0.7699,-0.9041,0.9041,-0.9816,0.9816],
 	            Cvalues = [0.2491,0.2491,0.2335,0.2335,0.2032,0.2032,0.1601,0.1601,0.1069,0.1069,0.0472,0.0472],
 	            sum = 0;
-	        for (var i = 0; i < n; i++) {
-	            var ct = z2 * Tvalues[i] + z2,
+	        for (var i = 0; i < n; i    ) {
+	            var ct = z2 * Tvalues[i]    z2,
 	                xbase = base3(ct, x1, x2, x3, x4),
 	                ybase = base3(ct, y1, y2, y3, y4),
-	                comb = xbase * xbase + ybase * ybase;
-	            sum += Cvalues[i] * math.sqrt(comb);
+	                comb = xbase * xbase    ybase * ybase;
+	            sum   = Cvalues[i] * math.sqrt(comb);
 	        }
 	        return z2 * sum;
 	    }
@@ -1421,7 +1421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        l = bezlen(x1, y1, x2, y2, x3, y3, x4, y4, t2);
 	        while (abs(l - ll) > e) {
 	            step /= 2;
-	            t2 += (l < ll ? 1 : -1) * step;
+	            t2   = (l < ll ? 1 : -1) * step;
 	            l = bezlen(x1, y1, x2, y2, x3, y3, x4, y4, t2);
 	        }
 	        return t2;
@@ -1444,17 +1444,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        var px = nx / denominator,
 	            py = ny / denominator,
-	            px2 = +px.toFixed(2),
-	            py2 = +py.toFixed(2);
+	            px2 =   px.toFixed(2),
+	            py2 =   py.toFixed(2);
 	        if (
-	            px2 < +mmin(x1, x2).toFixed(2) ||
-	            px2 > +mmax(x1, x2).toFixed(2) ||
-	            px2 < +mmin(x3, x4).toFixed(2) ||
-	            px2 > +mmax(x3, x4).toFixed(2) ||
-	            py2 < +mmin(y1, y2).toFixed(2) ||
-	            py2 > +mmax(y1, y2).toFixed(2) ||
-	            py2 < +mmin(y3, y4).toFixed(2) ||
-	            py2 > +mmax(y3, y4).toFixed(2)
+	            px2 <   mmin(x1, x2).toFixed(2) ||
+	            px2 >   mmax(x1, x2).toFixed(2) ||
+	            px2 <   mmin(x3, x4).toFixed(2) ||
+	            px2 >   mmax(x3, x4).toFixed(2) ||
+	            py2 <   mmin(y1, y2).toFixed(2) ||
+	            py2 >   mmax(y1, y2).toFixed(2) ||
+	            py2 <   mmin(y3, y4).toFixed(2) ||
+	            py2 >   mmax(y3, y4).toFixed(2)
 	        ) {
 	            return;
 	        }
@@ -1480,20 +1480,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            dots2 = [],
 	            xy = {},
 	            res = justCount ? 0 : [];
-	        for (var i = 0; i < n1 + 1; i++) {
+	        for (var i = 0; i < n1    1; i    ) {
 	            var p = R.findDotsAtSegment.apply(R, bez1.concat(i / n1));
 	            dots1.push({x: p.x, y: p.y, t: i / n1});
 	        }
-	        for (i = 0; i < n2 + 1; i++) {
+	        for (i = 0; i < n2    1; i    ) {
 	            p = R.findDotsAtSegment.apply(R, bez2.concat(i / n2));
 	            dots2.push({x: p.x, y: p.y, t: i / n2});
 	        }
-	        for (i = 0; i < n1; i++) {
-	            for (var j = 0; j < n2; j++) {
+	        for (i = 0; i < n1; i    ) {
+	            for (var j = 0; j < n2; j    ) {
 	                var di = dots1[i],
-	                    di1 = dots1[i + 1],
+	                    di1 = dots1[i    1],
 	                    dj = dots2[j],
-	                    dj1 = dots2[j + 1],
+	                    dj1 = dots2[j    1],
 	                    ci = abs(di1.x - di.x) < .001 ? "y" : "x",
 	                    cj = abs(dj1.x - dj.x) < .001 ? "y" : "x",
 	                    is = intersect(di.x, di.y, di1.x, di1.y, dj.x, dj.y, dj1.x, dj1.y);
@@ -1502,11 +1502,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        continue;
 	                    }
 	                    xy[is.x.toFixed(4)] = is.y.toFixed(4);
-	                    var t1 = di.t + abs((is[ci] - di[ci]) / (di1[ci] - di[ci])) * (di1.t - di.t),
-	                        t2 = dj.t + abs((is[cj] - dj[cj]) / (dj1[cj] - dj[cj])) * (dj1.t - dj.t);
+	                    var t1 = di.t    abs((is[ci] - di[ci]) / (di1[ci] - di[ci])) * (di1.t - di.t),
+	                        t2 = dj.t    abs((is[cj] - dj[cj]) / (dj1[cj] - dj[cj])) * (dj1.t - dj.t);
 	                    if (t1 >= 0 && t1 <= 1.001 && t2 >= 0 && t2 <= 1.001) {
 	                        if (justCount) {
-	                            res++;
+	                            res    ;
 	                        } else {
 	                            res.push({
 	                                x: is.x,
@@ -1556,7 +1556,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        path2 = R._path2curve(path2);
 	        var x1, y1, x2, y2, x1m, y1m, x2m, y2m, bez1, bez2,
 	            res = justCount ? 0 : [];
-	        for (var i = 0, ii = path1.length; i < ii; i++) {
+	        for (var i = 0, ii = path1.length; i < ii; i    ) {
 	            var pi = path1[i];
 	            if (pi[0] == "M") {
 	                x1 = x1m = pi[1];
@@ -1571,7 +1571,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    x1 = x1m;
 	                    y1 = y1m;
 	                }
-	                for (var j = 0, jj = path2.length; j < jj; j++) {
+	                for (var j = 0, jj = path2.length; j < jj; j    ) {
 	                    var pj = path2[j];
 	                    if (pj[0] == "M") {
 	                        x2 = x2m = pj[1];
@@ -1588,9 +1588,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        }
 	                        var intr = interHelper(bez1, bez2, justCount);
 	                        if (justCount) {
-	                            res += intr;
+	                            res   = intr;
 	                        } else {
-	                            for (var k = 0, kk = intr.length; k < kk; k++) {
+	                            for (var k = 0, kk = intr.length; k < kk; k    ) {
 	                                intr[k].segment1 = i;
 	                                intr[k].segment2 = j;
 	                                intr[k].bez1 = bez1;
@@ -1620,11 +1620,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    R.isPointInsidePath = function (path, x, y) {
 	        var bbox = R.pathBBox(path);
 	        return R.isPointInsideBBox(bbox, x, y) &&
-	               interPathHelper(path, [["M", x, y], ["H", bbox.x2 + 10]], 1) % 2 == 1;
+	               interPathHelper(path, [["M", x, y], ["H", bbox.x2    10]], 1) % 2 == 1;
 	    };
 	    R._removedFactory = function (methodname) {
 	        return function () {
-	            eve("raphael.log", null, "Rapha\xebl: you are calling to method \u201c" + methodname + "\u201d of removed object", methodname);
+	            eve("raphael.log", null, "Rapha\xebl: you are calling to method \u201c"    methodname    "\u201d of removed object", methodname);
 	        };
 	    };
 	    /*\
@@ -1662,7 +1662,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            X = [],
 	            Y = [],
 	            p;
-	        for (var i = 0, ii = path.length; i < ii; i++) {
+	        for (var i = 0, ii = path.length; i < ii; i    ) {
 	            p = path[i];
 	            if (p[0] == "M") {
 	                x = p[1];
@@ -1690,8 +1690,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                y2: ymax,
 	                width: width,
 	                height: height,
-	                cx: xmin + width / 2,
-	                cy: ymin + height / 2
+	                cx: xmin    width / 2,
+	                cy: ymin    height / 2
 	            };
 	        pth.bbox = clone(bb);
 	        return bb;
@@ -1720,10 +1720,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                y = pathArray[0][2];
 	                mx = x;
 	                my = y;
-	                start++;
+	                start    ;
 	                res.push(["M", x, y]);
 	            }
-	            for (var i = start, ii = pathArray.length; i < ii; i++) {
+	            for (var i = start, ii = pathArray.length; i < ii; i    ) {
 	                var r = res[i] = [],
 	                    pa = pathArray[i];
 	                if (pa[0] != lowerCase.call(pa[0])) {
@@ -1735,27 +1735,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            r[3] = pa[3];
 	                            r[4] = pa[4];
 	                            r[5] = pa[5];
-	                            r[6] = +(pa[6] - x).toFixed(3);
-	                            r[7] = +(pa[7] - y).toFixed(3);
+	                            r[6] =   (pa[6] - x).toFixed(3);
+	                            r[7] =   (pa[7] - y).toFixed(3);
 	                            break;
 	                        case "v":
-	                            r[1] = +(pa[1] - y).toFixed(3);
+	                            r[1] =   (pa[1] - y).toFixed(3);
 	                            break;
 	                        case "m":
 	                            mx = pa[1];
 	                            my = pa[2];
 	                        default:
-	                            for (var j = 1, jj = pa.length; j < jj; j++) {
-	                                r[j] = +(pa[j] - ((j % 2) ? x : y)).toFixed(3);
+	                            for (var j = 1, jj = pa.length; j < jj; j    ) {
+	                                r[j] =   (pa[j] - ((j % 2) ? x : y)).toFixed(3);
 	                            }
 	                    }
 	                } else {
 	                    r = res[i] = [];
 	                    if (pa[0] == "m") {
-	                        mx = pa[1] + x;
-	                        my = pa[2] + y;
+	                        mx = pa[1]    x;
+	                        my = pa[2]    y;
 	                    }
-	                    for (var k = 0, kk = pa.length; k < kk; k++) {
+	                    for (var k = 0, kk = pa.length; k < kk; k    ) {
 	                        res[i][k] = pa[k];
 	                    }
 	                }
@@ -1766,14 +1766,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        y = my;
 	                        break;
 	                    case "h":
-	                        x += +res[i][len - 1];
+	                        x   =   res[i][len - 1];
 	                        break;
 	                    case "v":
-	                        y += +res[i][len - 1];
+	                        y   =   res[i][len - 1];
 	                        break;
 	                    default:
-	                        x += +res[i][len - 2];
-	                        y += +res[i][len - 1];
+	                        x   =   res[i][len - 2];
+	                        y   =   res[i][len - 1];
 	                }
 	            }
 	            res.toString = R._path2string;
@@ -1798,15 +1798,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                my = 0,
 	                start = 0;
 	            if (pathArray[0][0] == "M") {
-	                x = +pathArray[0][1];
-	                y = +pathArray[0][2];
+	                x =   pathArray[0][1];
+	                y =   pathArray[0][2];
 	                mx = x;
 	                my = y;
-	                start++;
+	                start    ;
 	                res[0] = ["M", x, y];
 	            }
 	            var crz = pathArray.length == 3 && pathArray[0][0] == "M" && pathArray[1][0].toUpperCase() == "R" && pathArray[2][0].toUpperCase() == "Z";
-	            for (var r, pa, i = start, ii = pathArray.length; i < ii; i++) {
+	            for (var r, pa, i = start, ii = pathArray.length; i < ii; i    ) {
 	                res.push(r = []);
 	                pa = pathArray[i];
 	                if (pa[0] != upperCase.call(pa[0])) {
@@ -1818,30 +1818,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            r[3] = pa[3];
 	                            r[4] = pa[4];
 	                            r[5] = pa[5];
-	                            r[6] = +(pa[6] + x);
-	                            r[7] = +(pa[7] + y);
+	                            r[6] =   (pa[6]    x);
+	                            r[7] =   (pa[7]    y);
 	                            break;
 	                        case "V":
-	                            r[1] = +pa[1] + y;
+	                            r[1] =   pa[1]    y;
 	                            break;
 	                        case "H":
-	                            r[1] = +pa[1] + x;
+	                            r[1] =   pa[1]    x;
 	                            break;
 	                        case "R":
 	                            var dots = [x, y][concat](pa.slice(1));
-	                            for (var j = 2, jj = dots.length; j < jj; j++) {
-	                                dots[j] = +dots[j] + x;
-	                                dots[++j] = +dots[j] + y;
+	                            for (var j = 2, jj = dots.length; j < jj; j    ) {
+	                                dots[j] =   dots[j]    x;
+	                                dots[    j] =   dots[j]    y;
 	                            }
 	                            res.pop();
 	                            res = res[concat](catmullRom2bezier(dots, crz));
 	                            break;
 	                        case "M":
-	                            mx = +pa[1] + x;
-	                            my = +pa[2] + y;
+	                            mx =   pa[1]    x;
+	                            my =   pa[2]    y;
 	                        default:
-	                            for (j = 1, jj = pa.length; j < jj; j++) {
-	                                r[j] = +pa[j] + ((j % 2) ? x : y);
+	                            for (j = 1, jj = pa.length; j < jj; j    ) {
+	                                r[j] =   pa[j]    ((j % 2) ? x : y);
 	                            }
 	                    }
 	                } else if (pa[0] == "R") {
@@ -1850,7 +1850,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    res = res[concat](catmullRom2bezier(dots, crz));
 	                    r = ["R"][concat](pa.slice(-2));
 	                } else {
-	                    for (var k = 0, kk = pa.length; k < kk; k++) {
+	                    for (var k = 0, kk = pa.length; k < kk; k    ) {
 	                        r[k] = pa[k];
 	                    }
 	                }
@@ -1884,10 +1884,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var _13 = 1 / 3,
 	                _23 = 2 / 3;
 	            return [
-	                    _13 * x1 + _23 * ax,
-	                    _13 * y1 + _23 * ay,
-	                    _13 * x2 + _23 * ax,
-	                    _13 * y2 + _23 * ay,
+	                    _13 * x1    _23 * ax,
+	                    _13 * y1    _23 * ay,
+	                    _13 * x2    _23 * ax,
+	                    _13 * y2    _23 * ay,
 	                    x2,
 	                    y2
 	                ];
@@ -1896,12 +1896,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // for more information of where this math came from visit:
 	            // http://www.w3.org/TR/SVG11/implnote.html#ArcImplementationNotes
 	            var _120 = PI * 120 / 180,
-	                rad = PI / 180 * (+angle || 0),
+	                rad = PI / 180 * (  angle || 0),
 	                res = [],
 	                xy,
 	                rotate = cacher(function (x, y, rad) {
 	                    var X = x * math.cos(rad) - y * math.sin(rad),
-	                        Y = x * math.sin(rad) + y * math.cos(rad);
+	                        Y = x * math.sin(rad)    y * math.cos(rad);
 	                    return {x: X, y: Y};
 	                });
 	            if (!recursive) {
@@ -1915,7 +1915,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    sin = math.sin(PI / 180 * angle),
 	                    x = (x1 - x2) / 2,
 	                    y = (y1 - y2) / 2;
-	                var h = (x * x) / (rx * rx) + (y * y) / (ry * ry);
+	                var h = (x * x) / (rx * rx)    (y * y) / (ry * ry);
 	                if (h > 1) {
 	                    h = math.sqrt(h);
 	                    rx = h * rx;
@@ -1924,16 +1924,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var rx2 = rx * rx,
 	                    ry2 = ry * ry,
 	                    k = (large_arc_flag == sweep_flag ? -1 : 1) *
-	                        math.sqrt(abs((rx2 * ry2 - rx2 * y * y - ry2 * x * x) / (rx2 * y * y + ry2 * x * x))),
-	                    cx = k * rx * y / ry + (x1 + x2) / 2,
-	                    cy = k * -ry * x / rx + (y1 + y2) / 2,
+	                        math.sqrt(abs((rx2 * ry2 - rx2 * y * y - ry2 * x * x) / (rx2 * y * y    ry2 * x * x))),
+	                    cx = k * rx * y / ry    (x1    x2) / 2,
+	                    cy = k * -ry * x / rx    (y1    y2) / 2,
 	                    f1 = math.asin(((y1 - cy) / ry).toFixed(9)),
 	                    f2 = math.asin(((y2 - cy) / ry).toFixed(9));
 
 	                f1 = x1 < cx ? PI - f1 : f1;
 	                f2 = x2 < cx ? PI - f2 : f2;
-	                f1 < 0 && (f1 = PI * 2 + f1);
-	                f2 < 0 && (f2 = PI * 2 + f2);
+	                f1 < 0 && (f1 = PI * 2    f1);
+	                f2 < 0 && (f2 = PI * 2    f2);
 	                if (sweep_flag && f1 > f2) {
 	                    f1 = f1 - PI * 2;
 	                }
@@ -1951,9 +1951,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var f2old = f2,
 	                    x2old = x2,
 	                    y2old = y2;
-	                f2 = f1 + _120 * (sweep_flag && f2 > f1 ? 1 : -1);
-	                x2 = cx + rx * math.cos(f2);
-	                y2 = cy + ry * math.sin(f2);
+	                f2 = f1    _120 * (sweep_flag && f2 > f1 ? 1 : -1);
+	                x2 = cx    rx * math.cos(f2);
+	                y2 = cy    ry * math.sin(f2);
 	                res = a2c(x2, y2, rx, ry, angle, 0, sweep_flag, x2old, y2old, [f2, f2old, cx, cy]);
 	            }
 	            df = f2 - f1;
@@ -1965,8 +1965,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                hx = 4 / 3 * rx * t,
 	                hy = 4 / 3 * ry * t,
 	                m1 = [x1, y1],
-	                m2 = [x1 + hx * s1, y1 - hy * c1],
-	                m3 = [x2 + hx * s2, y2 - hy * c2],
+	                m2 = [x1    hx * s1, y1 - hy * c1],
+	                m3 = [x2    hx * s2, y2 - hy * c2],
 	                m4 = [x2, y2];
 	            m2[0] = 2 * m1[0] - m2[0];
 	            m2[1] = 2 * m1[1] - m2[1];
@@ -1975,8 +1975,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            } else {
 	                res = [m2, m3, m4][concat](res).join()[split](",");
 	                var newres = [];
-	                for (var i = 0, ii = res.length; i < ii; i++) {
-	                    newres[i] = i % 2 ? rotate(res[i - 1], res[i], rad).y : rotate(res[i], res[i + 1], rad).x;
+	                for (var i = 0, ii = res.length; i < ii; i    ) {
+	                    newres[i] = i % 2 ? rotate(res[i - 1], res[i], rad).y : rotate(res[i], res[i    1], rad).x;
 	                }
 	                return newres;
 	            }
@@ -1984,15 +1984,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        findDotAtSegment = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, t) {
 	            var t1 = 1 - t;
 	            return {
-	                x: pow(t1, 3) * p1x + pow(t1, 2) * 3 * t * c1x + t1 * 3 * t * t * c2x + pow(t, 3) * p2x,
-	                y: pow(t1, 3) * p1y + pow(t1, 2) * 3 * t * c1y + t1 * 3 * t * t * c2y + pow(t, 3) * p2y
+	                x: pow(t1, 3) * p1x    pow(t1, 2) * 3 * t * c1x    t1 * 3 * t * t * c2x    pow(t, 3) * p2x,
+	                y: pow(t1, 3) * p1y    pow(t1, 2) * 3 * t * c1y    t1 * 3 * t * t * c2y    pow(t, 3) * p2y
 	            };
 	        },
 	        curveDim = cacher(function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y) {
-	            var a = (c2x - 2 * c1x + p1x) - (p2x - 2 * c2x + c1x),
+	            var a = (c2x - 2 * c1x    p1x) - (p2x - 2 * c2x    c1x),
 	                b = 2 * (c1x - p1x) - 2 * (c2x - c1x),
 	                c = p1x - c1x,
-	                t1 = (-b + math.sqrt(b * b - 4 * a * c)) / 2 / a,
+	                t1 = (-b    math.sqrt(b * b - 4 * a * c)) / 2 / a,
 	                t2 = (-b - math.sqrt(b * b - 4 * a * c)) / 2 / a,
 	                y = [p1y, p2y],
 	                x = [p1x, p2x],
@@ -2009,10 +2009,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                x.push(dot.x);
 	                y.push(dot.y);
 	            }
-	            a = (c2y - 2 * c1y + p1y) - (p2y - 2 * c2y + c1y);
+	            a = (c2y - 2 * c1y    p1y) - (p2y - 2 * c2y    c1y);
 	            b = 2 * (c1y - p1y) - 2 * (c2y - c1y);
 	            c = p1y - c1y;
-	            t1 = (-b + math.sqrt(b * b - 4 * a * c)) / 2 / a;
+	            t1 = (-b    math.sqrt(b * b - 4 * a * c)) / 2 / a;
 	            t2 = (-b - math.sqrt(b * b - 4 * a * c)) / 2 / a;
 	            abs(t1) > "1e12" && (t1 = .5);
 	            abs(t2) > "1e12" && (t2 = .5);
@@ -2103,7 +2103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        while (pi.length) {
 	                            pcoms1[i]="A"; // if created multiple C:s, their original seg is saved
 	                            p2 && (pcoms2[i]="A"); // the same as above
-	                            pp.splice(i++, 0, ["C"][concat](pi.splice(0, 6)));
+	                            pp.splice(i    , 0, ["C"][concat](pi.splice(0, 6)));
 	                        }
 	                        pp.splice(i, 1);
 	                        ii = mmax(p.length, p2 && p2.length || 0);
@@ -2123,7 +2123,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                pcoms2 = [], // path commands of original path p2
 	                pfirst = "", // temporary holder for original path command
 	                pcom = ""; // holder for previous path command of original path
-	            for (var i = 0, ii = mmax(p.length, p2 && p2.length || 0); i < ii; i++) {
+	            for (var i = 0, ii = mmax(p.length, p2 && p2.length || 0); i < ii; i    ) {
 	                p[i] && (pfirst = p[i][0]); // save current path command
 
 	                if (pfirst != "C") // C is not saved yet, because it may be result of conversion
@@ -2174,7 +2174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }, null, pathClone),
 	        parseDots = R._parseDots = cacher(function (gradient) {
 	            var dots = [];
-	            for (var i = 0, ii = gradient.length; i < ii; i++) {
+	            for (var i = 0, ii = gradient.length; i < ii; i    ) {
 	                var dot = {},
 	                    par = gradient[i].match(/^([^:]*):?([\d\.]*)/);
 	                dot.color = R.getRGB(par[1]);
@@ -2183,14 +2183,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                dot.opacity = dot.color.opacity;
 	                dot.color = dot.color.hex;
-	                par[2] && (dot.offset = par[2] + "%");
+	                par[2] && (dot.offset = par[2]    "%");
 	                dots.push(dot);
 	            }
-	            for (i = 1, ii = dots.length - 1; i < ii; i++) {
+	            for (i = 1, ii = dots.length - 1; i < ii; i    ) {
 	                if (!dots[i].offset) {
 	                    var start = toFloat(dots[i - 1].offset || 0),
 	                        end = 0;
-	                    for (var j = i + 1; j < ii; j++) {
+	                    for (var j = i    1; j < ii; j    ) {
 	                        if (dots[j].offset) {
 	                            end = dots[j].offset;
 	                            break;
@@ -2201,10 +2201,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        j = ii;
 	                    }
 	                    end = toFloat(end);
-	                    var d = (end - start) / (j - i + 1);
-	                    for (; i < j; i++) {
-	                        start += d;
-	                        dots[i].offset = start + "%";
+	                    var d = (end - start) / (j - i    1);
+	                    for (; i < j; i    ) {
+	                        start   = d;
+	                        dots[i].offset = start    "%";
 	                    }
 	                }
 	            }
@@ -2307,7 +2307,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                m = new Matrix;
 	            _.transform = tdata || [];
 	            if (tdata) {
-	                for (var i = 0, ii = tdata.length; i < ii; i++) {
+	                for (var i = 0, ii = tdata.length; i < ii; i    ) {
 	                    var t = tdata[i],
 	                        tlen = t.length,
 	                        command = Str(t[0]).toLowerCase(),
@@ -2331,8 +2331,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else if (command == "r") {
 	                        if (tlen == 2) {
 	                            bb = bb || el.getBBox(1);
-	                            m.rotate(t[1], bb.x + bb.width / 2, bb.y + bb.height / 2);
-	                            deg += t[1];
+	                            m.rotate(t[1], bb.x    bb.width / 2, bb.y    bb.height / 2);
+	                            deg   = t[1];
 	                        } else if (tlen == 4) {
 	                            if (absolute) {
 	                                x2 = inver.x(t[2], t[3]);
@@ -2341,12 +2341,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            } else {
 	                                m.rotate(t[1], t[2], t[3]);
 	                            }
-	                            deg += t[1];
+	                            deg   = t[1];
 	                        }
 	                    } else if (command == "s") {
 	                        if (tlen == 2 || tlen == 3) {
 	                            bb = bb || el.getBBox(1);
-	                            m.scale(t[1], t[tlen - 1], bb.x + bb.width / 2, bb.y + bb.height / 2);
+	                            m.scale(t[1], t[tlen - 1], bb.x    bb.width / 2, bb.y    bb.height / 2);
 	                            sx *= t[1];
 	                            sy *= t[tlen - 1];
 	                        } else if (tlen == 5) {
@@ -2383,8 +2383,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _.dy = dy = m.f;
 
 	            if (sx == 1 && sy == 1 && !deg && _.bbox) {
-	                _.bbox.x += +dx;
-	                _.bbox.y += +dy;
+	                _.bbox.x   =   dx;
+	                _.bbox.y   =   dy;
 	            } else {
 	                _.dirtyT = 1;
 	            }
@@ -2417,7 +2417,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                to = [],
 	                i = 0, j, jj,
 	                tt1, tt2;
-	            for (; i < maxlength; i++) {
+	            for (; i < maxlength; i    ) {
 	                tt1 = t1[i] || getEmpty(t2[i]);
 	                tt2 = t2[i] || getEmpty(tt1);
 	                if ((tt1[0] != tt2[0]) ||
@@ -2428,7 +2428,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                from[i] = [];
 	                to[i] = [];
-	                for (j = 0, jj = mmax(tt1.length, tt2.length); j < jj; j++) {
+	                for (j = 0, jj = mmax(tt1.length, tt2.length); j < jj; j    ) {
 	                    j in tt1 && (from[i][j] = tt1[j]);
 	                    j in tt2 && (to[i][j] = tt2[j]);
 	                }
@@ -2513,12 +2513,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    function Matrix(a, b, c, d, e, f) {
 	        if (a != null) {
-	            this.a = +a;
-	            this.b = +b;
-	            this.c = +c;
-	            this.d = +d;
-	            this.e = +e;
-	            this.f = +f;
+	            this.a =   a;
+	            this.b =   b;
+	            this.c =   c;
+	            this.d =   d;
+	            this.e =   e;
+	            this.f =   f;
 	        } else {
 	            this.a = 1;
 	            this.b = 0;
@@ -2554,11 +2554,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                matrix = [[a.a, a.c, a.e], [a.b, a.d, a.f], [0, 0, 1]];
 	            }
 
-	            for (x = 0; x < 3; x++) {
-	                for (y = 0; y < 3; y++) {
+	            for (x = 0; x < 3; x    ) {
+	                for (y = 0; y < 3; y    ) {
 	                    res = 0;
-	                    for (z = 0; z < 3; z++) {
-	                        res += m[x][z] * matrix[z][y];
+	                    for (z = 0; z < 3; z    ) {
+	                        res   = m[x][z] * matrix[z][y];
 	                    }
 	                    out[x][y] = res;
 	                }
@@ -2635,8 +2635,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            a = R.rad(a);
 	            x = x || 0;
 	            y = y || 0;
-	            var cos = +math.cos(a).toFixed(9),
-	                sin = +math.sin(a).toFixed(9);
+	            var cos =   math.cos(a).toFixed(9),
+	                sin =   math.sin(a).toFixed(9);
 	            this.add(cos, sin, -sin, cos, x, y);
 	            this.add(1, 0, 0, 1, -x, -y);
 	        };
@@ -2651,7 +2651,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         = (number) x
 	        \*/
 	        matrixproto.x = function (x, y) {
-	            return x * this.a + y * this.c + this.e;
+	            return x * this.a    y * this.c    this.e;
 	        };
 	        /*\
 	         * Matrix.y
@@ -2664,26 +2664,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	         = (number) y
 	        \*/
 	        matrixproto.y = function (x, y) {
-	            return x * this.b + y * this.d + this.f;
+	            return x * this.b    y * this.d    this.f;
 	        };
 	        matrixproto.get = function (i) {
-	            return +this[Str.fromCharCode(97 + i)].toFixed(4);
+	            return   this[Str.fromCharCode(97    i)].toFixed(4);
 	        };
 	        matrixproto.toString = function () {
 	            return R.svg ?
-	                "matrix(" + [this.get(0), this.get(1), this.get(2), this.get(3), this.get(4), this.get(5)].join() + ")" :
+	                "matrix("    [this.get(0), this.get(1), this.get(2), this.get(3), this.get(4), this.get(5)].join()    ")" :
 	                [this.get(0), this.get(2), this.get(1), this.get(3), 0, 0].join();
 	        };
 	        matrixproto.toFilter = function () {
-	            return "progid:DXImageTransform.Microsoft.Matrix(M11=" + this.get(0) +
-	                ", M12=" + this.get(2) + ", M21=" + this.get(1) + ", M22=" + this.get(3) +
-	                ", Dx=" + this.get(4) + ", Dy=" + this.get(5) + ", sizingmethod='auto expand')";
+	            return "progid:DXImageTransform.Microsoft.Matrix(M11="    this.get(0)   
+	                ", M12="    this.get(2)    ", M21="    this.get(1)    ", M22="    this.get(3)   
+	                ", Dx="    this.get(4)    ", Dy="    this.get(5)    ", sizingmethod='auto expand')";
 	        };
 	        matrixproto.offset = function () {
 	            return [this.e.toFixed(4), this.f.toFixed(4)];
 	        };
 	        function norm(a) {
-	            return a[0] * a[0] + a[1] * a[1];
+	            return a[0] * a[0]    a[1] * a[1];
 	        }
 	        function normalize(a) {
 	            var mag = math.sqrt(norm(a));
@@ -2715,7 +2715,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            out.scalex = math.sqrt(norm(row[0]));
 	            normalize(row[0]);
 
-	            out.shear = row[0][0] * row[1][0] + row[0][1] * row[1][1];
+	            out.shear = row[0][0] * row[1][0]    row[0][1] * row[1][1];
 	            row[1] = [row[1][0] - row[0][0] * out.shear, row[1][1] - row[0][1] * out.shear];
 
 	            out.scaley = math.sqrt(norm(row[1]));
@@ -2734,9 +2734,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                out.rotate = R.deg(math.asin(sin));
 	            }
 
-	            out.isSimple = !+out.shear.toFixed(9) && (out.scalex.toFixed(9) == out.scaley.toFixed(9) || !out.rotate);
-	            out.isSuperSimple = !+out.shear.toFixed(9) && out.scalex.toFixed(9) == out.scaley.toFixed(9) && !out.rotate;
-	            out.noRotation = !+out.shear.toFixed(9) && !out.rotate;
+	            out.isSimple = !  out.shear.toFixed(9) && (out.scalex.toFixed(9) == out.scaley.toFixed(9) || !out.rotate);
+	            out.isSuperSimple = !  out.shear.toFixed(9) && out.scalex.toFixed(9) == out.scaley.toFixed(9) && !out.rotate;
+	            out.noRotation = !  out.shear.toFixed(9) && !out.rotate;
 	            return out;
 	        };
 	        /*\
@@ -2749,14 +2749,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        matrixproto.toTransformString = function (shorter) {
 	            var s = shorter || this[split]();
 	            if (s.isSimple) {
-	                s.scalex = +s.scalex.toFixed(4);
-	                s.scaley = +s.scaley.toFixed(4);
-	                s.rotate = +s.rotate.toFixed(4);
-	                return  (s.dx || s.dy ? "t" + [s.dx, s.dy] : E) +
-	                        (s.scalex != 1 || s.scaley != 1 ? "s" + [s.scalex, s.scaley, 0, 0] : E) +
-	                        (s.rotate ? "r" + [s.rotate, 0, 0] : E);
+	                s.scalex =   s.scalex.toFixed(4);
+	                s.scaley =   s.scaley.toFixed(4);
+	                s.rotate =   s.rotate.toFixed(4);
+	                return  (s.dx || s.dy ? "t"    [s.dx, s.dy] : E)   
+	                        (s.scalex != 1 || s.scaley != 1 ? "s"    [s.scalex, s.scaley, 0, 0] : E)   
+	                        (s.rotate ? "r"    [s.rotate, 0, 0] : E);
 	            } else {
-	                return "m" + [this.get(0), this.get(1), this.get(2), this.get(3), this.get(4), this.get(5)];
+	                return "m"    [this.get(0), this.get(1), this.get(2), this.get(3), this.get(4), this.get(5)];
 	            }
 	        };
 	    })(Matrix.prototype);
@@ -2778,8 +2778,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft;
 
 	        return {
-	            x: e.clientX + scrollX,
-	            y: e.clientY + scrollY
+	            x: e.clientX    scrollX,
+	            y: e.clientY    scrollY
 	        };
 	    },
 	    addEvent = (function () {
@@ -2796,7 +2796,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        var pos = getEventPosition(e),
 	                            olde = e;
 
-	                        for (var i = 0, ii = e.targetTouches && e.targetTouches.length; i < ii; i++) {
+	                        for (var i = 0, ii = e.targetTouches && e.targetTouches.length; i < ii; i    ) {
 	                            if (e.targetTouches[i].target == obj) {
 	                                e = e.targetTouches[i];
 	                                e.originalEvent = olde;
@@ -2826,15 +2826,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    e = e || g.win.event;
 	                    var scrollY = g.doc.documentElement.scrollTop || g.doc.body.scrollTop,
 	                        scrollX = g.doc.documentElement.scrollLeft || g.doc.body.scrollLeft,
-	                        x = e.clientX + scrollX,
-	                        y = e.clientY + scrollY;
+	                        x = e.clientX    scrollX,
+	                        y = e.clientY    scrollY;
 	                    e.preventDefault = e.preventDefault || preventDefault;
 	                    e.stopPropagation = e.stopPropagation || stopPropagation;
 	                    return fn.call(element, e, x, y);
 	                };
-	                obj.attachEvent("on" + type, f);
+	                obj.attachEvent("on"    type, f);
 	                var detacher = function () {
-	                    obj.detachEvent("on" + type, f);
+	                    obj.detachEvent("on"    type, f);
 	                    return true;
 	                };
 	                return detacher;
@@ -2876,10 +2876,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            o = dragi.el.paper.getElementByPoint(x, y);
 	            node.style.display = display;
 	            g.win.opera && (next ? parent.insertBefore(node, next) : parent.appendChild(node));
-	            o && eve("raphael.drag.over." + dragi.el.id, dragi.el, o);
-	            x += scrollX;
-	            y += scrollY;
-	            eve("raphael.drag.move." + dragi.el.id, dragi.move_scope || dragi.el, x - dragi.el._drag.x, y - dragi.el._drag.y, x, y, e);
+	            o && eve("raphael.drag.over."    dragi.el.id, dragi.el, o);
+	            x   = scrollX;
+	            y   = scrollY;
+	            eve("raphael.drag.move."    dragi.el.id, dragi.move_scope || dragi.el, x - dragi.el._drag.x, y - dragi.el._drag.y, x, y, e);
 	        }
 	    },
 	    dragUp = function (e) {
@@ -2889,7 +2889,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        while (i--) {
 	            dragi = drag[i];
 	            dragi.el._drag = {};
-	            eve("raphael.drag.end." + dragi.el.id, dragi.end_scope || dragi.start_scope || dragi.move_scope || dragi.el, e);
+	            eve("raphael.drag.end."    dragi.el.id, dragi.end_scope || dragi.start_scope || dragi.move_scope || dragi.el, e);
 	        }
 	        drag = [];
 	    },
@@ -3125,7 +3125,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                return this;
 	            };
-	            R["un" + eventName] = elproto["un" + eventName] = function (fn) {
+	            R["un"    eventName] = elproto["un"    eventName] = function (fn) {
 	                var events = this.events || [],
 	                    l = events.length;
 	                while (l--){
@@ -3156,8 +3156,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * or, if key and value are not specified:
 	     = (object) Key/value pairs for all the data associated with the element.
 	     > Usage
-	     | for (var i = 0, i < 5, i++) {
-	     |     paper.circle(10 + 15 * i, 10, 10)
+	     | for (var i = 0, i < 5, i    ) {
+	     |     paper.circle(10    15 * i, 10, 10)
 	     |          .attr({fill: "#000"})
 	     |          .data("i", i)
 	     |          .click(function () {
@@ -3177,11 +3177,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                return this;
 	            }
-	            eve("raphael.data.get." + this.id, this, data[key], key);
+	            eve("raphael.data.get."    this.id, this, data[key], key);
 	            return data[key];
 	        }
 	        data[key] = value;
-	        eve("raphael.data.set." + this.id, this, value, key);
+	        eve("raphael.data.set."    this.id, this, value, key);
 	        return this;
 	    };
 	    /*\
@@ -3291,14 +3291,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                }
 	            }
-	            this._drag.x = x + scrollX;
-	            this._drag.y = y + scrollY;
+	            this._drag.x = x    scrollX;
+	            this._drag.y = y    scrollY;
 	            !drag.length && R.mousemove(dragMove).mouseup(dragUp);
 	            drag.push({el: this, move_scope: move_scope, start_scope: start_scope, end_scope: end_scope});
-	            onstart && eve.on("raphael.drag.start." + this.id, onstart);
-	            onmove && eve.on("raphael.drag.move." + this.id, onmove);
-	            onend && eve.on("raphael.drag.end." + this.id, onend);
-	            eve("raphael.drag.start." + this.id, start_scope || move_scope || this, e.clientX + scrollX, e.clientY + scrollY, e);
+	            onstart && eve.on("raphael.drag.start."    this.id, onstart);
+	            onmove && eve.on("raphael.drag.move."    this.id, onmove);
+	            onend && eve.on("raphael.drag.end."    this.id, onend);
+	            eve("raphael.drag.start."    this.id, start_scope || move_scope || this, e.clientX    scrollX, e.clientY    scrollY, e);
 	        }
 	        this._drag = {};
 	        draggable.push({el: this, start: start});
@@ -3314,7 +3314,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - f (function) handler for event, first argument would be the element you are dragging over
 	    \*/
 	    elproto.onDragOver = function (f) {
-	        f ? eve.on("raphael.drag.over." + this.id, f) : eve.unbind("raphael.drag.over." + this.id);
+	        f ? eve.on("raphael.drag.over."    this.id, f) : eve.unbind("raphael.drag.over."    this.id);
 	    };
 	    /*\
 	     * Element.undrag
@@ -3327,7 +3327,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        while (i--) if (draggable[i].el == this) {
 	            this.unmousedown(draggable[i].start);
 	            draggable.splice(i, 1);
-	            eve.unbind("raphael.drag.*." + this.id);
+	            eve.unbind("raphael.drag.*."    this.id);
 	        }
 	        !draggable.length && R.unmousemove(dragMove).unmouseup(dragUp);
 	        drag = [];
@@ -3414,17 +3414,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *
 	     # <p>Here is short list of commands available, for more details see <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a path's data attribute's format are described in the SVG specification.">SVG path string format</a>.</p>
 	     # <table><thead><tr><th>Command</th><th>Name</th><th>Parameters</th></tr></thead><tbody>
-	     # <tr><td>M</td><td>moveto</td><td>(x y)+</td></tr>
+	     # <tr><td>M</td><td>moveto</td><td>(x y)  </td></tr>
 	     # <tr><td>Z</td><td>closepath</td><td>(none)</td></tr>
-	     # <tr><td>L</td><td>lineto</td><td>(x y)+</td></tr>
-	     # <tr><td>H</td><td>horizontal lineto</td><td>x+</td></tr>
-	     # <tr><td>V</td><td>vertical lineto</td><td>y+</td></tr>
-	     # <tr><td>C</td><td>curveto</td><td>(x1 y1 x2 y2 x y)+</td></tr>
-	     # <tr><td>S</td><td>smooth curveto</td><td>(x2 y2 x y)+</td></tr>
-	     # <tr><td>Q</td><td>quadratic Bézier curveto</td><td>(x1 y1 x y)+</td></tr>
-	     # <tr><td>T</td><td>smooth quadratic Bézier curveto</td><td>(x y)+</td></tr>
-	     # <tr><td>A</td><td>elliptical arc</td><td>(rx ry x-axis-rotation large-arc-flag sweep-flag x y)+</td></tr>
-	     # <tr><td>R</td><td><a href="http://en.wikipedia.org/wiki/Catmull–Rom_spline#Catmull.E2.80.93Rom_spline">Catmull-Rom curveto</a>*</td><td>x1 y1 (x y)+</td></tr></tbody></table>
+	     # <tr><td>L</td><td>lineto</td><td>(x y)  </td></tr>
+	     # <tr><td>H</td><td>horizontal lineto</td><td>x  </td></tr>
+	     # <tr><td>V</td><td>vertical lineto</td><td>y  </td></tr>
+	     # <tr><td>C</td><td>curveto</td><td>(x1 y1 x2 y2 x y)  </td></tr>
+	     # <tr><td>S</td><td>smooth curveto</td><td>(x2 y2 x y)  </td></tr>
+	     # <tr><td>Q</td><td>quadratic Bézier curveto</td><td>(x1 y1 x y)  </td></tr>
+	     # <tr><td>T</td><td>smooth quadratic Bézier curveto</td><td>(x y)  </td></tr>
+	     # <tr><td>A</td><td>elliptical arc</td><td>(rx ry x-axis-rotation large-arc-flag sweep-flag x y)  </td></tr>
+	     # <tr><td>R</td><td><a href="http://en.wikipedia.org/wiki/Catmull–Rom_spline#Catmull.E2.80.93Rom_spline">Catmull-Rom curveto</a>*</td><td>x1 y1 (x y)  </td></tr></tbody></table>
 	     * * “Catmull-Rom curveto” is a not standard SVG command and added in 2.0 to make life easier.
 	     * Note: there is a special case when path consist of just three commands: “M10,10R…z”. In this case path will smoothly connects to its beginning.
 	     > Usage
@@ -3434,7 +3434,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * For example of path strings, check out these icons: http://raphaeljs.com/icons/
 	    \*/
 	    paperproto.path = function (pathString) {
-	        pathString && !R.is(pathString, string) && !R.is(pathString[0], array) && (pathString += E);
+	        pathString && !R.is(pathString, string) && !R.is(pathString[0], array) && (pathString   = E);
 	        var out = R._engine.path(R.format[apply](R, arguments), this);
 	        this.__set__ && this.__set__.push(out);
 	        return out;
@@ -3611,8 +3611,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            body = doc.body,
 	            docElem = doc.documentElement,
 	            clientTop = docElem.clientTop || body.clientTop || 0, clientLeft = docElem.clientLeft || body.clientLeft || 0,
-	            top  = box.top  + (g.win.pageYOffset || docElem.scrollTop || body.scrollTop ) - clientTop,
-	            left = box.left + (g.win.pageXOffset || docElem.scrollLeft || body.scrollLeft) - clientLeft;
+	            top  = box.top     (g.win.pageYOffset || docElem.scrollTop || body.scrollTop ) - clientTop,
+	            left = box.left    (g.win.pageXOffset || docElem.scrollLeft || body.scrollLeft) - clientLeft;
 	        return {
 	            y: top,
 	            x: left
@@ -3750,10 +3750,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return set;
 	    };
 	    function x_y() {
-	        return this.x + S + this.y;
+	        return this.x    S    this.y;
 	    }
 	    function x_y_w_h() {
-	        return this.x + S + this.y + S + this.width + " \xd7 " + this.height;
+	        return this.x    S    this.y    S    this.width    " \xd7 "    this.height;
 	    }
 	    /*\
 	     * Element.isPointInside
@@ -3860,7 +3860,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        glow = glow || {};
 	        var s = {
-	            width: (glow.width || 10) + (+this.attr("stroke-width") || 1),
+	            width: (glow.width || 10)    (  this.attr("stroke-width") || 1),
 	            fill: glow.fill || false,
 	            opacity: glow.opacity == null ? .5 : glow.opacity,
 	            offsetx: glow.offsetx || 0,
@@ -3872,14 +3872,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            out = r.set(),
 	            path = this.realPath || getPath[this.type](this);
 	        path = this.matrix ? mapPath(path, this.matrix) : path;
-	        for (var i = 1; i < c + 1; i++) {
+	        for (var i = 1; i < c    1; i    ) {
 	            out.push(r.path(path).attr({
 	                stroke: s.color,
 	                fill: s.fill ? s.color : "none",
 	                "stroke-linejoin": "round",
 	                "stroke-linecap": "round",
-	                "stroke-width": +(s.width / c * i).toFixed(3),
-	                opacity: +(s.opacity / c).toFixed(3)
+	                "stroke-width":   (s.width / c * i).toFixed(3),
+	                opacity:   (s.opacity / c).toFixed(3)
 	            }));
 	        }
 	        return out.insertBefore(this).translate(s.offsetx, s.offsety);
@@ -3897,23 +3897,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	            path = path2curve(path);
 	            var x, y, p, l, sp = "", subpaths = {}, point,
 	                len = 0;
-	            for (var i = 0, ii = path.length; i < ii; i++) {
+	            for (var i = 0, ii = path.length; i < ii; i    ) {
 	                p = path[i];
 	                if (p[0] == "M") {
-	                    x = +p[1];
-	                    y = +p[2];
+	                    x =   p[1];
+	                    y =   p[2];
 	                } else {
 	                    l = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6]);
-	                    if (len + l > length) {
+	                    if (len    l > length) {
 	                        if (subpath && !subpaths.start) {
 	                            point = getPointAtSegmentLength(x, y, p[1], p[2], p[3], p[4], p[5], p[6], length - len);
-	                            sp += ["C" + point.start.x, point.start.y, point.m.x, point.m.y, point.x, point.y];
+	                            sp   = ["C"    point.start.x, point.start.y, point.m.x, point.m.y, point.x, point.y];
 	                            if (onlystart) {return sp;}
 	                            subpaths.start = sp;
-	                            sp = ["M" + point.x, point.y + "C" + point.n.x, point.n.y, point.end.x, point.end.y, p[5], p[6]].join();
-	                            len += l;
-	                            x = +p[5];
-	                            y = +p[6];
+	                            sp = ["M"    point.x, point.y    "C"    point.n.x, point.n.y, point.end.x, point.end.y, p[5], p[6]].join();
+	                            len   = l;
+	                            x =   p[5];
+	                            y =   p[6];
 	                            continue;
 	                        }
 	                        if (!istotal && !subpath) {
@@ -3921,11 +3921,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            return {x: point.x, y: point.y, alpha: point.alpha};
 	                        }
 	                    }
-	                    len += l;
-	                    x = +p[5];
-	                    y = +p[6];
+	                    len   = l;
+	                    x =   p[5];
+	                    y =   p[6];
 	                }
-	                sp += p.shift() + p;
+	                sp   = p.shift()    p;
 	            }
 	            subpaths.end = sp;
 	            point = istotal ? len : subpath ? subpaths : R.findDotsAtSegment(x, y, p[0], p[1], p[2], p[3], p[4], p[5], 1);
@@ -4105,28 +4105,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        "<>": function (n) {
 	            var q = .48 - n / 1.04,
-	                Q = math.sqrt(.1734 + q * q),
+	                Q = math.sqrt(.1734    q * q),
 	                x = Q - q,
 	                X = pow(abs(x), 1 / 3) * (x < 0 ? -1 : 1),
 	                y = -Q - q,
 	                Y = pow(abs(y), 1 / 3) * (y < 0 ? -1 : 1),
-	                t = X + Y + .5;
-	            return (1 - t) * 3 * t * t + t * t * t;
+	                t = X    Y    .5;
+	            return (1 - t) * 3 * t * t    t * t * t;
 	        },
 	        backIn: function (n) {
 	            var s = 1.70158;
-	            return n * n * ((s + 1) * n - s);
+	            return n * n * ((s    1) * n - s);
 	        },
 	        backOut: function (n) {
 	            n = n - 1;
 	            var s = 1.70158;
-	            return n * n * ((s + 1) * n + s) + 1;
+	            return n * n * ((s    1) * n    s)    1;
 	        },
 	        elastic: function (n) {
 	            if (n == !!n) {
 	                return n;
 	            }
-	            return pow(2, -10 * n) * math.sin((n - .075) * (2 * PI) / .3) + 1;
+	            return pow(2, -10 * n) * math.sin((n - .075) * (2 * PI) / .3)    1;
 	        },
 	        bounce: function (n) {
 	            var s = 7.5625,
@@ -4137,14 +4137,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            } else {
 	                if (n < (2 / p)) {
 	                    n -= (1.5 / p);
-	                    l = s * n * n + .75;
+	                    l = s * n * n    .75;
 	                } else {
 	                    if (n < (2.5 / p)) {
 	                        n -= (2.25 / p);
-	                        l = s * n * n + .9375;
+	                        l = s * n * n    .9375;
 	                    } else {
 	                        n -= (2.625 / p);
-	                        l = s * n * n + .984375;
+	                        l = s * n * n    .984375;
 	                    }
 	                }
 	            }
@@ -4167,9 +4167,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                               setTimeout(callback, 16);
 	                           },
 	        animation = function () {
-	            var Now = +new Date,
+	            var Now =   new Date,
 	                l = 0;
-	            for (; l < animationElements.length; l++) {
+	            for (; l < animationElements.length; l    ) {
 	                var e = animationElements[l];
 	                if (e.el.removed || e.paused) {
 	                    continue;
@@ -4192,7 +4192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    delete e.initstatus;
 	                    e.stop && animationElements.splice(l--, 1);
 	                } else {
-	                    e.status = (e.prev + (e.percent - e.prev) * (time / ms)) / e.anim.top;
+	                    e.status = (e.prev    (e.percent - e.prev) * (time / ms)) / e.anim.top;
 	                }
 	                if (time < 0) {
 	                    continue;
@@ -4202,21 +4202,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    for (var attr in from) if (from[has](attr)) {
 	                        switch (availableAnimAttrs[attr]) {
 	                            case nu:
-	                                now = +from[attr] + pos * ms * diff[attr];
+	                                now =   from[attr]    pos * ms * diff[attr];
 	                                break;
 	                            case "colour":
-	                                now = "rgb(" + [
-	                                    upto255(round(from[attr].r + pos * ms * diff[attr].r)),
-	                                    upto255(round(from[attr].g + pos * ms * diff[attr].g)),
-	                                    upto255(round(from[attr].b + pos * ms * diff[attr].b))
-	                                ].join(",") + ")";
+	                                now = "rgb("    [
+	                                    upto255(round(from[attr].r    pos * ms * diff[attr].r)),
+	                                    upto255(round(from[attr].g    pos * ms * diff[attr].g)),
+	                                    upto255(round(from[attr].b    pos * ms * diff[attr].b))
+	                                ].join(",")    ")";
 	                                break;
 	                            case "path":
 	                                now = [];
-	                                for (var i = 0, ii = from[attr].length; i < ii; i++) {
+	                                for (var i = 0, ii = from[attr].length; i < ii; i    ) {
 	                                    now[i] = [from[attr][i][0]];
-	                                    for (var j = 1, jj = from[attr][i].length; j < jj; j++) {
-	                                        now[i][j] = +from[attr][i][j] + pos * ms * diff[attr][i][j];
+	                                    for (var j = 1, jj = from[attr][i].length; j < jj; j    ) {
+	                                        now[i][j] =   from[attr][i][j]    pos * ms * diff[attr][i][j];
 	                                    }
 	                                    now[i] = now[i].join(S);
 	                                }
@@ -4225,15 +4225,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            case "transform":
 	                                if (diff[attr].real) {
 	                                    now = [];
-	                                    for (i = 0, ii = from[attr].length; i < ii; i++) {
+	                                    for (i = 0, ii = from[attr].length; i < ii; i    ) {
 	                                        now[i] = [from[attr][i][0]];
-	                                        for (j = 1, jj = from[attr][i].length; j < jj; j++) {
-	                                            now[i][j] = from[attr][i][j] + pos * ms * diff[attr][i][j];
+	                                        for (j = 1, jj = from[attr][i].length; j < jj; j    ) {
+	                                            now[i][j] = from[attr][i][j]    pos * ms * diff[attr][i][j];
 	                                        }
 	                                    }
 	                                } else {
 	                                    var get = function (i) {
-	                                        return +from[attr][i] + pos * ms * diff[attr][i];
+	                                        return   from[attr][i]    pos * ms * diff[attr][i];
 	                                    };
 	                                    // now = [["r", get(2), 0, 0], ["t", get(3), get(4)], ["s", get(0), get(1), 0, 0]];
 	                                    now = [["m", get(0), get(1), get(2), get(3), get(4), get(5)]];
@@ -4244,7 +4244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                    now = [];
 	                                    i = 4;
 	                                    while (i--) {
-	                                        now[i] = +from[attr][i] + pos * ms * diff[attr][i];
+	                                        now[i] =   from[attr][i]    pos * ms * diff[attr][i];
 	                                    }
 	                                }
 	                                break;
@@ -4253,7 +4253,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                now = [];
 	                                i = that.paper.customAttributes[attr].length;
 	                                while (i--) {
-	                                    now[i] = +from2[i] + pos * ms * diff[attr][i];
+	                                    now[i] =   from2[i]    pos * ms * diff[attr][i];
 	                                }
 	                                break;
 	                        }
@@ -4262,14 +4262,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    that.attr(set);
 	                    (function (id, that, anim) {
 	                        setTimeout(function () {
-	                            eve("raphael.anim.frame." + id, that, anim);
+	                            eve("raphael.anim.frame."    id, that, anim);
 	                        });
 	                    })(that.id, that, e.anim);
 	                } else {
 	                    (function(f, el, a) {
 	                        setTimeout(function() {
-	                            eve("raphael.anim.frame." + el.id, el, a);
-	                            eve("raphael.anim.finish." + el.id, el, a);
+	                            eve("raphael.anim.frame."    el.id, el, a);
+	                            eve("raphael.anim.finish."    el.id, el, a);
 	                            R.is(f, "function") && f.call(el);
 	                        });
 	                    })(e.callback, that, e.anim);
@@ -4322,7 +4322,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var a = params instanceof Animation ? params : R.animation(params, ms, easing, callback),
 	            x, y;
 	        runAnimation(a, element, a.percents[0], null, element.attr());
-	        for (var i = 0, ii = animationElements.length; i < ii; i++) {
+	        for (var i = 0, ii = animationElements.length; i < ii; i    ) {
 	            if (animationElements[i].anim == anim && animationElements[i].el == el) {
 	                animationElements[ii - 1].start = animationElements[i].start;
 	                break;
@@ -4343,20 +4343,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            by = 3 * (p2y - p1y) - cy,
 	            ay = 1 - cy - by;
 	        function sampleCurveX(t) {
-	            return ((ax * t + bx) * t + cx) * t;
+	            return ((ax * t    bx) * t    cx) * t;
 	        }
 	        function solve(x, epsilon) {
 	            var t = solveCurveX(x, epsilon);
-	            return ((ay * t + by) * t + cy) * t;
+	            return ((ay * t    by) * t    cy) * t;
 	        }
 	        function solveCurveX(x, epsilon) {
 	            var t0, t1, t2, x2, d2, i;
-	            for(t2 = x, i = 0; i < 8; i++) {
+	            for(t2 = x, i = 0; i < 8; i    ) {
 	                x2 = sampleCurveX(t2) - x;
 	                if (abs(x2) < epsilon) {
 	                    return t2;
 	                }
-	                d2 = (3 * ax * t2 + 2 * bx) * t2 + cx;
+	                d2 = (3 * ax * t2    2 * bx) * t2    cx;
 	                if (abs(d2) < 1e-6) {
 	                    break;
 	                }
@@ -4381,14 +4381,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                } else {
 	                    t1 = t2;
 	                }
-	                t2 = (t1 - t0) / 2 + t0;
+	                t2 = (t1 - t0) / 2    t0;
 	            }
 	            return t2;
 	        }
 	        return solve(t, 1 / (200 * duration));
 	    }
 	    elproto.onAnimation = function (f) {
-	        f ? eve.on("raphael.anim.frame." + this.id, f) : eve.unbind("raphael.anim.frame." + this.id);
+	        f ? eve.on("raphael.anim.frame."    this.id, f) : eve.unbind("raphael.anim.frame."    this.id);
 	        return this;
 	    };
 	    function Animation(anim, ms) {
@@ -4425,7 +4425,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Animation.prototype.delay = function (delay) {
 	        var a = new Animation(this.anim, this.ms);
 	        a.times = this.times;
-	        a.del = +delay || 0;
+	        a.del =   delay || 0;
 	        return a;
 	    };
 	    /*\
@@ -4460,7 +4460,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            to = {},
 	            diff = {};
 	        if (status) {
-	            for (i = 0, ii = animationElements.length; i < ii; i++) {
+	            for (i = 0, ii = animationElements.length; i < ii; i    ) {
 	                var e = animationElements[i];
 	                if (e.el.id == element.id && e.anim == anim) {
 	                    if (e.percent != percent) {
@@ -4474,14 +4474,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        } else {
-	            status = +to; // NaN
+	            status =   to; // NaN
 	        }
-	        for (var i = 0, ii = anim.percents.length; i < ii; i++) {
+	        for (var i = 0, ii = anim.percents.length; i < ii; i    ) {
 	            if (anim.percents[i] == percent || anim.percents[i] > status * anim.top) {
 	                percent = anim.percents[i];
 	                prev = anim.percents[i - 1] || 0;
 	                ms = ms / anim.top * (percent - prev);
-	                next = anim.percents[i + 1];
+	                next = anim.percents[i    1];
 	                params = anim.anim[percent];
 	                break;
 	            } else if (status) {
@@ -4515,9 +4515,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                toPath = pathes[1];
 	                            from[attr] = pathes[0];
 	                            diff[attr] = [];
-	                            for (i = 0, ii = from[attr].length; i < ii; i++) {
+	                            for (i = 0, ii = from[attr].length; i < ii; i    ) {
 	                                diff[attr][i] = [0];
-	                                for (var j = 1, jj = from[attr][i].length; j < jj; j++) {
+	                                for (var j = 1, jj = from[attr][i].length; j < jj; j    ) {
 	                                    diff[attr][i][j] = (toPath[i][j] - from[attr][i][j]) / ms;
 	                                }
 	                            }
@@ -4530,9 +4530,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                to[attr] = eq.to;
 	                                diff[attr] = [];
 	                                diff[attr].real = true;
-	                                for (i = 0, ii = from[attr].length; i < ii; i++) {
+	                                for (i = 0, ii = from[attr].length; i < ii; i    ) {
 	                                    diff[attr][i] = [from[attr][i][0]];
-	                                    for (j = 1, jj = from[attr][i].length; j < jj; j++) {
+	                                    for (j = 1, jj = from[attr][i].length; j < jj; j    ) {
 	                                        diff[attr][i][j] = (to[attr][i][j] - from[attr][i][j]) / ms;
 	                                    }
 	                                }
@@ -4606,18 +4606,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	                if (easyeasy && easyeasy.length == 5) {
 	                    var curve = easyeasy;
 	                    easyeasy = function (t) {
-	                        return CubicBezierAtTime(t, +curve[1], +curve[2], +curve[3], +curve[4], ms);
+	                        return CubicBezierAtTime(t,   curve[1],   curve[2],   curve[3],   curve[4], ms);
 	                    };
 	                } else {
 	                    easyeasy = pipe;
 	                }
 	            }
-	            timestamp = params.start || anim.start || +new Date;
+	            timestamp = params.start || anim.start ||   new Date;
 	            e = {
 	                anim: anim,
 	                percent: percent,
 	                timestamp: timestamp,
-	                start: timestamp + (anim.del || 0),
+	                start: timestamp    (anim.del || 0),
 	                status: 0,
 	                initstatus: status || 0,
 	                stop: false,
@@ -4650,7 +4650,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            isInAnim.initstatus = status;
 	            isInAnim.start = new Date - isInAnim.ms * status;
 	        }
-	        eve("raphael.anim.start." + element.id, element, anim);
+	        eve("raphael.anim.start."    element.id, element, anim);
 	    }
 	    /*\
 	     * Raphael.animation
@@ -4677,11 +4677,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            easing = null;
 	        }
 	        params = Object(params);
-	        ms = +ms || 0;
+	        ms =   ms || 0;
 	        var p = {},
 	            json,
 	            attr;
-	        for (attr in params) if (params[has](attr) && toFloat(attr) != attr && toFloat(attr) + "%" != attr) {
+	        for (attr in params) if (params[has](attr) && toFloat(attr) != attr && toFloat(attr)    "%" != attr) {
 	            json = true;
 	            p[attr] = params[attr];
 	        }
@@ -4696,7 +4696,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        lastKey = percent;
 	                    }
 	                }
-	                lastKey += '%';
+	                lastKey   = '%';
 	                // if already defined callback in the last keyframe, skip
 	                !params[lastKey].callback && (params[lastKey].callback = callback);
 	            }
@@ -4787,7 +4787,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return this;
 	        } else {
 	            len = animationElements.length;
-	            for (; i < len; i++) {
+	            for (; i < len; i    ) {
 	                e = animationElements[i];
 	                if (e.el.id == this.id && (!anim || e.anim == anim)) {
 	                    if (anim) {
@@ -4818,8 +4818,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     = (object) original element
 	    \*/
 	    elproto.pause = function (anim) {
-	        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
-	            if (eve("raphael.anim.pause." + this.id, this, animationElements[i].anim) !== false) {
+	        for (var i = 0; i < animationElements.length; i    ) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
+	            if (eve("raphael.anim.pause."    this.id, this, animationElements[i].anim) !== false) {
 	                animationElements[i].paused = true;
 	            }
 	        }
@@ -4838,9 +4838,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	     = (object) original element
 	    \*/
 	    elproto.resume = function (anim) {
-	        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
+	        for (var i = 0; i < animationElements.length; i    ) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
 	            var e = animationElements[i];
-	            if (eve("raphael.anim.resume." + this.id, this, e.anim) !== false) {
+	            if (eve("raphael.anim.resume."    this.id, this, e.anim) !== false) {
 	                delete e.paused;
 	                this.status(e.anim, e.status);
 	            }
@@ -4860,15 +4860,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	     = (object) original element
 	    \*/
 	    elproto.stop = function (anim) {
-	        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
-	            if (eve("raphael.anim.stop." + this.id, this, animationElements[i].anim) !== false) {
+	        for (var i = 0; i < animationElements.length; i    ) if (animationElements[i].el.id == this.id && (!anim || animationElements[i].anim == anim)) {
+	            if (eve("raphael.anim.stop."    this.id, this, animationElements[i].anim) !== false) {
 	                animationElements.splice(i--, 1);
 	            }
 	        }
 	        return this;
 	    };
 	    function stopAnimation(paper) {
-	        for (var i = 0; i < animationElements.length; i++) if (animationElements[i].el.paper == paper) {
+	        for (var i = 0; i < animationElements.length; i    ) if (animationElements[i].el.paper == paper) {
 	            animationElements.splice(i--, 1);
 	        }
 	    }
@@ -4884,10 +4884,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.length = 0;
 	        this.type = "set";
 	        if (items) {
-	            for (var i = 0, ii = items.length; i < ii; i++) {
+	            for (var i = 0, ii = items.length; i < ii; i    ) {
 	                if (items[i] && (items[i].constructor == elproto.constructor || items[i].constructor == Set)) {
 	                    this[this.items.length] = this.items[this.items.length] = items[i];
-	                    this.length++;
+	                    this.length    ;
 	                }
 	            }
 	        }
@@ -4903,12 +4903,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    setproto.push = function () {
 	        var item,
 	            len;
-	        for (var i = 0, ii = arguments.length; i < ii; i++) {
+	        for (var i = 0, ii = arguments.length; i < ii; i    ) {
 	            item = arguments[i];
 	            if (item && (item.constructor == elproto.constructor || item.constructor == Set)) {
 	                len = this.items.length;
 	                this[len] = this.items[len] = item;
-	                this.length++;
+	                this.length    ;
 	            }
 	        }
 	        return this;
@@ -4939,7 +4939,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     = (object) Set object
 	    \*/
 	    setproto.forEach = function (callback, thisArg) {
-	        for (var i = 0, ii = this.items.length; i < ii; i++) {
+	        for (var i = 0, ii = this.items.length; i < ii; i    ) {
 	            if (callback.call(thisArg, this.items[i], i) === false) {
 	                return this;
 	            }
@@ -4958,11 +4958,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    setproto.attr = function (name, value) {
 	        if (name && R.is(name, array) && R.is(name[0], "object")) {
-	            for (var j = 0, jj = name.length; j < jj; j++) {
+	            for (var j = 0, jj = name.length; j < jj; j    ) {
 	                this.items[j].attr(name[j]);
 	            }
 	        } else {
-	            for (var i = 0, ii = this.items.length; i < ii; i++) {
+	            for (var i = 0, ii = this.items.length; i < ii; i    ) {
 	                this.items[i].attr(name, value);
 	            }
 	        }
@@ -4993,28 +4993,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	     = (object) set elements that were deleted
 	    \*/
 	    setproto.splice = function (index, count, insertion) {
-	        index = index < 0 ? mmax(this.length + index, 0) : index;
+	        index = index < 0 ? mmax(this.length    index, 0) : index;
 	        count = mmax(0, mmin(this.length - index, count));
 	        var tail = [],
 	            todel = [],
 	            args = [],
 	            i;
-	        for (i = 2; i < arguments.length; i++) {
+	        for (i = 2; i < arguments.length; i    ) {
 	            args.push(arguments[i]);
 	        }
-	        for (i = 0; i < count; i++) {
-	            todel.push(this[index + i]);
+	        for (i = 0; i < count; i    ) {
+	            todel.push(this[index    i]);
 	        }
-	        for (; i < this.length - index; i++) {
-	            tail.push(this[index + i]);
+	        for (; i < this.length - index; i    ) {
+	            tail.push(this[index    i]);
 	        }
 	        var arglen = args.length;
-	        for (i = 0; i < arglen + tail.length; i++) {
-	            this.items[index + i] = this[index + i] = i < arglen ? args[i] : tail[i - arglen];
+	        for (i = 0; i < arglen    tail.length; i    ) {
+	            this.items[index    i] = this[index    i] = i < arglen ? args[i] : tail[i - arglen];
 	        }
 	        i = this.items.length = this.length -= count - arglen;
 	        while (this[i]) {
-	            delete this[i++];
+	            delete this[i    ];
 	        }
 	        return new Set(todel);
 	    };
@@ -5030,7 +5030,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     = (boolean) `true` if object was found & removed from the set
 	    \*/
 	    setproto.exclude = function (el) {
-	        for (var i = 0, ii = this.length; i < ii; i++) if (this[i] == el) {
+	        for (var i = 0, ii = this.length; i < ii; i    ) if (this[i] == el) {
 	            this.splice(i, 1);
 	            return true;
 	        }
@@ -5073,8 +5073,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var box = this.items[i].getBBox();
 	            x.push(box.x);
 	            y.push(box.y);
-	            x2.push(box.x + box.width);
-	            y2.push(box.y + box.height);
+	            x2.push(box.x    box.width);
+	            y2.push(box.y    box.height);
 	        }
 	        x = mmin[apply](0, x);
 	        y = mmin[apply](0, y);
@@ -5091,7 +5091,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    setproto.clone = function (s) {
 	        s = this.paper.set();
-	        for (var i = 0, ii = this.items.length; i < ii; i++) {
+	        for (var i = 0, ii = this.items.length; i < ii; i    ) {
 	            s.push(this.items[i].clone());
 	        }
 	        return s;
@@ -5178,9 +5178,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                fontcopy.glyphs[glyph] = {
 	                    w: path.w,
 	                    k: {},
-	                    d: path.d && "M" + path.d.replace(/[mlcxtrv]/g, function (command) {
+	                    d: path.d && "M"    path.d.replace(/[mlcxtrv]/g, function (command) {
 	                            return {l: "L", c: "C", x: "z", t: "m", r: "l", v: "c"}[command] || "M";
-	                        }) + "z"
+	                        })    "z"
 	                };
 	                if (path.k) {
 	                    for (var k in path.k) if (path[has](k)) {
@@ -5210,13 +5210,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    paperproto.getFont = function (family, weight, style, stretch) {
 	        stretch = stretch || "normal";
 	        style = style || "normal";
-	        weight = +weight || {normal: 400, bold: 700, lighter: 300, bolder: 800}[weight] || 400;
+	        weight =   weight || {normal: 400, bold: 700, lighter: 300, bolder: 800}[weight] || 400;
 	        if (!R.fonts) {
 	            return;
 	        }
 	        var font = R.fonts[family];
 	        if (!font) {
-	            var name = new RegExp("(^|\\s)" + family.replace(/[^\w\d\s+!~.:_-]/g, E) + "(\\s|$)", "i");
+	            var name = new RegExp("(^|\\s)"    family.replace(/[^\w\d\s  !~.:_-]/g, E)    "(\\s|$)", "i");
 	            for (var fontName in R.fonts) if (R.fonts[has](fontName)) {
 	                if (name.test(fontName)) {
 	                    font = R.fonts[fontName];
@@ -5226,7 +5226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        var thefont;
 	        if (font) {
-	            for (var i = 0, ii = font.length; i < ii; i++) {
+	            for (var i = 0, ii = font.length; i < ii; i    ) {
 	                thefont = font[i];
 	                if (thefont.face["font-weight"] == weight && (thefont.face["font-style"] == style || !thefont.face["font-style"]) && thefont.face["font-stretch"] == stretch) {
 	                    break;
@@ -5269,24 +5269,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (font) {
 	            scale = (size || 16) / font.face["units-per-em"];
 	            var bb = font.face.bbox[split](separator),
-	                top = +bb[0],
+	                top =   bb[0],
 	                lineHeight = bb[3] - bb[1],
 	                shifty = 0,
-	                height = +bb[1] + (origin == "baseline" ? lineHeight + (+font.face.descent) : lineHeight / 2);
-	            for (var i = 0, ii = letters.length; i < ii; i++) {
+	                height =   bb[1]    (origin == "baseline" ? lineHeight    (  font.face.descent) : lineHeight / 2);
+	            for (var i = 0, ii = letters.length; i < ii; i    ) {
 	                if (letters[i] == "\n") {
 	                    shift = 0;
 	                    curr = 0;
 	                    notfirst = 0;
-	                    shifty += lineHeight * line_spacing;
+	                    shifty   = lineHeight * line_spacing;
 	                } else {
 	                    var prev = notfirst && font.glyphs[letters[i - 1]] || {},
 	                        curr = font.glyphs[letters[i]];
-	                    shift += notfirst ? (prev.w || font.w) + (prev.k && prev.k[letters[i]] || 0) + (font.w * letter_spacing) : 0;
+	                    shift   = notfirst ? (prev.w || font.w)    (prev.k && prev.k[letters[i]] || 0)    (font.w * letter_spacing) : 0;
 	                    notfirst = 1;
 	                }
 	                if (curr && curr.d) {
-	                    path += R.transformPath(curr.d, ["t", shift * scale, shifty * scale, "s", scale, scale, top, height, "t", (x - top) / scale, (y - height) / scale]);
+	                    path   = R.transformPath(curr.d, ["t", shift * scale, shifty * scale, "s", scale, scale, top, height, "t", (x - top) / scale, (y - height) / scale]);
 	                }
 	            }
 	        }
@@ -5330,7 +5330,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                i = 0,
 	                ii = json.length,
 	                j;
-	            for (; i < ii; i++) {
+	            for (; i < ii; i    ) {
 	                j = json[i] || {};
 	                elements[has](j.type) && res.push(this[j.type]().attr(j));
 	            }
@@ -5360,7 +5360,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    R.format = function (token, params) {
 	        var args = R.is(params, array) ? [0][concat](params) : arguments;
 	        token && R.is(token, string) && args.length - 1 && (token = token.replace(formatrg, function (str, i) {
-	            return args[++i] == null ? E : args[i];
+	            return args[    i] == null ? E : args[i];
 	        }));
 	        return token || E;
 	    };
@@ -5388,8 +5388,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     | }));
 	    \*/
 	    R.fullfill = (function () {
-	        var tokenRegex = /\{([^\}]+)\}/g,
-	            objNotationRegex = /(?:(?:^|\.)(.+?)(?=\[|\.|$|\()|\[('|")(.+?)\2\])(\(\))?/g, // matches .xxxxx or ["xxxxx"] to run over object properties
+	        var tokenRegex = /\{([^\}]  )\}/g,
+	            objNotationRegex = /(?:(?:^|\.)(.  ?)(?=\[|\.|$|\()|\[('|")(.  ?)\2\])(\(\))?/g, // matches .xxxxx or ["xxxxx"] to run over object properties
 	            replacer = function (all, key, obj) {
 	                var res = obj;
 	                key.replace(objNotationRegex, function (all, name, quote, quotedName, isFunc) {
@@ -5401,7 +5401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        typeof res == "function" && isFunc && (res = res());
 	                    }
 	                });
-	                res = (res == null || res == obj ? all : res) + "";
+	                res = (res == null || res == obj ? all : res)    "";
 	                return res;
 	            };
 	        return function (str, obj) {
@@ -5546,7 +5546,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                errors = [];
 	            current_event = name;
 	            stop = 0;
-	            for (var i = 0, ii = listeners.length; i < ii; i++) if ("zIndex" in listeners[i]) {
+	            for (var i = 0, ii = listeners.length; i < ii; i    ) if ("zIndex" in listeners[i]) {
 	                indexed.push(listeners[i].zIndex);
 	                if (listeners[i].zIndex < 0) {
 	                    queue[listeners[i].zIndex] = listeners[i];
@@ -5554,14 +5554,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            indexed.sort(numsort);
 	            while (indexed[z] < 0) {
-	                l = queue[indexed[z++]];
+	                l = queue[indexed[z    ]];
 	                out.push(l.apply(scope, args));
 	                if (stop) {
 	                    stop = oldstop;
 	                    return out;
 	                }
 	            }
-	            for (i = 0; i < ii; i++) {
+	            for (i = 0; i < ii; i    ) {
 	                l = listeners[i];
 	                if ("zIndex" in l) {
 	                    if (l.zIndex == indexed[z]) {
@@ -5570,7 +5570,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            break;
 	                        }
 	                        do {
-	                            z++;
+	                            z    ;
 	                            l = queue[indexed[z]];
 	                            l && out.push(l.apply(scope, args));
 	                            if (stop) {
@@ -5618,9 +5618,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nes,
 	            es = [e],
 	            out = [];
-	        for (i = 0, ii = names.length; i < ii; i++) {
+	        for (i = 0, ii = names.length; i < ii; i    ) {
 	            nes = [];
-	            for (j = 0, jj = es.length; j < jj; j++) {
+	            for (j = 0, jj = es.length; j < jj; j    ) {
 	                e = es[j].n;
 	                items = [e[names[i]], e[wildcard]];
 	                k = 2;
@@ -5668,18 +5668,18 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 	        var names = name.split(separator),
 	            e = events;
-	        for (var i = 0, ii = names.length; i < ii; i++) {
+	        for (var i = 0, ii = names.length; i < ii; i    ) {
 	            e = e.n;
 	            e = e.hasOwnProperty(names[i]) && e[names[i]] || (e[names[i]] = {n: {}});
 	        }
 	        e.f = e.f || [];
-	        for (i = 0, ii = e.f.length; i < ii; i++) if (e.f[i] == f) {
+	        for (i = 0, ii = e.f.length; i < ii; i    ) if (e.f[i] == f) {
 	            return fun;
 	        }
 	        e.f.push(f);
 	        return function (zIndex) {
-	            if (+zIndex == +zIndex) {
-	                f.zIndex = +zIndex;
+	            if (  zIndex ==   zIndex) {
+	                f.zIndex =   zIndex;
 	            }
 	        };
 	    };
@@ -5730,7 +5730,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    \*/
 	    eve.nt = function (subname) {
 	        if (subname) {
-	            return new RegExp("(?:\\.|\\/|^)" + subname + "(?:\\.|\\/|$)").test(current_event);
+	            return new RegExp("(?:\\.|\\/|^)"    subname    "(?:\\.|\\/|$)").test(current_event);
 	        }
 	        return current_event;
 	    };
@@ -5775,8 +5775,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            splice,
 	            i, ii, j, jj,
 	            cur = [events];
-	        for (i = 0, ii = names.length; i < ii; i++) {
-	            for (j = 0; j < cur.length; j += splice.length - 2) {
+	        for (i = 0, ii = names.length; i < ii; i    ) {
+	            for (j = 0; j < cur.length; j   = splice.length - 2) {
 	                splice = [j, 1];
 	                e = cur[j].n;
 	                if (names[i] != wildcard) {
@@ -5791,12 +5791,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                cur.splice.apply(cur, splice);
 	            }
 	        }
-	        for (i = 0, ii = cur.length; i < ii; i++) {
+	        for (i = 0, ii = cur.length; i < ii; i    ) {
 	            e = cur[i];
 	            while (e.n) {
 	                if (f) {
 	                    if (e.f) {
-	                        for (j = 0, jj = e.f.length; j < jj; j++) if (e.f[j] == f) {
+	                        for (j = 0, jj = e.f.length; j < jj; j    ) if (e.f[j] == f) {
 	                            e.f.splice(j, 1);
 	                            break;
 	                        }
@@ -5804,7 +5804,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                    for (key in e.n) if (e.n[has](key) && e.n[key].f) {
 	                        var funcs = e.n[key].f;
-	                        for (j = 0, jj = funcs.length; j < jj; j++) if (funcs[j] == f) {
+	                        for (j = 0, jj = funcs.length; j < jj; j    ) if (funcs[j] == f) {
 	                            funcs.splice(j, 1);
 	                            break;
 	                        }
@@ -5852,7 +5852,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    \*/
 	    eve.version = version;
 	    eve.toString = function () {
-	        return "You are running Eve " + version;
+	        return "You are running Eve "    version;
 	    };
 	    (typeof module != "undefined" && module.exports) ? (module.exports = eve) : ( true ? (!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return eve; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))) : (glob.eve = eve));
 	})(this);
@@ -5875,7 +5875,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        mmax = math.max,
 	        abs = math.abs,
 	        pow = math.pow,
-	        separator = /[, ]+/,
+	        separator = /[, ]  /,
 	        eve = R.eve,
 	        E = "",
 	        S = " ";
@@ -5889,7 +5889,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        markerCounter = {};
 	    R.toString = function () {
-	        return  "Your browser supports SVG.\nYou are running Rapha\xebl " + this.version;
+	        return  "Your browser supports SVG.\nYou are running Rapha\xebl "    this.version;
 	    };
 	    var $ = function (el, attr) {
 	        if (attr) {
@@ -5911,7 +5911,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    addGradientFill = function (element, gradient) {
 	        var type = "linear",
-	            id = element.id + gradient,
+	            id = element.id    gradient,
 	            fx = .5, fy = .5,
 	            o = element.node,
 	            SVG = element.paper,
@@ -5924,8 +5924,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    fx = toFloat(_fx);
 	                    fy = toFloat(_fy);
 	                    var dir = ((fy > .5) * 2 - 1);
-	                    pow(fx - .5, 2) + pow(fy - .5, 2) > .25 &&
-	                        (fy = math.sqrt(.25 - pow(fx - .5, 2)) * dir + .5) &&
+	                    pow(fx - .5, 2)    pow(fy - .5, 2) > .25 &&
+	                        (fy = math.sqrt(.25 - pow(fx - .5, 2)) * dir    .5) &&
 	                        fy != .5 &&
 	                        (fy = fy.toFixed(5) - 1e-5 * dir);
 	                }
@@ -5963,7 +5963,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 
 	            if (!element.gradient) {
-	                el = $(type + "Gradient", {id: id});
+	                el = $(type    "Gradient", {id: id});
 	                element.gradient = el;
 	                $(el, type == "radial" ? {
 	                    fx: fx,
@@ -5976,7 +5976,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    gradientTransform: element.matrix.invert()
 	                });
 	                SVG.defs.appendChild(el);
-	                for (var i = 0, ii = dots.length; i < ii; i++) {
+	                for (var i = 0, ii = dots.length; i < ii; i    ) {
 	                    el.appendChild($("stop", {
 	                        offset: dots[i].offset ? dots[i].offset : i ? "100%" : "0%",
 	                        "stop-color": dots[i].color || "#fff",
@@ -6001,20 +6001,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    fillurl = function (id) {
 	      if (isIE9or10()) {
-	          return "url('#" + id + "')";
+	          return "url('#"    id    "')";
 	      }
 	      var location = document.location;
 	      var locationString = (
-	          location.protocol + '//' +
-	          location.host +
-	          location.pathname +
+	          location.protocol    '//'   
+	          location.host   
+	          location.pathname   
 	          location.search
 	      );
-	      return "url('" + locationString + "#" + id + "')";
+	      return "url('"    locationString    "#"    id    "')";
 	    },
 	    updatePosition = function (o) {
 	        var bbox = o.getBBox(1);
-	        $(o.pattern, {patternTransform: o.matrix.invert() + " translate(" + bbox.x + "," + bbox.y + ")"});
+	        $(o.pattern, {patternTransform: o.matrix.invert()    " translate("    bbox.x    ","    bbox.y    ")"});
 	    },
 	    addArrow = function (o, value, isEnd) {
 	        if (o.type == "path") {
@@ -6051,9 +6051,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	            if (type == "open") {
-	                w += 2;
-	                h += 2;
-	                t += 2;
+	                w   = 2;
+	                h   = 2;
+	                t   = 2;
 	                dx = 1;
 	                refX = isEnd ? 4 : 1;
 	                attr = {
@@ -6079,8 +6079,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                o._.arrows = {};
 	            }
 	            if (type != "none") {
-	                var pathId = "raphael-marker-" + type,
-	                    markerId = "raphael-marker-" + se + type + w + h + "-obj" + o.id;
+	                var pathId = "raphael-marker-"    type,
+	                    markerId = "raphael-marker-"    se    type    w    h    "-obj"    o.id;
 	                if (!R._g.doc.getElementById(pathId)) {
 	                    p.defs.appendChild($($("path"), {
 	                        "stroke-linecap": "round",
@@ -6089,7 +6089,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }));
 	                    markerCounter[pathId] = 1;
 	                } else {
-	                    markerCounter[pathId]++;
+	                    markerCounter[pathId]    ;
 	                }
 	                var marker = R._g.doc.getElementById(markerId),
 	                    use;
@@ -6103,15 +6103,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        refY: h / 2
 	                    });
 	                    use = $($("use"), {
-	                        "xlink:href": "#" + pathId,
-	                        transform: (isEnd ? "rotate(180 " + w / 2 + " " + h / 2 + ") " : E) + "scale(" + w / t + "," + h / t + ")",
-	                        "stroke-width": (1 / ((w / t + h / t) / 2)).toFixed(4)
+	                        "xlink:href": "#"    pathId,
+	                        transform: (isEnd ? "rotate(180 "    w / 2    " "    h / 2    ") " : E)    "scale("    w / t    ","    h / t    ")",
+	                        "stroke-width": (1 / ((w / t    h / t) / 2)).toFixed(4)
 	                    });
 	                    marker.appendChild(use);
 	                    p.defs.appendChild(marker);
 	                    markerCounter[markerId] = 1;
 	                } else {
-	                    markerCounter[markerId]++;
+	                    markerCounter[markerId]    ;
 	                    use = marker.getElementsByTagName("use")[0];
 	                }
 	                $(use, attr);
@@ -6124,16 +6124,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    to = R.getTotalLength(attrs.path) - (o._.arrows.enddx * stroke || 0);
 	                }
 	                attr = {};
-	                attr["marker-" + se] = "url(#" + markerId + ")";
+	                attr["marker-"    se] = "url(#"    markerId    ")";
 	                if (to || from) {
 	                    attr.d = R.getSubpath(attrs.path, from, to);
 	                }
 	                $(node, attr);
-	                o._.arrows[se + "Path"] = pathId;
-	                o._.arrows[se + "Marker"] = markerId;
-	                o._.arrows[se + "dx"] = delta;
-	                o._.arrows[se + "Type"] = type;
-	                o._.arrows[se + "String"] = value;
+	                o._.arrows[se    "Path"] = pathId;
+	                o._.arrows[se    "Marker"] = markerId;
+	                o._.arrows[se    "dx"] = delta;
+	                o._.arrows[se    "Type"] = type;
+	                o._.arrows[se    "String"] = value;
 	            } else {
 	                if (isEnd) {
 	                    from = o._.arrows.startdx * stroke || 0;
@@ -6142,12 +6142,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    from = 0;
 	                    to = R.getTotalLength(attrs.path) - (o._.arrows.enddx * stroke || 0);
 	                }
-	                o._.arrows[se + "Path"] && $(node, {d: R.getSubpath(attrs.path, from, to)});
-	                delete o._.arrows[se + "Path"];
-	                delete o._.arrows[se + "Marker"];
-	                delete o._.arrows[se + "dx"];
-	                delete o._.arrows[se + "Type"];
-	                delete o._.arrows[se + "String"];
+	                o._.arrows[se    "Path"] && $(node, {d: R.getSubpath(attrs.path, from, to)});
+	                delete o._.arrows[se    "Path"];
+	                delete o._.arrows[se    "Marker"];
+	                delete o._.arrows[se    "dx"];
+	                delete o._.arrows[se    "Type"];
+	                delete o._.arrows[se    "String"];
 	            }
 	            for (attr in markerCounter) if (markerCounter[has](attr) && !markerCounter[attr]) {
 	                var item = R._g.doc.getElementById(attr);
@@ -6175,7 +6175,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                dashes = [],
 	                i = value.length;
 	            while (i--) {
-	                dashes[i] = value[i] * width + ((i % 2) ? 1 : -1) * butt;
+	                dashes[i] = value[i] * width    ((i % 2) ? 1 : -1) * butt;
 	            }
 	            $(o.node, {"stroke-dasharray": dashes.join(",")});
 	        }
@@ -6254,7 +6254,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            });
 	                            el.appendChild(rc);
 	                            o.paper.defs.appendChild(el);
-	                            $(node, {"clip-path": "url(#" + el.id + ")"});
+	                            $(node, {"clip-path": "url(#"    el.id    ")"});
 	                            o.clip = rc;
 	                        }
 	                        if (!value) {
@@ -6369,7 +6369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                });
 	                            })(el);
 	                            o.paper.defs.appendChild(el);
-	                            $(node, {fill: "url(#" + el.id + ")"});
+	                            $(node, {fill: "url(#"    el.id    ")"});
 	                            o.pattern = el;
 	                            o.pattern && updatePosition(o);
 	                            break;
@@ -6424,7 +6424,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            break;
 	                        }
 	                    default:
-	                        att == "font-size" && (value = toInt(value, 10) + "px");
+	                        att == "font-size" && (value = toInt(value, 10)    "px");
 	                        var cssrule = att.replace(/(\-.)/g, function (w) {
 	                            return w.substring(1).toUpperCase();
 	                        });
@@ -6456,7 +6456,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var texts = Str(params.text).split("\n"),
 	                tspans = [],
 	                tspan;
-	            for (var i = 0, ii = texts.length; i < ii; i++) {
+	            for (var i = 0, ii = texts.length; i < ii; i    ) {
 	                tspan = $("tspan");
 	                i && $(tspan, {dy: fontSize * leading, x: a.x});
 	                tspan.appendChild(R._g.doc.createTextNode(texts[i]));
@@ -6465,7 +6465,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        } else {
 	            tspans = node.getElementsByTagName("tspan");
-	            for (i = 0, ii = tspans.length; i < ii; i++) if (i) {
+	            for (i = 0, ii = tspans.length; i < ii; i    ) if (i) {
 	                $(tspans[i], {dy: fontSize * leading, x: a.x});
 	            } else {
 	                $(tspans[0], {dy: 0});
@@ -6474,7 +6474,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        $(node, {x: a.x, y: a.y});
 	        el._.dirty = 1;
 	        var bb = el._getBBox(),
-	            dif = a.y - (bb.y + bb.height / 2);
+	            dif = a.y - (bb.y    bb.height / 2);
 	        dif && R.is(dif, "finite") && $(tspans[0], {dy: dif});
 	    },
 	    getRealNode = function (node) {
@@ -6522,7 +6522,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Unique id of the element. Especially useful when you want to listen to events of the element,
 	         * because all events are fired in format `<module>.<action>.<id>`. Also useful for @Paper.getById method.
 	        \*/
-	        this.id = R._oid++;
+	        this.id = R._oid    ;
 	        node.raphaelid = this.id;
 	        this.matrix = R.matrix();
 	        this.realPath = null;
@@ -6611,8 +6611,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (cy == null) && (cx = cy);
 	        if (cx == null || cy == null) {
 	            var bbox = this.getBBox(1);
-	            cx = bbox.x + bbox.width / 2;
-	            cy = bbox.y + bbox.height / 2;
+	            cx = bbox.x    bbox.width / 2;
+	            cy = bbox.y    bbox.height / 2;
 	        }
 	        this.transform(this._.transform.concat([["r", deg, cx, cy]]));
 	        return this;
@@ -6648,8 +6648,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (cx == null || cy == null) {
 	            var bbox = this.getBBox(1);
 	        }
-	        cx = cx == null ? bbox.x + bbox.width / 2 : cx;
-	        cy = cy == null ? bbox.y + bbox.height / 2 : cy;
+	        cx = cx == null ? bbox.x    bbox.width / 2 : cx;
+	        cy = cy == null ? bbox.y    bbox.height / 2 : cy;
 	        this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
 	        return this;
 	    };
@@ -6673,7 +6673,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            dy = toFloat(dx[1]);
 	        }
 	        dx = toFloat(dx[0]) || 0;
-	        dy = +dy || 0;
+	        dy =   dy || 0;
 	        this.transform(this._.transform.concat([["t", dx, dy]]));
 	        return this;
 	    };
@@ -6770,7 +6770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        var paper = this.paper;
 	        paper.__set__ && paper.__set__.exclude(this);
-	        eve.unbind("raphael.*.*." + this.id);
+	        eve.unbind("raphael.*.*."    this.id);
 	        if (this.gradient) {
 	            paper.defs.removeChild(this.gradient);
 	        }
@@ -6795,7 +6795,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            containerStyle;
 	        if (this.paper.canvas.parentElement) {
 	          containerStyle = this.paper.canvas.parentElement.style;
-	        } //IE10+ can't find parentElement
+	        } //IE10   can't find parentElement
 	        else if (this.paper.canvas.parentNode) {
 	          containerStyle = this.paper.canvas.parentNode.style;
 	        }
@@ -6927,7 +6927,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            var names = name.split(separator),
 	                out = {};
-	            for (var i = 0, ii = names.length; i < ii; i++) {
+	            for (var i = 0, ii = names.length; i < ii; i    ) {
 	                name = names[i];
 	                if (name in this.attrs) {
 	                    out[name] = this.attrs[name];
@@ -6941,7 +6941,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        if (value == null && R.is(name, "array")) {
 	            out = {};
-	            for (i = 0, ii = name.length; i < ii; i++) {
+	            for (i = 0, ii = name.length; i < ii; i    ) {
 	                out[name[i]] = this.attr(name[i]);
 	            }
 	            return out;
@@ -6953,7 +6953,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            params = name;
 	        }
 	        for (var key in params) {
-	            eve("raphael.attr." + key + "." + this.id, this, params[key]);
+	            eve("raphael.attr."    key    "."    this.id, this, params[key]);
 	        }
 	        for (key in this.paper.customAttributes) if (this.paper.customAttributes[has](key) && params[has](key) && R.is(this.paper.customAttributes[key], "function")) {
 	            var par = this.paper.customAttributes[key].apply(this, [].concat(params[key]));
@@ -7043,16 +7043,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    elproto.blur = function (size) {
 	        // Experimental. No Safari support. Use it on your own risk.
 	        var t = this;
-	        if (+size !== 0) {
+	        if (  size !== 0) {
 	            var fltr = $("filter"),
 	                blur = $("feGaussianBlur");
 	            t.attrs.blur = size;
 	            fltr.id = R.createUUID();
-	            $(blur, {stdDeviation: +size || 1.5});
+	            $(blur, {stdDeviation:   size || 1.5});
 	            fltr.appendChild(blur);
 	            t.paper.defs.appendChild(fltr);
 	            t._blur = fltr;
-	            $(t.node, {filter: "url(#" + fltr.id + ")"});
+	            $(t.node, {filter: "url(#"    fltr.id    ")"});
 	        } else {
 	            if (t._blur) {
 	                t._blur.parentNode.removeChild(t._blur);
@@ -7153,11 +7153,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            "xmlns:xlink": "http://www.w3.org/1999/xlink"
 	        });
 	        if (container == 1) {
-	            cnvs.style.cssText = css + "position:absolute;left:" + x + "px;top:" + y + "px";
+	            cnvs.style.cssText = css    "position:absolute;left:"    x    "px;top:"    y    "px";
 	            R._g.doc.body.appendChild(cnvs);
 	            isFloating = 1;
 	        } else {
-	            cnvs.style.cssText = css + "position:relative";
+	            cnvs.style.cssText = css    "position:relative";
 	            if (container.firstChild) {
 	                container.insertBefore(cnvs, container.firstChild);
 	            } else {
@@ -7187,10 +7187,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                size = 1;
 	            }
 	            delete this._vbSize;
-	            vb = "0 0 " + this.width + S + this.height;
+	            vb = "0 0 "    this.width    S    this.height;
 	        } else {
 	            this._vbSize = size;
-	            vb = x + S + y + S + w + S + h;
+	            vb = x    S    y    S    w    S    h;
 	        }
 	        $(this.canvas, {
 	            viewBox: vb,
@@ -7229,12 +7229,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            top = -pos.f % 1;
 	        if (left || top) {
 	            if (left) {
-	                this._left = (this._left + left) % 1;
-	                s.left = this._left + "px";
+	                this._left = (this._left    left) % 1;
+	                s.left = this._left    "px";
 	            }
 	            if (top) {
-	                this._top = (this._top + top) % 1;
-	                s.top = this._top + "px";
+	                this._top = (this._top    top) % 1;
+	                s.top = this._top    "px";
 	            }
 	        }
 	    };
@@ -7251,7 +7251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            c.removeChild(c.firstChild);
 	        }
 	        this.bottom = this.top = null;
-	        (this.desc = $("desc")).appendChild(R._g.doc.createTextNode("Created with Rapha\xebl " + R.version));
+	        (this.desc = $("desc")).appendChild(R._g.doc.createTextNode("Created with Rapha\xebl "    R.version));
 	        c.appendChild(this.desc);
 	        c.appendChild(this.defs = $("defs"));
 	    };
@@ -7300,15 +7300,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        mmin = math.min,
 	        abs = math.abs,
 	        fillString = "fill",
-	        separator = /[, ]+/,
+	        separator = /[, ]  /,
 	        eve = R.eve,
 	        ms = " progid:DXImageTransform.Microsoft",
 	        S = " ",
 	        E = "",
 	        map = {M: "m", L: "l", C: "c", Z: "x", m: "t", l: "r", c: "v", z: "x"},
 	        bites = /([clmz]),?([^clmz]*)/gi,
-	        blurregexp = / progid:\S+Blur\([^\)]+\)/g,
-	        val = /-?[^,\s-]+/g,
+	        blurregexp = / progid:\S  Blur\([^\)]  \)/g,
+	        val = /-?[^,\s-]  /g,
 	        cssDot = "position:absolute;left:0;top:0;width:1px;height:1px;behavior:url(#default#VML)",
 	        zoom = 21600,
 	        pathTypes = {path: 1, rect: 1, image: 1},
@@ -7325,23 +7325,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        res = map[command];
 	                    args.replace(val, function (value) {
 	                        if (isMove && vals.length == 2) {
-	                            res += vals + map[command == "m" ? "l" : "L"];
+	                            res   = vals    map[command == "m" ? "l" : "L"];
 	                            vals = [];
 	                        }
 	                        vals.push(round(value * zoom));
 	                    });
-	                    return res + vals;
+	                    return res    vals;
 	                });
 	                return res;
 	            }
 	            var pa = command(path), p, r;
 	            res = [];
-	            for (var i = 0, ii = pa.length; i < ii; i++) {
+	            for (var i = 0, ii = pa.length; i < ii; i    ) {
 	                p = pa[i];
 	                r = pa[i][0].toLowerCase();
 	                r == "z" && (r = "x");
-	                for (var j = 1, jj = p.length; j < jj; j++) {
-	                    r += round(p[j] * zoom) + (j != jj - 1 ? "," : E);
+	                for (var j = 1, jj = p.length; j < jj; j    ) {
+	                    r   = round(p[j] * zoom)    (j != jj - 1 ? "," : E);
 	                }
 	                res.push(r);
 	            }
@@ -7370,34 +7370,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (!sx || !sy) {
 	                return;
 	            }
-	            o.coordsize = abs(kx) + S + abs(ky);
+	            o.coordsize = abs(kx)    S    abs(ky);
 	            s.rotation = deg * (sx * sy < 0 ? -1 : 1);
 	            if (deg) {
 	                var c = compensation(deg, dx, dy);
 	                dx = c.dx;
 	                dy = c.dy;
 	            }
-	            sx < 0 && (flip += "x");
-	            sy < 0 && (flip += " y") && (y = -1);
+	            sx < 0 && (flip   = "x");
+	            sy < 0 && (flip   = " y") && (y = -1);
 	            s.flip = flip;
-	            o.coordorigin = (dx * -kx) + S + (dy * -ky);
+	            o.coordorigin = (dx * -kx)    S    (dy * -ky);
 	            if (fillpos || _.fillsize) {
 	                var fill = o.getElementsByTagName(fillString);
 	                fill = fill && fill[0];
 	                o.removeChild(fill);
 	                if (fillpos) {
 	                    c = compensation(deg, m.x(fillpos[0], fillpos[1]), m.y(fillpos[0], fillpos[1]));
-	                    fill.position = c.dx * y + S + c.dy * y;
+	                    fill.position = c.dx * y    S    c.dy * y;
 	                }
 	                if (_.fillsize) {
-	                    fill.size = _.fillsize[0] * abs(sx) + S + _.fillsize[1] * abs(sy);
+	                    fill.size = _.fillsize[0] * abs(sx)    S    _.fillsize[1] * abs(sy);
 	                }
 	                o.appendChild(fill);
 	            }
 	            s.visibility = "visible";
 	        };
 	    R.toString = function () {
-	        return  "Your browser doesn\u2019t support SVG. Falling down to VML.\nYou are running Rapha\xebl " + this.version;
+	        return  "Your browser doesn\u2019t support SVG. Falling down to VML.\nYou are running Rapha\xebl "    this.version;
 	    };
 	    var addArrow = function (o, value, isEnd) {
 	        var values = Str(value).toLowerCase().split("-"),
@@ -7423,9 +7423,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 	        var stroke = o.node.getElementsByTagName("stroke")[0];
-	        stroke[se + "arrow"] = type;
-	        stroke[se + "arrowlength"] = w;
-	        stroke[se + "arrowwidth"] = h;
+	        stroke[se    "arrow"] = type;
+	        stroke[se    "arrowlength"] = w;
+	        stroke[se    "arrowwidth"] = h;
 	    },
 	    setFillAndStroke = function (o, params) {
 	        // o.paper.canvas.style.display = "none";
@@ -7462,18 +7462,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        "transform" in params && o.transform(params.transform);
 	        if (isOval) {
-	            var cx = +a.cx,
-	                cy = +a.cy,
-	                rx = +a.rx || +a.r || 0,
-	                ry = +a.ry || +a.r || 0;
-	            node.path = R.format("ar{0},{1},{2},{3},{4},{1},{4},{1}x", round((cx - rx) * zoom), round((cy - ry) * zoom), round((cx + rx) * zoom), round((cy + ry) * zoom), round(cx * zoom));
+	            var cx =   a.cx,
+	                cy =   a.cy,
+	                rx =   a.rx ||   a.r || 0,
+	                ry =   a.ry ||   a.r || 0;
+	            node.path = R.format("ar{0},{1},{2},{3},{4},{1},{4},{1}x", round((cx - rx) * zoom), round((cy - ry) * zoom), round((cx    rx) * zoom), round((cy    ry) * zoom), round(cx * zoom));
 	            o._.dirty = 1;
 	        }
 	        if ("clip-rect" in params) {
 	            var rect = Str(params["clip-rect"]).split(separator);
 	            if (rect.length == 4) {
-	                rect[2] = +rect[2] + (+rect[0]);
-	                rect[3] = +rect[3] + (+rect[1]);
+	                rect[2] =   rect[2]    (  rect[0]);
+	                rect[3] =   rect[3]    (  rect[1]);
 	                var div = node.clipRect || R._g.doc.createElement("div"),
 	                    dstyle = div.style;
 	                dstyle.clip = R.format("rect({1}px {2}px {3}px {0}px)", rect);
@@ -7481,8 +7481,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    dstyle.position = "absolute";
 	                    dstyle.top = 0;
 	                    dstyle.left = 0;
-	                    dstyle.width = o.paper.width + "px";
-	                    dstyle.height = o.paper.height + "px";
+	                    dstyle.width = o.paper.width    "px";
+	                    dstyle.height = o.paper.height    "px";
 	                    node.parentNode.insertBefore(div, node);
 	                    div.appendChild(node);
 	                    node.clipRect = div;
@@ -7495,7 +7495,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (o.textpath) {
 	            var textpathStyle = o.textpath.style;
 	            params.font && (textpathStyle.font = params.font);
-	            params["font-family"] && (textpathStyle.fontFamily = '"' + params["font-family"].split(",")[0].replace(/^['"]+|['"]+$/g, E) + '"');
+	            params["font-family"] && (textpathStyle.fontFamily = '"'    params["font-family"].split(",")[0].replace(/^['"]  |['"]  $/g, E)    '"');
 	            params["font-size"] && (textpathStyle.fontSize = params["font-size"]);
 	            params["font-weight"] && (textpathStyle.fontWeight = params["font-weight"]);
 	            params["font-style"] && (textpathStyle.fontStyle = params["font-style"]);
@@ -7536,7 +7536,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    fill.src = isURL[1];
 	                    fill.type = "tile";
 	                    var bbox = o.getBBox(1);
-	                    fill.position = bbox.x + S + bbox.y;
+	                    fill.position = bbox.x    S    bbox.y;
 	                    o._.fillpos = [bbox.x, bbox.y];
 
 	                    R._preload(isURL[1], function () {
@@ -7554,7 +7554,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	            if ("fill-opacity" in params || "opacity" in params) {
-	                var opacity = ((+a["fill-opacity"] + 1 || 2) - 1) * ((+a.opacity + 1 || 2) - 1) * ((+R.getRGB(params.fill).o + 1 || 2) - 1);
+	                var opacity = ((  a["fill-opacity"]    1 || 2) - 1) * ((  a.opacity    1 || 2) - 1) * ((  R.getRGB(params.fill).o    1 || 2) - 1);
 	                opacity = mmin(mmax(opacity, 0), 1);
 	                fill.opacity = opacity;
 	                if (fill.src) {
@@ -7577,7 +7577,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            (params.stroke == "none" || params.stroke === null || stroke.on == null || params.stroke == 0 || params["stroke-width"] == 0) && (stroke.on = false);
 	            var strokeColor = R.getRGB(params.stroke);
 	            stroke.on && params.stroke && (stroke.color = strokeColor.hex);
-	            opacity = ((+a["stroke-opacity"] + 1 || 2) - 1) * ((+a.opacity + 1 || 2) - 1) * ((+strokeColor.o + 1 || 2) - 1);
+	            opacity = ((  a["stroke-opacity"]    1 || 2) - 1) * ((  a.opacity    1 || 2) - 1) * ((  strokeColor.o    1 || 2) - 1);
 	            var width = (toFloat(params["stroke-width"]) || 1) * .75;
 	            opacity = mmin(mmax(opacity, 0), 1);
 	            params["stroke-width"] == null && (width = a["stroke-width"]);
@@ -7609,25 +7609,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	            res.paper.canvas.style.display = E;
 	            var span = res.paper.span,
 	                m = 100,
-	                fontSize = a.font && a.font.match(/\d+(?:\.\d*)?(?=px)/);
+	                fontSize = a.font && a.font.match(/\d  (?:\.\d*)?(?=px)/);
 	            s = span.style;
 	            a.font && (s.font = a.font);
 	            a["font-family"] && (s.fontFamily = a["font-family"]);
 	            a["font-weight"] && (s.fontWeight = a["font-weight"]);
 	            a["font-style"] && (s.fontStyle = a["font-style"]);
 	            fontSize = toFloat(a["font-size"] || fontSize && fontSize[0]) || 10;
-	            s.fontSize = fontSize * m + "px";
+	            s.fontSize = fontSize * m    "px";
 	            res.textpath.string && (span.innerHTML = Str(res.textpath.string).replace(/</g, "&#60;").replace(/&/g, "&#38;").replace(/\n/g, "<br>"));
 	            var brect = span.getBoundingClientRect();
 	            res.W = a.w = (brect.right - brect.left) / m;
 	            res.H = a.h = (brect.bottom - brect.top) / m;
 	            // res.paper.canvas.style.display = "none";
 	            res.X = a.x;
-	            res.Y = a.y + res.H / 2;
+	            res.Y = a.y    res.H / 2;
 
-	            ("x" in params || "y" in params) && (res.path.v = R.format("m{0},{1}l{2},{1}", round(a.x * zoom), round(a.y * zoom), round(a.x * zoom) + 1));
+	            ("x" in params || "y" in params) && (res.path.v = R.format("m{0},{1}l{2},{1}", round(a.x * zoom), round(a.y * zoom), round(a.x * zoom)    1));
 	            var dirtyattrs = ["x", "y", "text", "font", "font-family", "font-weight", "font-style", "font-size"];
-	            for (var d = 0, dd = dirtyattrs.length; d < dd; d++) if (dirtyattrs[d] in params) {
+	            for (var d = 0, dd = dirtyattrs.length; d < dd; d    ) if (dirtyattrs[d] in params) {
 	                res._.dirty = 1;
 	                break;
 	            }
@@ -7665,8 +7665,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (fx && fy) {
 	                fx = toFloat(fx);
 	                fy = toFloat(fy);
-	                pow(fx - .5, 2) + pow(fy - .5, 2) > .25 && (fy = math.sqrt(.25 - pow(fx - .5, 2)) * ((fy > .5) * 2 - 1) + .5);
-	                fxfy = fx + S + fy;
+	                pow(fx - .5, 2)    pow(fy - .5, 2) > .25 && (fy = math.sqrt(.25 - pow(fx - .5, 2)) * ((fy > .5) * 2 - 1)    .5);
+	                fxfy = fx    S    fy;
 	            }
 	            return E;
 	        });
@@ -7690,10 +7690,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            fill.color = dots[0].color;
 	            fill.color2 = dots[dots.length - 1].color;
 	            var clrs = [];
-	            for (var i = 0, ii = dots.length; i < ii; i++) {
-	                dots[i].offset && clrs.push(dots[i].offset + S + dots[i].color);
+	            for (var i = 0, ii = dots.length; i < ii; i    ) {
+	                dots[i].offset && clrs.push(dots[i].offset    S    dots[i].color);
 	            }
-	            fill.colors = clrs.length ? clrs.join() : "0% " + fill.color;
+	            fill.colors = clrs.length ? clrs.join() : "0% "    fill.color;
 	            if (type == "radial") {
 	                fill.type = "gradientTitle";
 	                fill.focus = "100%";
@@ -7712,7 +7712,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Element = function (node, vml) {
 	        this[0] = this.node = node;
 	        node.raphael = true;
-	        this.id = R._oid++;
+	        this.id = R._oid    ;
 	        node.raphaelid = this.id;
 	        this.X = 0;
 	        this.Y = 0;
@@ -7744,12 +7744,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return this._.transform;
 	        }
 	        var vbs = this.paper._viewBoxShift,
-	            vbt = vbs ? "s" + [vbs.scale, vbs.scale] + "-1-1t" + [vbs.dx, vbs.dy] : E,
+	            vbt = vbs ? "s"    [vbs.scale, vbs.scale]    "-1-1t"    [vbs.dx, vbs.dy] : E,
 	            oldt;
 	        if (vbs) {
 	            oldt = tstr = Str(tstr).replace(/\.{3}|\u2026/g, this._.transform || E);
 	        }
-	        R._extractTransform(this, vbt + tstr);
+	        R._extractTransform(this, vbt    tstr);
 	        var matrix = this.matrix.clone(),
 	            skew = this.skew,
 	            o = this.node,
@@ -7767,7 +7767,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    bbt = this.getBBox(1),
 	                    dx = bb.x - bbt.x,
 	                    dy = bb.y - bbt.y;
-	                o.coordorigin = (dx * -zoom) + S + (dy * -zoom);
+	                o.coordorigin = (dx * -zoom)    S    (dy * -zoom);
 	                setCoords(this, 1, 1, dx, dy, 0);
 	            } else {
 	                o.style.filter = E;
@@ -7800,8 +7800,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (cy == null) && (cx = cy);
 	        if (cx == null || cy == null) {
 	            var bbox = this.getBBox(1);
-	            cx = bbox.x + bbox.width / 2;
-	            cy = bbox.y + bbox.height / 2;
+	            cx = bbox.x    bbox.width / 2;
+	            cy = bbox.y    bbox.height / 2;
 	        }
 	        this._.dirtyT = 1;
 	        this.transform(this._.transform.concat([["r", deg, cx, cy]]));
@@ -7816,10 +7816,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            dy = toFloat(dx[1]);
 	        }
 	        dx = toFloat(dx[0]) || 0;
-	        dy = +dy || 0;
+	        dy =   dy || 0;
 	        if (this._.bbox) {
-	            this._.bbox.x += dx;
-	            this._.bbox.y += dy;
+	            this._.bbox.x   = dx;
+	            this._.bbox.y   = dy;
 	        }
 	        this.transform(this._.transform.concat([["t", dx, dy]]));
 	        return this;
@@ -7842,8 +7842,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (cx == null || cy == null) {
 	            var bbox = this.getBBox(1);
 	        }
-	        cx = cx == null ? bbox.x + bbox.width / 2 : cx;
-	        cy = cy == null ? bbox.y + bbox.height / 2 : cy;
+	        cx = cx == null ? bbox.x    bbox.width / 2 : cx;
+	        cy = cy == null ? bbox.y    bbox.height / 2 : cy;
 
 	        this.transform(this._.transform.concat([["s", sx, sy, cx, cy]]));
 	        this._.dirtyT = 1;
@@ -7871,8 +7871,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        c.y *= z;
 	        c.width  = b.width  * z;
 	        c.height = b.height * z;
-	        c.x2 = c.x + c.width;
-	        c.y2 = c.y + c.height;
+	        c.x2 = c.x    c.width;
+	        c.y2 = c.y    c.height;
 	        return c;
 	      }
 	      return b;
@@ -7882,7 +7882,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return {};
 	        }
 	        return {
-	            x: this.X + (this.bbx || 0) - this.W / 2,
+	            x: this.X    (this.bbx || 0) - this.W / 2,
 	            y: this.Y - this.H,
 	            width: this.W,
 	            height: this.H
@@ -7893,7 +7893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return;
 	        }
 	        this.paper.__set__ && this.paper.__set__.exclude(this);
-	        R.eve.unbind("raphael.*.*." + this.id);
+	        R.eve.unbind("raphael.*.*."    this.id);
 	        R._tear(this, this.paper);
 	        this.node.parentNode.removeChild(this.node);
 	        this.shape && this.shape.parentNode.removeChild(this.shape);
@@ -7921,7 +7921,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            var names = name.split(separator),
 	                out = {};
-	            for (var i = 0, ii = names.length; i < ii; i++) {
+	            for (var i = 0, ii = names.length; i < ii; i    ) {
 	                name = names[i];
 	                if (name in this.attrs) {
 	                    out[name] = this.attrs[name];
@@ -7935,7 +7935,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        if (this.attrs && value == null && R.is(name, "array")) {
 	            out = {};
-	            for (i = 0, ii = name.length; i < ii; i++) {
+	            for (i = 0, ii = name.length; i < ii; i    ) {
 	                out[name[i]] = this.attr(name[i]);
 	            }
 	            return out;
@@ -7947,7 +7947,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        value == null && R.is(name, "object") && (params = name);
 	        for (var key in params) {
-	            eve("raphael.attr." + key + "." + this.id, this, params[key]);
+	            eve("raphael.attr."    key    "."    this.id, this, params[key]);
 	        }
 	        if (params) {
 	            for (key in this.paper.customAttributes) if (this.paper.customAttributes[has](key) && params[has](key) && R.is(this.paper.customAttributes[key], "function")) {
@@ -8011,10 +8011,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var s = this.node.runtimeStyle,
 	            f = s.filter;
 	        f = f.replace(blurregexp, E);
-	        if (+size !== 0) {
+	        if (  size !== 0) {
 	            this.attrs.blur = size;
-	            s.filter = f + S + ms + ".Blur(pixelradius=" + (+size || 1.5) + ")";
-	            s.margin = R.format("-{0}px 0 0 -{0}px", round(+size || 1.5));
+	            s.filter = f    S    ms    ".Blur(pixelradius="    (  size || 1.5)    ")";
+	            s.margin = R.format("-{0}px 0 0 -{0}px", round(  size || 1.5));
 	        } else {
 	            s.filter = f;
 	            s.margin = 0;
@@ -8026,7 +8026,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    R._engine.path = function (pathString, vml) {
 	        var el = createNode("shape");
 	        el.style.cssText = cssDot;
-	        el.coordsize = zoom + S + zoom;
+	        el.coordsize = zoom    S    zoom;
 	        el.coordorigin = vml.coordorigin;
 	        var p = new Element(el, vml),
 	            attr = {fill: "none", stroke: "#000"};
@@ -8116,12 +8116,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        x = x || 0;
 	        y = y || 0;
 	        text = text || "";
-	        path.v = R.format("m{0},{1}l{2},{1}", round(x * zoom), round(y * zoom), round(x * zoom) + 1);
+	        path.v = R.format("m{0},{1}l{2},{1}", round(x * zoom), round(y * zoom), round(x * zoom)    1);
 	        path.textpathok = true;
 	        o.string = Str(text);
 	        o.on = true;
 	        el.style.cssText = cssDot;
-	        el.coordsize = zoom + S + zoom;
+	        el.coordsize = zoom    S    zoom;
 	        el.coordorigin = "0 0";
 	        var p = new Element(el, vml),
 	            attr = {
@@ -8154,11 +8154,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var cs = this.canvas.style;
 	        this.width = width;
 	        this.height = height;
-	        width == +width && (width += "px");
-	        height == +height && (height += "px");
+	        width ==   width && (width   = "px");
+	        height ==   height && (height   = "px");
 	        cs.width = width;
 	        cs.height = height;
-	        cs.clip = "rect(0 " + width + " " + height + " 0)";
+	        cs.clip = "rect(0 "    width    " "    height    " 0)";
 	        if (this._viewBox) {
 	            R._engine.setViewBox.apply(this, this._viewBox);
 	        }
@@ -8204,11 +8204,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            try {
 	                !doc.namespaces.rvml && doc.namespaces.add("rvml", "urn:schemas-microsoft-com:vml");
 	                createNode = function (tagName) {
-	                    return doc.createElement('<rvml:' + tagName + ' class="rvml">');
+	                    return doc.createElement('<rvml:'    tagName    ' class="rvml">');
 	                };
 	            } catch (e) {
 	                createNode = function (tagName) {
-	                    return doc.createElement('<' + tagName + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
+	                    return doc.createElement('<'    tagName    ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
 	                };
 	            }
 	        };
@@ -8233,9 +8233,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        height = height || 342;
 	        res.width = width;
 	        res.height = height;
-	        width == +width && (width += "px");
-	        height == +height && (height += "px");
-	        res.coordsize = zoom * 1e3 + S + zoom * 1e3;
+	        width ==   width && (width   = "px");
+	        height ==   height && (height   = "px");
+	        res.coordsize = zoom * 1e3    S    zoom * 1e3;
 	        res.coordorigin = "0 0";
 	        res.span = R._g.doc.createElement("span");
 	        res.span.style.cssText = "position:absolute;left:-9999em;top:-9999em;padding:0;margin:0;line-height:1;";
@@ -8243,8 +8243,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        cs.cssText = R.format("top:0;left:0;width:{0};height:{1};display:inline-block;position:relative;clip:rect(0 {0} {1} 0);overflow:hidden", width, height);
 	        if (container == 1) {
 	            R._g.doc.body.appendChild(c);
-	            cs.left = x + "px";
-	            cs.top = y + "px";
+	            cs.left = x    "px";
+	            cs.top = y    "px";
 	            cs.position = "absolute";
 	        } else {
 	            if (container.firstChild) {

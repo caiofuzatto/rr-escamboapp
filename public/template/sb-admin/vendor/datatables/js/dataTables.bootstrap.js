@@ -46,8 +46,8 @@ var DataTable = $.fn.dataTable;
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'row'<'col-sm-6'l><'col-sm-6'f>>" +
-		"<'row'<'col-sm-12'tr>>" +
+		"<'row'<'col-sm-6'l><'col-sm-6'f>>"   
+		"<'row'<'col-sm-12'tr>>"   
 		"<'row'<'col-sm-5'i><'col-sm-7'p>>",
 	renderer: 'bootstrap'
 } );
@@ -79,7 +79,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 			}
 		};
 
-		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+		for ( i=0, ien=buttons.length ; i<ien ; i     ) {
 			button = buttons[i];
 
 			if ( $.isArray( button ) ) {
@@ -97,30 +97,30 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 
 					case 'first':
 						btnDisplay = lang.sFirst;
-						btnClass = button + (page > 0 ?
+						btnClass = button    (page > 0 ?
 							'' : ' disabled');
 						break;
 
 					case 'previous':
 						btnDisplay = lang.sPrevious;
-						btnClass = button + (page > 0 ?
+						btnClass = button    (page > 0 ?
 							'' : ' disabled');
 						break;
 
 					case 'next':
 						btnDisplay = lang.sNext;
-						btnClass = button + (page < pages-1 ?
+						btnClass = button    (page < pages-1 ?
 							'' : ' disabled');
 						break;
 
 					case 'last':
 						btnDisplay = lang.sLast;
-						btnClass = button + (page < pages-1 ?
+						btnClass = button    (page < pages-1 ?
 							'' : ' disabled');
 						break;
 
 					default:
-						btnDisplay = button + 1;
+						btnDisplay = button    1;
 						btnClass = page === button ?
 							'active' : '';
 						break;
@@ -128,9 +128,9 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 
 				if ( btnDisplay ) {
 					node = $('<li>', {
-							'class': classes.sPageButton+' '+btnClass,
+							'class': classes.sPageButton  ' '  btnClass,
 							'id': idx === 0 && typeof button === 'string' ?
-								settings.sTableId +'_'+ button :
+								settings.sTableId   '_'   button :
 								null
 						} )
 						.append( $('<a>', {
@@ -148,7 +148,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 						node, {action: button}, clickHandler
 					);
 
-					counter++;
+					counter    ;
 				}
 			}
 		}
@@ -173,7 +173,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	);
 
 	if ( activeEl ) {
-		$(host).find( '[data-dt-idx='+activeEl+']' ).focus();
+		$(host).find( '[data-dt-idx='  activeEl  ']' ).focus();
 	}
 };
 

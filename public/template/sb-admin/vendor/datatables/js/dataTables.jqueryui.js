@@ -46,9 +46,9 @@ var toolbar_prefix = 'fg-toolbar ui-toolbar ui-widget-header ui-helper-clearfix 
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		'<"'+toolbar_prefix+'tl ui-corner-tr"lfr>'+
-		't'+
-		'<"'+toolbar_prefix+'bl ui-corner-br"ip>',
+		'<"'  toolbar_prefix  'tl ui-corner-tr"lfr>'  
+		't'  
+		'<"'  toolbar_prefix  'bl ui-corner-br"ip>',
 	renderer: 'jqueryui'
 } );
 
@@ -62,7 +62,7 @@ $.extend( DataTable.ext.classes, {
 	"sPageButtonDisabled": "ui-state-disabled",
 
 	/* Features */
-	"sPaging": "dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi "+
+	"sPaging": "dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi "  
 		"ui-buttonset-multi paging_", /* Note that the type is postfixed */
 
 	/* Sorting */
@@ -75,8 +75,8 @@ $.extend( DataTable.ext.classes, {
 	"sSortIcon":           "DataTables_sort_icon",
 
 	/* Scrolling */
-	"sScrollHead": "dataTables_scrollHead "+"ui-state-default",
-	"sScrollFoot": "dataTables_scrollFoot "+"ui-state-default",
+	"sScrollHead": "dataTables_scrollHead "  "ui-state-default",
+	"sScrollFoot": "dataTables_scrollFoot "  "ui-state-default",
 
 	/* Misc */
 	"sHeaderTH":  "ui-state-default",
@@ -86,7 +86,7 @@ $.extend( DataTable.ext.classes, {
 
 DataTable.ext.renderer.header.jqueryui = function ( settings, cell, column, classes ) {
 	// Calculate what the unsorted class should be
-	var noSortAppliedClass = sort_prefix+'carat-2-n-s';
+	var noSortAppliedClass = sort_prefix  'carat-2-n-s';
 	var asc = $.inArray('asc', column.asSorting) !== -1;
 	var desc = $.inArray('desc', column.asSorting) !== -1;
 
@@ -94,10 +94,10 @@ DataTable.ext.renderer.header.jqueryui = function ( settings, cell, column, clas
 		noSortAppliedClass = '';
 	}
 	else if ( asc && !desc ) {
-		noSortAppliedClass = sort_prefix+'carat-1-n';
+		noSortAppliedClass = sort_prefix  'carat-1-n';
 	}
 	else if ( !asc && desc ) {
-		noSortAppliedClass = sort_prefix+'carat-1-s';
+		noSortAppliedClass = sort_prefix  'carat-1-s';
 	}
 
 	// Setup the DOM structure
@@ -105,7 +105,7 @@ DataTable.ext.renderer.header.jqueryui = function ( settings, cell, column, clas
 		.addClass( 'DataTables_sort_wrapper' )
 		.append( cell.contents() )
 		.append( $('<span/>')
-			.addClass( classes.sSortIcon+' '+noSortAppliedClass )
+			.addClass( classes.sSortIcon  ' '  noSortAppliedClass )
 		)
 		.appendTo( cell );
 
@@ -118,7 +118,7 @@ DataTable.ext.renderer.header.jqueryui = function ( settings, cell, column, clas
 		var colIdx = column.idx;
 
 		cell
-			.removeClass( classes.sSortAsc +" "+classes.sSortDesc )
+			.removeClass( classes.sSortAsc   " "  classes.sSortDesc )
 			.addClass( columns[ colIdx ] == 'asc' ?
 				classes.sSortAsc : columns[ colIdx ] == 'desc' ?
 					classes.sSortDesc :
@@ -126,17 +126,17 @@ DataTable.ext.renderer.header.jqueryui = function ( settings, cell, column, clas
 			);
 
 		cell
-			.find( 'span.'+classes.sSortIcon )
+			.find( 'span.'  classes.sSortIcon )
 			.removeClass(
-				sort_prefix+'triangle-1-n' +" "+
-				sort_prefix+'triangle-1-s' +" "+
-				sort_prefix+'carat-2-n-s' +" "+
-				sort_prefix+'carat-1-n' +" "+
-				sort_prefix+'carat-1-s'
+				sort_prefix  'triangle-1-n'   " "  
+				sort_prefix  'triangle-1-s'   " "  
+				sort_prefix  'carat-2-n-s'   " "  
+				sort_prefix  'carat-1-n'   " "  
+				sort_prefix  'carat-1-s'
 			)
 			.addClass( columns[ colIdx ] == 'asc' ?
-				sort_prefix+'triangle-1-n' : columns[ colIdx ] == 'desc' ?
-					sort_prefix+'triangle-1-s' :
+				sort_prefix  'triangle-1-n' : columns[ colIdx ] == 'desc' ?
+					sort_prefix  'triangle-1-s' :
 					noSortAppliedClass
 			);
 	} );
@@ -145,7 +145,7 @@ DataTable.ext.renderer.header.jqueryui = function ( settings, cell, column, clas
 
 /*
  * TableTools jQuery UI compatibility
- * Required TableTools 2.1+
+ * Required TableTools 2.1  
  */
 if ( DataTable.TableTools ) {
 	$.extend( true, DataTable.TableTools.classes, {

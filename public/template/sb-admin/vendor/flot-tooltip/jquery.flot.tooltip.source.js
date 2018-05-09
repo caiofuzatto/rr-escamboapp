@@ -55,7 +55,7 @@
         this.plotPlugins = [];
 
         if (plotPluginsLength) {
-            for (var p = 0; p < plotPluginsLength; p++) {
+            for (var p = 0; p < plotPluginsLength; p    ) {
                 this.plotPlugins.push($.plot.plugins[p].name);
             }
         }
@@ -135,7 +135,7 @@
         function plothover(event, pos, item) {
             // Simple distance formula.
             var lineDistance = function (p1x, p1y, p2x, p2y) {
-                return Math.sqrt((p2x - p1x) * (p2x - p1x) + (p2y - p1y) * (p2y - p1y));
+                return Math.sqrt((p2x - p1x) * (p2x - p1x)    (p2y - p1y) * (p2y - p1y));
             };
 
             // Here is some voodoo magic for determining the distance to a line form a given point {x, y}.
@@ -149,8 +149,8 @@
                             tg = -1 / ((y1 - y0) / (x1 - x0));
 
                         return {
-                            x: left = (x1 * (x * tg - y + y0) + x0 * (x * -tg + y - y1)) / (tg * (x1 - x0) + y0 - y1),
-                            y: tg * left - tg * x + y
+                            x: left = (x1 * (x * tg - y    y0)    x0 * (x * -tg    y - y1)) / (tg * (x1 - x0)    y0 - y1),
+                            y: tg * left - tg * x    y
                         };
                     } (x, y, x0, y0, x1, y1),
                     o.x >= Math.min(x0, x1) && o.x <= Math.max(x0, x1) && o.y >= Math.min(y0, y1) && o.y <= Math.max(y0, y1))
@@ -159,7 +159,7 @@
                     return l1 > l2 ? l2 : l1;
                 } else {
                     var a = y0 - y1, b = x1 - x0, c = x0 * y1 - y0 * x1;
-                    return Math.abs(a * x + b * y + c) / Math.sqrt(a * a + b * b);
+                    return Math.abs(a * x    b * y    c) / Math.sqrt(a * a    b * b);
                 }
             };
 
@@ -169,7 +169,7 @@
                 var maxDistance = that.plotOptions.grid.mouseActiveRadius;
 
                 var closestTrace = {
-                    distance: maxDistance + 1
+                    distance: maxDistance    1
                 };
 
                 var ttPos = pos;
@@ -180,7 +180,7 @@
 
                     // Our search here assumes our data is sorted via the x-axis.
                     // TODO: Improve efficiency somehow - search smaller sets of data.
-                    for (var j = 1; j < series.data.length; j++) {
+                    for (var j = 1; j < series.data.length; j    ) {
                         if (series.data[j - 1][0] <= pos.x && series.data[j][0] >= pos.x) {
                             xBeforeIndex = j - 1;
                             xAfterIndex = j;
@@ -208,7 +208,7 @@
                         // Calculate the point on the line vertically closest to our cursor.
                         var pointOnLine = [
                             pos.x,
-                            pointPrev.y + ((pointNext.y - pointPrev.y) * ((pos.x - pointPrev.x) / (pointNext.x - pointPrev.x)))
+                            pointPrev.y    ((pointNext.y - pointPrev.y) * ((pos.x - pointPrev.x) / (pointNext.x - pointPrev.x)))
                         ];
 
                         var item = {
@@ -232,7 +232,7 @@
                     }
                 });
 
-                if (closestTrace.distance < maxDistance + 1)
+                if (closestTrace.distance < maxDistance    1)
                     plot.showTooltip(closestTrace.item, ttPos);
                 else
                     plot.hideTooltip();
@@ -245,8 +245,8 @@
         plot.setTooltipPosition = function (pos) {
             var $tip = that.getDomElement();
 
-            var totalTipWidth = $tip.outerWidth() + that.tooltipOptions.shifts.x;
-            var totalTipHeight = $tip.outerHeight() + that.tooltipOptions.shifts.y;
+            var totalTipWidth = $tip.outerWidth()    that.tooltipOptions.shifts.x;
+            var totalTipHeight = $tip.outerHeight()    that.tooltipOptions.shifts.y;
             if ((pos.x - $(window).scrollLeft()) > ($(window)[that.wfunc]() - totalTipWidth)) {
                 pos.x -= totalTipWidth;
             }
@@ -290,8 +290,8 @@
             $tip.html(tipText);
             plot.setTooltipPosition({ x: position.pageX, y: position.pageY });
             $tip.css({
-                left: that.tipPosition.x + that.tooltipOptions.shifts.x,
-                top: that.tipPosition.y + that.tooltipOptions.shifts.y
+                left: that.tipPosition.x    that.tooltipOptions.shifts.x,
+                top: that.tipPosition.y    that.tooltipOptions.shifts.y
             }).show();
 
             // run callback
@@ -317,7 +317,7 @@
     FlotTooltip.prototype.getDomElement = function () {
         var $tip = $('<div>');
         if (this.tooltipOptions && this.tooltipOptions.cssClass) {
-            $tip = $('.' + this.tooltipOptions.cssClass);
+            $tip = $('.'    this.tooltipOptions.cssClass);
 
             if( $tip.length === 0 ){
                 $tip = $('<div />').addClass(this.tooltipOptions.cssClass);
@@ -377,7 +377,7 @@
 	    
         else if (typeof item.series.lines !== "undefined" && item.series.lines.steps) {
             x = item.series.datapoints.points[item.dataIndex * 2];
-            y = item.series.datapoints.points[item.dataIndex * 2 + 1];
+            y = item.series.datapoints.points[item.dataIndex * 2    1];
             // TODO: where to find custom text in this variant?
             customText = "";
         } else {
@@ -488,7 +488,7 @@
             }
 
             // see https://github.com/krzysu/flot.tooltip/issues/65
-            var tickIndex = item.dataIndex + item.seriesIndex;
+            var tickIndex = item.dataIndex    item.seriesIndex;
 
             for (var xIndex in item.series.xaxis[ticks]) {
                 if (item.series.xaxis[ticks].hasOwnProperty(tickIndex) && !this.isTimeMode('xaxis', item)) {

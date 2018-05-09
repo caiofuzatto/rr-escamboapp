@@ -40,8 +40,8 @@ var DataTable = $.fn.dataTable;
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'row uk-grid'<'uk-width-1-2'l><'uk-width-1-2'f>>" +
-		"<'row uk-grid dt-merge-grid'<'uk-width-1-1'tr>>" +
+		"<'row uk-grid'<'uk-width-1-2'l><'uk-width-1-2'f>>"   
+		"<'row uk-grid dt-merge-grid'<'uk-width-1-1'tr>>"   
 		"<'row uk-grid dt-merge-grid'<'uk-width-2-5'i><'uk-width-3-5'p>>",
 	renderer: 'uikit'
 } );
@@ -73,7 +73,7 @@ DataTable.ext.renderer.pageButton.uikit = function ( settings, host, idx, button
 			}
 		};
 
-		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+		for ( i=0, ien=buttons.length ; i<ien ; i     ) {
 			button = buttons[i];
 
 			if ( $.isArray( button ) ) {
@@ -90,31 +90,31 @@ DataTable.ext.renderer.pageButton.uikit = function ( settings, host, idx, button
 						break;
 
 					case 'first':
-						btnDisplay = '<i class="uk-icon-angle-double-left"></i> ' + lang.sFirst;
+						btnDisplay = '<i class="uk-icon-angle-double-left"></i> '    lang.sFirst;
 						btnClass = (page > 0 ?
 							'' : ' uk-disabled disabled');
 						break;
 
 					case 'previous':
-						btnDisplay = '<i class="uk-icon-angle-left"></i> ' + lang.sPrevious;
+						btnDisplay = '<i class="uk-icon-angle-left"></i> '    lang.sPrevious;
 						btnClass = (page > 0 ?
 							'' : 'uk-disabled disabled');
 						break;
 
 					case 'next':
-						btnDisplay = lang.sNext + ' <i class="uk-icon-angle-right"></i>';
+						btnDisplay = lang.sNext    ' <i class="uk-icon-angle-right"></i>';
 						btnClass = (page < pages-1 ?
 							'' : 'uk-disabled disabled');
 						break;
 
 					case 'last':
-						btnDisplay = lang.sLast + ' <i class="uk-icon-angle-double-right"></i>';
+						btnDisplay = lang.sLast    ' <i class="uk-icon-angle-double-right"></i>';
 						btnClass = (page < pages-1 ?
 							'' : ' uk-disabled disabled');
 						break;
 
 					default:
-						btnDisplay = button + 1;
+						btnDisplay = button    1;
 						btnClass = page === button ?
 							'uk-active' : '';
 						break;
@@ -122,9 +122,9 @@ DataTable.ext.renderer.pageButton.uikit = function ( settings, host, idx, button
 
 				if ( btnDisplay ) {
 					node = $('<li>', {
-							'class': classes.sPageButton+' '+btnClass,
+							'class': classes.sPageButton  ' '  btnClass,
 							'id': idx === 0 && typeof button === 'string' ?
-								settings.sTableId +'_'+ button :
+								settings.sTableId   '_'   button :
 								null
 						} )
 						.append( $(( -1 != btnClass.indexOf('disabled') || -1 != btnClass.indexOf('active') ) ? '<span>' : '<a>', {
@@ -142,7 +142,7 @@ DataTable.ext.renderer.pageButton.uikit = function ( settings, host, idx, button
 						node, {action: button}, clickHandler
 					);
 
-					counter++;
+					counter    ;
 				}
 			}
 		}
@@ -167,7 +167,7 @@ DataTable.ext.renderer.pageButton.uikit = function ( settings, host, idx, button
 	);
 
 	if ( activeEl ) {
-		$(host).find( '[data-dt-idx='+activeEl+']' ).focus();
+		$(host).find( '[data-dt-idx='  activeEl  ']' ).focus();
 	}
 };
 

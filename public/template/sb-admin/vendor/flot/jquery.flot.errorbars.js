@@ -50,7 +50,7 @@ user-defined drawing function, with (ctx, x, y, radius) as parameters, as eg.
 		ctx.beginPath();
 		ctx.arc( x, y, radius, 0, Math.PI, false );
 		ctx.moveTo( x - radius, y );
-		ctx.lineTo( x + radius, y );
+		ctx.lineTo( x    radius, y );
 		ctx.stroke();
 	}
 
@@ -120,27 +120,27 @@ shadowSize and lineWidth are derived as well from the points series.
         // error bars - first X
         if (eb == 'x' || eb == 'xy') {
             if (xerr.asymmetric) {
-                exl = points[i + 2];
-                exu = points[i + 3];
+                exl = points[i    2];
+                exu = points[i    3];
                 if (eb == 'xy')
                     if (yerr.asymmetric){
-                        eyl = points[i + 4];
-                        eyu = points[i + 5];
-                    } else eyl = points[i + 4];
+                        eyl = points[i    4];
+                        eyu = points[i    5];
+                    } else eyl = points[i    4];
             } else {
-                exl = points[i + 2];
+                exl = points[i    2];
                 if (eb == 'xy')
                     if (yerr.asymmetric) {
-                        eyl = points[i + 3];
-                        eyu = points[i + 4];
-                    } else eyl = points[i + 3];
+                        eyl = points[i    3];
+                        eyu = points[i    4];
+                    } else eyl = points[i    3];
             }
         // only Y
         } else if (eb == 'y')
             if (yerr.asymmetric) {
-                eyl = points[i + 2];
-                eyu = points[i + 3];
-            } else eyl = points[i + 2];
+                eyl = points[i    2];
+                eyu = points[i    3];
+            } else eyl = points[i    2];
 
         // symmetric errors?
         if (exu == null) exu = exl;
@@ -184,13 +184,13 @@ shadowSize and lineWidth are derived as well from the points series.
             err[1].upperCap = tmp;
         }
 
-        for (var i = 0; i < s.datapoints.points.length; i += ps) {
+        for (var i = 0; i < s.datapoints.points.length; i   = ps) {
 
             //parse
             var errRanges = parseErrors(s, i);
 
             //cycle xerr & yerr
-            for (var e = 0; e < err.length; e++){
+            for (var e = 0; e < err.length; e    ){
 
                 var minmax = [ax[e].min, ax[e].max];
 
@@ -199,10 +199,10 @@ shadowSize and lineWidth are derived as well from the points series.
 
                     //data coordinates
                     var x = points[i],
-                        y = points[i + 1];
+                        y = points[i    1];
 
                     //errorbar ranges
-                    var upper = [x, y][e] + errRanges[e * err.length + 1],
+                    var upper = [x, y][e]    errRanges[e * err.length    1],
                         lower = [x, y][e] - errRanges[e * err.length];
 
                     //points outside of the canvas
@@ -257,7 +257,7 @@ shadowSize and lineWidth are derived as well from the points series.
                         var w = sw / 2;
                         ctx.lineWidth = w;
                         ctx.strokeStyle = "rgba(0,0,0,0.1)";
-                        drawError(ctx, err[e], x, y, upper, lower, drawUpper, drawLower, radius, w + w/2, minmax);
+                        drawError(ctx, err[e], x, y, upper, lower, drawUpper, drawLower, radius, w    w/2, minmax);
 
                         ctx.strokeStyle = "rgba(0,0,0,0.2)";
                         drawError(ctx, err[e], x, y, upper, lower, drawUpper, drawLower, radius, w/2, minmax);
@@ -275,13 +275,13 @@ shadowSize and lineWidth are derived as well from the points series.
     function drawError(ctx,err,x,y,upper,lower,drawUpper,drawLower,radius,offset,minmax){
 
         //shadow offset
-        y += offset;
-        upper += offset;
-        lower += offset;
+        y   = offset;
+        upper   = offset;
+        lower   = offset;
 
         // error bar - avoid plotting over circles
         if (err.err == 'x'){
-            if (upper > x + radius) drawPath(ctx, [[upper,y],[Math.max(x + radius,minmax[0]),y]]);
+            if (upper > x    radius) drawPath(ctx, [[upper,y],[Math.max(x    radius,minmax[0]),y]]);
             else drawUpper = false;
             if (lower < x - radius) drawPath(ctx, [[Math.min(x - radius,minmax[1]),y],[lower,y]] );
             else drawLower = false;
@@ -289,7 +289,7 @@ shadowSize and lineWidth are derived as well from the points series.
         else {
             if (upper < y - radius) drawPath(ctx, [[x,upper],[x,Math.min(y - radius,minmax[0])]] );
             else drawUpper = false;
-            if (lower > y + radius) drawPath(ctx, [[x,Math.max(y + radius,minmax[1])],[x,lower]] );
+            if (lower > y    radius) drawPath(ctx, [[x,Math.max(y    radius,minmax[1])],[x,lower]] );
             else drawLower = false;
         }
 
@@ -300,8 +300,8 @@ shadowSize and lineWidth are derived as well from the points series.
         // upper cap
         if (drawUpper) {
             if (err.upperCap == '-'){
-                if (err.err=='x') drawPath(ctx, [[upper,y - radius],[upper,y + radius]] );
-                else drawPath(ctx, [[x - radius,upper],[x + radius,upper]] );
+                if (err.err=='x') drawPath(ctx, [[upper,y - radius],[upper,y    radius]] );
+                else drawPath(ctx, [[x - radius,upper],[x    radius,upper]] );
             } else if ($.isFunction(err.upperCap)){
                 if (err.err=='x') err.upperCap(ctx, upper, y, radius);
                 else err.upperCap(ctx, x, upper, radius);
@@ -310,8 +310,8 @@ shadowSize and lineWidth are derived as well from the points series.
         // lower cap
         if (drawLower) {
             if (err.lowerCap == '-'){
-                if (err.err=='x') drawPath(ctx, [[lower,y - radius],[lower,y + radius]] );
-                else drawPath(ctx, [[x - radius,lower],[x + radius,lower]] );
+                if (err.err=='x') drawPath(ctx, [[lower,y - radius],[lower,y    radius]] );
+                else drawPath(ctx, [[x - radius,lower],[x    radius,lower]] );
             } else if ($.isFunction(err.lowerCap)){
                 if (err.err=='x') err.lowerCap(ctx, lower, y, radius);
                 else err.lowerCap(ctx, x, lower, radius);
@@ -322,7 +322,7 @@ shadowSize and lineWidth are derived as well from the points series.
     function drawPath(ctx, pts){
         ctx.beginPath();
         ctx.moveTo(pts[0][0], pts[0][1]);
-        for (var p=1; p < pts.length; p++)
+        for (var p=1; p < pts.length; p    )
             ctx.lineTo(pts[p][0], pts[p][1]);
         ctx.stroke();
     }
