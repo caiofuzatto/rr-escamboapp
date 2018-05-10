@@ -52,6 +52,9 @@ gem 'mailcatcher'
 # O Lero-lero Generator é uma ferramenta capaz de gerar frases que 'falam' muita coisa mas que não tem conteúdo algum.
 gem 'lerolero_generator'
 
+# Integration of RubyMoney - Money with Rails
+gem 'money-rails', '~>1'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
