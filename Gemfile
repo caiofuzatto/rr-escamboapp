@@ -55,6 +55,9 @@ gem 'lerolero_generator'
 # Integration of RubyMoney - Money with Rails
 gem 'money-rails', '~>1'
 
+# Easy file attachment management for ActiveRecord
+gem "paperclip", "~> 6.0.0"
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
